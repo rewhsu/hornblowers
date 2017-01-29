@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Jen Sha
+  - __Scrum Master__: Andrew Hsu
+  - __Development Team Members__: Kevin Wong, Bianca Woo
 
 ## Table of Contents
 
