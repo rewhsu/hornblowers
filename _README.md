@@ -7,6 +7,7 @@
   - __Product Owner__: Jen Sha
   - __Scrum Master__: Andrew Hsu
   - __Development Team Members__: Kevin Wong, Bianca Woo
+  - __Testing 
 
 ## Table of Contents
 
