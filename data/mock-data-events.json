@@ -1,0 +1,82 @@
+[
+  {
+    "event_id": 1,
+    "event_name": "Open-architected"
+  },
+  {
+    "event_id": 2,
+    "event_name": "Automated"
+  },
+  {
+    "event_id": 3,
+    "event_name": "Diverse"
+  },
+  {
+    "event_id": 4,
+    "event_name": "software"
+  },
+  {
+    "event_id": 5,
+    "event_name": "Re-engineered"
+  },
+  {
+    "event_id": 6,
+    "event_name": "synergy"
+  },
+  {
+    "event_id": 7,
+    "event_name": "Quality-focused"
+  },
+  {
+    "event_id": 8,
+    "event_name": "encoding"
+  },
+  {
+    "event_id": 9,
+    "event_name": "framework"
+  },
+  {
+    "event_id": 10,
+    "event_name": "Compatible"
+  },
+  {
+    "event_id": 11,
+    "event_name": "knowledge base"
+  },
+  {
+    "event_id": 12,
+    "event_name": "content-based"
+  },
+  {
+    "event_id": 13,
+    "event_name": "human-resource"
+  },
+  {
+    "event_id": 14,
+    "event_name": "Horizontal"
+  },
+  {
+    "event_id": 15,
+    "event_name": "Compatible"
+  },
+  {
+    "event_id": 16,
+    "event_name": "algorithm"
+  },
+  {
+    "event_id": 17,
+    "event_name": "Integrated"
+  },
+  {
+    "event_id": 18,
+    "event_name": "user-facing"
+  },
+  {
+    "event_id": 19,
+    "event_name": "Profound"
+  },
+  {
+    "event_id": 20,
+    "event_name": "6th generation"
+  }
+]
