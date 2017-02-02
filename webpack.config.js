@@ -7,7 +7,7 @@ var APP_DIR = path.resolve(__dirname, 'src/client/app');
 var config = {
   entry: {
     index: APP_DIR + '/index.jsx',
-    rew: APP_DIR + '/rew.jsx',
+    rew: APP_DIR + '/YelpResultContainer.jsx',
   },
   output: {
     path: BUILD_DIR,
