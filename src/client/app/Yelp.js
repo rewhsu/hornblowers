@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { yelpSearch } from './yelpSearch.js';
-import YelpResult from './YelpResult.jsx';
+import yelpSearch from './yelpSearch';
+import YelpResult from './YelpResult';
 
 import axios from 'axios';
 
@@ -49,7 +49,7 @@ import axios from 'axios';
 
 // var myTree = buildTree('Alice');
 
-class YelpResultContainer extends React.Component {
+class Yelp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -128,6 +128,6 @@ class YelpResultContainer extends React.Component {
   }
 }
 
-ReactDOM.render(<YelpResultContainer />, document.getElementById('yelp'));
+export default Yelp;
 
 

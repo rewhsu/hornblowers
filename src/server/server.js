@@ -8,16 +8,17 @@ var app = express();
 
 app.use(express.static(__dirname + './../client/public'));
 
-app.use('/api', yelpRouter);
-app.use('/api*', yelpRouter);
-
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, './../client/public/index.html'));
 });
 
-app.get('/yelpApp', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/public/yelpApp.html'));
-});
+app.use('/api', yelpRouter);
+app.use('/api*', yelpRouter);
+
+
+// app.get('/yelpApp', function(req, res) {
+//   res.sendFile(path.join(__dirname, './../client/public/yelpApp.html'));
+// });
 
 
 app.listen(port, function () {

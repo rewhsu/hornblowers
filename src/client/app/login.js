@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 
 class Login extends React.Component {
   constructor(props) {
+    console.log('tingmopeet')
     super(props);
 
 

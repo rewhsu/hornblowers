@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HeaderBar from './components/headerbar';
-import FriendList from './components/friend_list';
-import UserDetail from './components/User_detail';
-import Login from './components/login';
-import Signup from './components/signup';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import HeaderBar from './headerbar';
+import FriendList from './friend_list';
+import UserDetail from './User_detail';
+import Login from './login';
+import Signup from './signup';
+console.log('before')
+import Yelp from './Yelp';
+console.log('after')
+import { Router, Route, Link, hashHistory } from 'react-router';
 
 
 // These data will be ajax from (sql)db 
@@ -80,12 +83,11 @@ function requireAuth(nextState, replace) {
   }
 }
 
-ReactDOM.render((<Router history={browserHistory}>
-    <Route path="/" component={App} onEnter={requireAuth}>
-      
-    </Route>
+ReactDOM.render((<Router history={hashHistory}>
+    <Route path="/" component={App} onEnter={requireAuth}/>
     <Route path="signup" component={Signup}/>
     <Route path="login" component={Login}/>
+    <Route path="yelp" component={Yelp} />
  </Router>), document.querySelector('.container'));
 
 
