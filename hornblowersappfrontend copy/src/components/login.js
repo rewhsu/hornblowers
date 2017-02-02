@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 
 
 class Login extends React.Component {
@@ -17,23 +19,6 @@ class Login extends React.Component {
 
   render() {
 
-    var users=[
-        {
-        user_id: 1,
-        user_name: "Melissa Henderson",
-        user_email: "mhenderson0@ow.ly",
-        user_password: "a2pmTvMrt",
-        user_latitude: 48.1212,
-        user_longitude: -1.603
-        },
-        {
-        "user_id": 2,
-        "user_name": "Amy Harvey",
-        "user_email": "aharvey1@ehow.com",
-        "user_password": "lIacCCOS",
-        "user_latitude": 18.42693,
-        "user_longitude": -64.62079
-      }];
    
     return (
       <div>
@@ -44,7 +29,6 @@ class Login extends React.Component {
 
           <button type='button' onClick={this.logIn}>submit</button>
         </form>
-        <p>{users[0]['user_name']}</p>
       </div>
     )
   }
