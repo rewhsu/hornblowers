@@ -6,8 +6,8 @@ var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 var config = {
   entry: {
-    index: APP_DIR + '/index.jsx',
-    yelp: APP_DIR + '/YelpResultContainer.jsx',
+    index: APP_DIR + '/index.js',
+    // yelp: APP_DIR + '/YelpResultContainer.jsx',
   },
   output: {
     path: BUILD_DIR,
@@ -21,7 +21,17 @@ var config = {
         loader : 'babel-loader'
       }
     ]
-  }
+  },
+  devServer: {
+    contentBase: 'app/ui/www',
+    devtool: 'eval',
+    hot: true,
+    inline: true,
+    port: 3000,
+    outputPath: BUILD_DIR,
+    historyApiFallback: true,
+},
+
 };
 
 module.exports = config;
