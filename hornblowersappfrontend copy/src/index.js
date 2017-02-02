@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import HeaderBar from './components/headerbar';
 import FriendList from './components/friend_list';
 import UserDetail from './components/User_detail';
+import Login from './components/login';
+import Signup from './components/signup';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 
 // These data will be ajax from (sql)db 
@@ -64,9 +67,26 @@ class App extends React.Component {
   }
 }
 
+function loggedIn() {
+	//temporary function, change to return false and it will redirect to login
+  return true;
+}
 
+function requireAuth(nextState, replace) {
+  if (!loggedIn()) {
+    replace({
+      pathname: '/login'
+    })
+  }
+}
 
-ReactDOM.render(<App />, document.querySelector('.container'));
+ReactDOM.render((<Router history={browserHistory}>
+    <Route path="/" component={App} onEnter={requireAuth}>
+      
+    </Route>
+    <Route path="signup" component={Signup}/>
+    <Route path="login" component={Login}/>
+ </Router>), document.querySelector('.container'));
 
 
 // Task I still need to do is making a button for this app (using react router)
