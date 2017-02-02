@@ -8,7 +8,7 @@ import Signup from './signup';
 console.log('before')
 import Yelp from './Yelp';
 console.log('after')
-import { Router, Route, Link, hashHistory } from 'react-router';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 
 // These data will be ajax from (sql)db 
@@ -83,7 +83,7 @@ function requireAuth(nextState, replace) {
   }
 }
 
-ReactDOM.render((<Router history={hashHistory}>
+ReactDOM.render((<Router history={browserHistory}>
     <Route path="/" component={App} onEnter={requireAuth}/>
     <Route path="signup" component={Signup}/>
     <Route path="login" component={Login}/>

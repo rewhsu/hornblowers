@@ -8,12 +8,17 @@ var app = express();
 
 app.use(express.static(__dirname + './../client/public'));
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, './../client/public/index.html'));
-});
+
+
 
 app.use('/api', yelpRouter);
 app.use('/api*', yelpRouter);
+
+// send all requests to index.html so browserHistory in React Router works
+// this needs to be below all other routes
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, './../client/public/index.html'));
+});
 
 
 // app.get('/yelpApp', function(req, res) {
