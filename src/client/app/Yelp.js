@@ -57,7 +57,7 @@ class Yelp extends React.Component {
       location: '944 Market St, San Francisco, CA',
       limit: 10,
       radius: 3000, //meters
-      result: this.props.result
+      result: null
     }
 
     this.handleLimitChange = this.handleLimitChange.bind(this)
@@ -93,7 +93,7 @@ class Yelp extends React.Component {
     var location = this.state.location;
     var limit = this.state.limit;
     axios
-      .get('/api/' + term + '@' + location)
+      .get('/api/yelp/' + term + '@' + location)
       .then(function(response) {
         context.setState({
           result: response.data
