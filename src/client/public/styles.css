@@ -19,6 +19,17 @@
   color: blue;
 }
 
+.room {
+  text-align: center;
+  margin: auto;
+}
+
+.roomUser {
+  text-align: center;
+  margin: auto;
+}
+
+
 .prefilled {
   font-style: italic;
   text-align: center;
