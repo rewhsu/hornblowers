@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class YelpResult extends React.Component {
   constructor(props) {
@@ -8,39 +7,27 @@ class YelpResult extends React.Component {
       visible: true,
       result: null
     };
+    this.goToUrl = this.goToUrl.bind(this);
   }
 
-  toggle() {
-    console.log('familytree toggle')
-    // this.setState({visible: !this.state.visible});
-  };
-
-  toggleSpoiler() {
-    console.log('spoil!', this.state.showSpoiler);
-    // this.setState({showSpoiler: !this.state.showSpoiler});
-  }
-
-  getResults() {
-
+  goToUrl(e) {
+    console.log(e.currentTarget);
+    console.log(this.props.result.url);
   }
 
   render() {
-    var style;
-    if (!this.state.visible) {
-      style = {display: "none"}
-    }
-    var imgStyle = {
-      width:304,
-      height:224,
-    }
     return (
-      <div style={style}>
-        Name: {this.props.firstResult.name}<br/>
-        Price: {this.props.firstResult.price}<br/>
-        Address: {this.props.firstResult.location.display_address.join(', ')}<br/>
-        Rating: {this.props.firstResult.rating}<br/>
-        Reviews: {this.props.firstResult.review_count}<br/>
-        <img src={this.props.firstResult.image_url} style={imgStyle} />
+      <div className="yelpResult">
+        <br />
+        <a className="yelpLink" target="_blank" href={this.props.result.url}>{this.props.result.name}</a>
+        <div>
+          <img src={this.props.result.image_url} className="yelpImage" />
+          <h6>{this.props.result.location.display_address.join(', ')}</h6>
+          <div className="yelpProp">Rating: {this.props.result.rating}</div>
+          <div className="yelpProp">Reviews: {this.props.result.review_count}</div>
+          <div className="yelpProp">Price: {this.props.result.price}</div>
+        </div>
+        <br />
       </div>
     );
   }

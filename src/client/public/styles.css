@@ -1,0 +1,26 @@
+.yelpMenu {
+  text-align: center;
+  margin: auto;
+}
+
+.yelpResult {
+  text-align: center;
+  margin: auto;
+}
+
+.yelpImage {
+  width: 300px;
+  text-align: center;
+  margin: auto;
+}
+
+.yelpLink {
+  font-size: 200%;
+  color: blue;
+}
+
+.prefilled {
+  font-style: italic;
+  text-align: center;
+  margin: auto;
+}
