@@ -9,7 +9,7 @@ const FriendList = (props) => {
 	});
 	
 	return (
-		<ul className='col-md-4 list-group'>		
+		<ul>		
 			{FriendItems}
 		</ul>
 	)
