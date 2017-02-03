@@ -8,6 +8,8 @@ import Login from './login';
 import Signup from './signup';
 console.log('before')
 import Yelp from './Yelp';
+import Room from './Room';
+import Chat from './Chat';
 console.log('after')
 import { Router, Route, Link, browserHistory } from 'react-router';
 
@@ -152,6 +154,7 @@ ReactDOM.render((<Router history={browserHistory}>
     <Route path="signup" component={Signup}/>
     <Route path="login" component={Login}/>
     <Route path="yelp" component={Yelp} />
+    <Route path="room" component={Room} />
  </Router>), document.getElementById('app'));
 
 

@@ -68,13 +68,13 @@ class Yelp extends React.Component {
   }
 
   handleLimitChange(event) {
-    console.log('handlelimitChange');
+    console.log('handleLimitChange');
     this.setState({limit: event.target.value});
   }
 
   handleRadiusChange(event) {
-    console.log('handlelimitChange');
-    this.setState({limit: event.target.value});
+    console.log('handleRadiusChange');
+    this.setState({radius: event.target.value});
   }
 
   handleTermChange(event) {

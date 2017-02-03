@@ -1,5 +1,5 @@
 var express = require('express');
-var yelp = require('./../client/app/yelpSearch.js');
+var yelp = require('./../../client/app/yelpSearch.js');
 
 var router = express.Router();
 module.exports = router;
