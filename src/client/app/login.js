@@ -7,6 +7,7 @@ import HeaderBar from './headerbar'
 
 
 
+
 class Login extends React.Component {
   constructor(props) {
 
@@ -20,19 +21,35 @@ class Login extends React.Component {
   }
 
   logIn() {
-    //if login name and password match then change route to main page
+    
     console.log("Email: " + this.state.email);
     console.log("Password: " + this.state.password);
-    // axios.post()
-    browserHistory.push('/');
 
+    // window.user = this.state.email;
+    //request email and see if passwords match
+    var self = this;
+    axios.post('/api/login/', {
+      email: self.state.email
+    })
+      .then(function(response) {
+        console.log('response.data["user_password"]: ', response.data["user_password"].length);
+        console.log('this.state.password: ', self.state.password.length);
+        if (response.data["user_password"] === self.state.password) {
+          //if login email and password match what's in database then change route to main page
+          window.user = self.state.email;
+          browserHistory.push('/');    
+        }
+      })
+      .catch(function (error) {
+        console.log('email and password do not match');
+      });
   }
 
   handleEmailChange (e) {
      this.setState({email: e.target.value});
   }
 
-  handlePasswordChange (e) { 555
+  handlePasswordChange (e) {
      this.setState({password: e.target.value});
   }
 
