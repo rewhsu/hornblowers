@@ -46,13 +46,17 @@ class Chat extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.getMessages();
+  }
+
   render() {
     var chatBorderVis;
     if (!this.state.chatVisible) {
       chatBorderVis = {display: "none"};
     }
     return (
-      <div className="container">
+      <div>
         <button onClick={this.getMessages}>Get Messages</button>  
         <div className="bordered" style={chatBorderVis}>
           <div className="pre-scrollable">

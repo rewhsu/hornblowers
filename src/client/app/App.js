@@ -101,31 +101,27 @@ class App extends React.Component {
 			this.setState({currentUserFriendList: FakeFriendData})
 		}, 1000);
 		return (
-			<div className='container'>
-				<div className='row'>
-					<div className='col-xs-10 col-xs-offset-1 coloring'>
-						<HeaderBar />
-					</div>
-				</div>
-				<div className='container'>
-					<div className='row'>
-						<div className='col-sm-3'>
-							<SearchFriendBar 
-								AllUserData={this.state.allUserDataFromDateBase} 
-								CurrentFriendList={this.state.currentUserFriendList}
-								changeFriendListFunc={this.changeFriendList.bind(this)}
-							/>
-						</div>
-						<div className='col-sm-3'>
-							<UserDetail User={this.state.currentUserLocation}/>
-						</div>
-						<div className='col-sm-3'>					
-							<FriendList friends={this.state.currentUserFriendList}/>
-						</div>
-					</div>
-				</div>
-        <button onClick={this.makeAPage.bind(this)} className='btn btn-primary'><Link to={'room'}>Create new page</Link></button>
-			</div> 
+      <div>
+  			<HeaderBar />
+        <div className='container'>
+  					<div className='row'>
+  						<div className='col-sm-3'>
+  							<SearchFriendBar 
+  								AllUserData={this.state.allUserDataFromDateBase} 
+  								CurrentFriendList={this.state.currentUserFriendList}
+  								changeFriendListFunc={this.changeFriendList.bind(this)}
+  							/>
+  						</div>
+  						<div className='col-sm-3'>
+  							<UserDetail User={this.state.currentUserLocation}/>
+  						</div>
+  						<div className='col-sm-3'>					
+  							<FriendList friends={this.state.currentUserFriendList}/>
+  						</div>
+  					</div>
+          <button onClick={this.makeAPage.bind(this)} className='btn btn-primary'><Link to={'room'}>Create new page</Link></button>
+  			</div>
+      </div>
 		);
   	}
 }

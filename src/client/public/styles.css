@@ -1,3 +1,8 @@
+.yelpEmbed {
+  text-align: center;
+  margin: auto;
+}
+
 .yelpMenu {
   text-align: center;
   margin: auto;
@@ -15,7 +20,7 @@
 }
 
 .yelpLink {
-  font-size: 200%;
+  font-size: 150%;
   color: blue;
 }
 
@@ -31,6 +36,7 @@
 
 
 .prefilled {
+  font-weight: 200;
   font-style: italic;
   text-align: center;
   margin: auto;
@@ -48,4 +54,12 @@
 
 .userDetails {
   font-size: 75%;
+}
+
+.vote-on {
+  background-color: green;
+}
+
+.vote-off {
+  background-color: white;
 }

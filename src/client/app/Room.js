@@ -5,6 +5,7 @@ import RoomUsers from './RoomUsers';
 import Chat from './Chat';
 import axios from 'axios';
 import {Link} from 'react-router';
+import HeaderBar from './headerbar';
 
 class Room extends React.Component {
   constructor(props) {
@@ -47,26 +48,35 @@ class Room extends React.Component {
     }
     return (
       <div className="room">
-        <button><Link to="/">Home</Link></button>
-        <div className="row">
-          <div className="col-sm-3">
-            <h2 onClick={this.toggleYelp}>Yelp</h2>
-            <div style={yelpVisible}>
-              <Yelp />
+        <HeaderBar />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <div className="yelpEmbed">
+                <h2 onClick={this.toggleYelp}>Yelp</h2>
+                <div style={yelpVisible}>
+                  <Yelp />
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="col-sm-6">
-            <h2 onClick={this.toggleChat}>Chat</h2>
-            <div style={chatVisible}>
-              <Chat />
+            
+            <div className="col-md-8">
+              <div className="col-md-8">
+                <h2 onClick={this.toggleChat}>Chat</h2>
+                <div style={chatVisible}>
+                  <Chat />
+                </div>
+              </div>
+              <div className="col-md-4">
+                <h2 onClick={this.toggleUsers}>List</h2>
+                <div style={usersVisible} >
+                  <RoomUsers users={this.state.roomUsers} />
+                </div>
+              </div>
             </div>
+          
           </div>
-          <div className="col-sm-3">
-            <h2 onClick={this.toggleUsers}>List</h2>
-            <div style={usersVisible} >
-              <RoomUsers users={this.state.roomUsers} />
-            </div>
-          </div>
+        
         </div>
       </div>
     )

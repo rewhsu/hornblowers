@@ -27,13 +27,17 @@ class RoomUsers extends React.Component {
       })
   }
 
+  componentDidMount() {
+    this.getUsers();
+  }
+
   render() {
     var usersVisible;
     if (!this.state.usersVisible) {
       usersVisible = {display: "none"};
     }
     return (
-      <div className="container">
+      <div>
         <button onClick={this.getUsers}>Load Room Members</button>
         <div className="bordered" style={usersVisible}>
           <div className="pre-scrollable">

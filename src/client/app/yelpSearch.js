@@ -9,11 +9,12 @@ exports.yelpSearch = function(cb, term, location, limit, radius) {
   var numResults = numResults || 10;
 
   const searchRequest = {
-    term: term || "falafel",
+    term: term || "Restaurants",
     location: location || '944 Market St, san francisco, ca',
     // latitude: 34.25,
     // longitude: 119.41,
-    limit: 10
+    limit: limit || 5,
+    radius: radius || 3000
   };
 
   yelp.accessToken(clientId, clientSecret).then(response => {
