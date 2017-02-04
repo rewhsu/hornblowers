@@ -17,11 +17,11 @@ app.use('/api/room*', roomRouter);
 app.use('/api/yelp', yelpRouter);
 app.use('/api/yelp*', yelpRouter);
 
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use('/api', yelpRouter);
-app.use('/api*', yelpRouter);
 
 
 app.get('/api/friends', function(req, res) {
@@ -94,6 +94,7 @@ app.post('/api/login', function(req, res) {
 	})
 });
 
+app.use('/api*', yelpRouter);
 
 // send all requests to index.html so browserHistory in React Router works
 // this needs to be below all other routes
