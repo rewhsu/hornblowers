@@ -1,21 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { browserHistory } from 'react-router';
+import axios from 'axios';
 
 
 
 class Login extends React.Component {
   constructor(props) {
-    console.log('tingmopeet')
+
     super(props);
 
 
-    // this.state = {
-    //   hovering: false
-    // }
+    this.state = {
+      email: 'hi',
+      password: 'dfsdf'
+    }
   }
 
   logIn() {
-    console.log('login');
+    //if login name and password match then change route to main page
+    console.log("Email: " + this.state.email);
+    console.log("Password: " + this.state.password);
+    // axios.post()
+    browserHistory.push('/');
+
+  }
+
+  handleEmailChange (e) {
+     this.setState({email: e.target.value});
+  }
+
+  handlePasswordChange (e) { 555
+     this.setState({password: e.target.value});
   }
 
   render() {
@@ -25,10 +41,10 @@ class Login extends React.Component {
       <div>
         <h1>Login</h1>
         <form className='loginWrapper' method='post'>
-          <label>Email: <input type='email' placeholder='john.doe@email.com'/></label><br/>
-          <label>Password: <input type='text' placeholder='secret'/></label><br/>
+          <label>Email: <input type='text' name='email' placeholder='john.doe@email.com' onChange={this.handleEmailChange.bind(this)}/></label><br/>
+          <label>Password: <input type='password' name='password' placeholder='secret'onChange={this.handlePasswordChange.bind(this)}/></label><br/>
 
-          <button type='button' onClick={this.logIn}>submit</button>
+          <button type='button' onClick={this.logIn.bind(this)}>submit</button>
         </form>
       </div>
     )
