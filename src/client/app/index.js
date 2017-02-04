@@ -75,12 +75,7 @@ class App extends React.Component {
 	 // We will need a Ajax Call here to fetch Users FriendList
 	 // Once we fetch the data we will be able setState for CurrentUserFriendList  
 	 }
-
-	 // Generate new Page 
-	 // to newRoute
-	makeAPage() {
-	 	console.log('make page')
-	}
+	 
 	
 	// I pass down currentFriendList to child & also I passdown the changeFriendList 
 	// To SearchFriendBar 
@@ -92,11 +87,7 @@ class App extends React.Component {
 			currentUserFriendList: newFriendList
 		});
 	}
-
-	// var arrayvar = this.state.arrayvar.slice()
-	// arrayvar.push(newelement)
-	// this.setState({ arrayvar: arrayvar })
-
+	
 	render() {
 		// So my problem here is how does User work in here
 		// when it comes in what kind of call is giving ? 
@@ -113,22 +104,21 @@ class App extends React.Component {
 				</div>
 				<div className='container'>
 					<div className='row'>
-						<div className='col-sm-3'>
+						<div className='col-sm-4'>
 							<SearchFriendBar 
 								AllUserData={this.state.allUserDataFromDateBase} 
 								CurrentFriendList={this.state.currentUserFriendList}
 								changeFriendListFunc={this.changeFriendList.bind(this)}
 							/>
 						</div>
-						<div className='col-sm-3'>
+						<div className='col-sm-4'>
 							<UserDetail User={this.state.currentUserLocation}/>
 						</div>
-						<div className='col-sm-3'>					
+						<div className='col-sm-4'>					
 							<FriendList friends={this.state.currentUserFriendList}/>
 						</div>
 					</div>
 				</div>
-				<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
 			</div> 
 		);
   	}

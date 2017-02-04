@@ -6,9 +6,6 @@ class SearchFriendBarListItem extends React.Component {
 		super(props);
 	}
 
-	addFriendToList() {
-		console.log('hi')
-	}
 
 	changeListFromChild() {
 		this.props.changeFunc();

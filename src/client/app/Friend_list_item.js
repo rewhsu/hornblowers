@@ -1,16 +1,22 @@
 import React from 'react';
 
-const FriendListItem = (props) => {
+class FriendListItem extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 
-	return (
-		<li>
-			<div>{props.frienddata.name}</div>s
-      		<img src={props.frienddata.img}/>
-		</li>
-	);
+	render() {
+		return (
+			<li>
+				<div>{this.props.frienddata.name}</div>
+	      		<img src={this.props.frienddata.img}/>
+	      		<input className='checkbox' type="checkbox"/> 
+			</li>
+		);
+	}
 }
 
 export default FriendListItem; 
  
-
+  
 

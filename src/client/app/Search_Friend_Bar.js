@@ -28,7 +28,7 @@ class SearchFriendBar extends React.Component {
 	 	};
 	}
 
-	changeList() {
+	AddFriendList() {
 		this.props.changeFriendListFunc(this.state.IneedThisFriend.props.Userdata);
 	}
 
@@ -49,7 +49,7 @@ class SearchFriendBar extends React.Component {
 					IneedThisFriend: <SearchFriendBarListItem 
 											key={allUser.etag} 
 											Userdata={allUser}
-											changeFunc={this.changeList.bind(this)}
+											changeFunc={this.AddFriendList.bind(this)}
 									/>
 				});
 			}
@@ -60,7 +60,7 @@ class SearchFriendBar extends React.Component {
 			UserSearchInput: event.target.value
 		});
 	}
-
+	
 	render() {
 		return (
 			<div>
