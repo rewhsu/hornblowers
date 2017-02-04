@@ -20,26 +20,31 @@ app.use('/api/yelp*', yelpRouter);
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use('/api', yelpRouter);
-app.use('/api*', yelpRouter);
 
 
 app.get('/api/friends', function(req, res) {
-	// db.User.findAll({
-	// 	where: {
-
-	// 	}
-	// })
+	db.User.findAll({
+		where: {id: req.query.userid},
+	  include: [
+	  	{model: db.User, as: 'Friends', through: db.Friendship}
+		]
+	}).then(function(users) {
+		if (users[0].Friends.length > 0) {
+			res.send(users[0].Friends)
+		} else {
+			res.send('User does not have friends.')
+		}
+	})
 })
 
-app.post('/api/users', function(req, res) {
-	console.log('RES DATA: ', req.body)
+app.get('/api/users', function(req, res) {
+	console.log('REQ DATA: ', req)
 	db.User.findOne({
 		where: {
-			user_name: req.body.searchName
+			user_name: req.query.searchName
 		}
 	}).then(function(user) {
-		console.log('USER from SIGNUP: ', user);
+		console.log('USER searchName: ', user);
 		if (user) {
 			res.send(user)
 		} else {
@@ -81,8 +86,8 @@ app.post('/api/login', function(req, res) {
 	console.log('REQ BODY: ', req.body.email)
 	db.User.findOne({
 		where: {
-			user_email: req.body.email
-			// user_password: req.body.password
+			user_email: req.body.email,
+			user_password: req.body.password
 		}
 	}).then(function(user) {
 		console.log('USER from LOGIN: ', user);
@@ -97,6 +102,10 @@ app.post('/api/login', function(req, res) {
 
 // send all requests to index.html so browserHistory in React Router works
 // this needs to be below all other routes
+
+app.use('/api', yelpRouter);
+app.use('/api*', yelpRouter);
+
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, './../client/public/index.html'));
 });
