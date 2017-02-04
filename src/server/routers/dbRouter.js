@@ -116,8 +116,10 @@ dbRouter.post('/signup', function(req, res) {
   })
 })
 
-// LOGIN USER
+
 dbRouter.post('/login', function(req, res) {
+  console.log('REQ BODY: ', req.body.email)
+
   db.User.findOne({
     where: {
       user_email: req.body.email,

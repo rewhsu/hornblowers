@@ -28,15 +28,17 @@ class Login extends React.Component {
     // window.user = this.state.email;
     //request email and see if passwords match
     var self = this;
-    axios.post('/api/login/', {
-      email: self.state.email
+    axios.post('/api/db/login', {
+      email: self.state.email,
+      password: self.state.password
     })
       .then(function(response) {
+        console.log('response', response);
         console.log('response.data["user_password"]: ', response.data["user_password"].length);
         console.log('this.state.password: ', self.state.password.length);
         if (response.data["user_password"] === self.state.password) {
           //if login email and password match what's in database then change route to main page
-          window.user = self.state.email;
+          window.userid = response.data.id;
           browserHistory.push('/');    
         }
       })

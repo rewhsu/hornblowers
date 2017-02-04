@@ -75,7 +75,7 @@ class App extends React.Component {
 	 // Generate new Page 
 	 // to newRoute
 	makeAPage() {
-		console.log(window.user);
+		console.log('window.userid', window.userid);
 	 	console.log('make page')
 	}
 	
