@@ -25721,11 +25721,26 @@
 	  _createClass(Login, [{
 	    key: 'logIn',
 	    value: function logIn() {
-	      //if login name and password match then change route to main page
+	
 	      console.log("Email: " + this.state.email);
 	      console.log("Password: " + this.state.password);
-	      // axios.post()
-	      _reactRouter.browserHistory.push('/');
+	
+	      // window.user = this.state.email;
+	      //request email and see if passwords match
+	      var self = this;
+	      _axios2.default.post('/api/login/', {
+	        email: self.state.email
+	      }).then(function (response) {
+	        console.log('response.data["user_password"]: ', response.data["user_password"].length);
+	        console.log('this.state.password: ', self.state.password.length);
+	        if (response.data["user_password"] === self.state.password) {
+	          //if login email and password match what's in database then change route to main page
+	          window.user = self.state.email;
+	          _reactRouter.browserHistory.push('/');
+	        }
+	      }).catch(function (error) {
+	        console.log('email and password do not match');
+	      });
 	    }
 	  }, {
 	    key: 'handleEmailChange',
@@ -25735,7 +25750,6 @@
 	  }, {
 	    key: 'handlePasswordChange',
 	    value: function handlePasswordChange(e) {
-	      555;
 	      this.setState({ password: e.target.value });
 	    }
 	  }, {
@@ -38335,6 +38349,7 @@
 		_createClass(App, [{
 			key: 'makeAPage',
 			value: function makeAPage() {
+				console.log(window.user);
 				console.log('make page');
 			}
 	
