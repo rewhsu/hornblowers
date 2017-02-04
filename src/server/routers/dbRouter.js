@@ -90,6 +90,35 @@ var createMembers = function (array, eventId) {
   })
 });
 
+// FIND MESSAGES FOR EACH EVENT CHATROOM
+dbRouter.get('/messages', function(req, res) {
+  db.Message.findAll({
+    where: {
+      eventId: req.query.eventId
+    }
+  }).then(function(messages) {
+    if (messages.length > 0) {
+      res.json(messages)
+    } else {
+      res.send('No messages in event room.')
+    }
+  });
+});
+
+dbRouter.post('/messages', function(req, res) {
+  db.Message.create({
+      userId: req.body.userId,
+      eventId: req.body.eventId,
+      message_text: req.body.text
+  }).then(function(message) {
+    if (message) {
+      res.json(message)
+    } else {
+      res.send('Empty message.')
+    }
+  });
+});
+
 // SIGNUP USER
 dbRouter.post('/signup', function(req, res) {
   // use findOne instead of findOrCreate because we're not using
@@ -116,8 +145,10 @@ dbRouter.post('/signup', function(req, res) {
   })
 })
 
-// LOGIN USER
+
 dbRouter.post('/login', function(req, res) {
+  console.log('REQ BODY: ', req.body.email)
+
   db.User.findOne({
     where: {
       user_email: req.body.email,
