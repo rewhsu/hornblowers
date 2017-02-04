@@ -6,6 +6,7 @@ import Yelp from './Yelp';
 import Room from './Room';
 import Chat from './Chat';
 import App from './App';
+import NotFoundPage from './NotFoundPage';
 import { Router, Route, Link, browserHistory } from 'react-router';
 
 
@@ -29,6 +30,7 @@ const routes = (
     <Route path="login" component={Login}/>
     <Route path="yelp" component={Yelp} />
     <Route path="room" component={Room} />
+    <Route path="*" component={NotFoundPage} />
  </Router>
 );
 
