@@ -17,7 +17,7 @@ var User = db.define('User', {
 	user_email: Sequelize.STRING,
 	user_password: Sequelize.STRING,
 	user_streetaddress: Sequelize.STRING,
-	user_postalcode: {type: Sequelize.STRING, defaultValue: '94109'},
+	user_postalcode: Sequelize.STRING,
 	createdAt: {
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.literal('NOW()')
@@ -84,7 +84,7 @@ var EventMember = db.define('EventMember', {
   }
 })
 
-EventMember.removeAttribute('id');
+EventMember.removeAttribute('id'); // No primary keys in eventmember table
 
 
 User.belongsToMany(Event, {as: 'Members', through: 'EventMember', foreignKey: 'userId'});
@@ -92,8 +92,7 @@ Event.belongsToMany(User, {as: 'Events', through: 'EventMember', foreignKey: 'ev
 Event.belongsTo(User, {foreignKey: 'event_creatorId'});
 Message.belongsTo(User, {foreignKey: 'userId'});
 Message.belongsTo(Event, {foreignKey: 'eventId'});
-User.belongsToMany(User, {as: 'Friends', through: 'Friendship', foreignKey: 'user_a'});
-User.belongsToMany(User, { as: 'Friends', through: 'Friendship', foreignKey: 'user_b'});
+User.belongsToMany(User, {as: 'Friends', through: 'Friendship', foreignKey: 'user_a', otherKey: 'user_b'});
 
 
 // ***FIRST: COMMENT OUT DB.SYNC() AFTER CREATING TABLES TO PREVENT TABLE DATA DELETION
@@ -106,7 +105,7 @@ User.belongsToMany(User, { as: 'Friends', through: 'Friendship', foreignKey: 'us
 //   });
 
 
-//***SECOND: UNCOMMENT EACH bulkCreate ONE-BY-ONE AND RUN AFTER CREATING TABLES W/ DB.SYNC() BELOW
+//***IF YOU WANT MOCK DATA: UNCOMMENT EACH bulkCreate ONE-BY-ONE AND RUN AFTER CREATING TABLES W/ DB.SYNC() BELOW
 
 // User.bulkCreate(mockUsers).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
 //   return User.findAll();
