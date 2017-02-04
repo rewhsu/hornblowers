@@ -25627,14 +25627,25 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
+<<<<<<< HEAD
+	var _signup = __webpack_require__(/*! ./signup */ 244);
+=======
 	var _PathUtils = __webpack_require__(/*! ./PathUtils */ 173);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var _Actions = __webpack_require__(/*! ./Actions */ 172);
 	
+<<<<<<< HEAD
+	var _Yelp = __webpack_require__(/*! ./Yelp */ 245);
+=======
 	var _createHistory = __webpack_require__(/*! ./createHistory */ 178);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var _createHistory2 = _interopRequireDefault(_createHistory);
 	
+<<<<<<< HEAD
+	var _Room = __webpack_require__(/*! ./Room */ 327);
+=======
 	function createStateStorage(entries) {
 	  return entries.filter(function (entry) {
 	    return entry.state;
@@ -25643,15 +25654,20 @@
 	    return memo;
 	  }, {});
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function createMemoryHistory() {
 	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	
+<<<<<<< HEAD
+	var _Chat = __webpack_require__(/*! ./Chat */ 330);
+=======
 	  if (Array.isArray(options)) {
 	    options = { entries: options };
 	  } else if (typeof options === 'string') {
 	    options = { entries: [options] };
 	  }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  var history = _createHistory2['default'](_extends({}, options, {
 	    getCurrentLocation: getCurrentLocation,
@@ -25660,9 +25676,13 @@
 	    go: go
 	  }));
 	
+<<<<<<< HEAD
+	var _App = __webpack_require__(/*! ./App */ 332);
+=======
 	  var _options = options;
 	  var entries = _options.entries;
 	  var current = _options.current;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  if (typeof entries === 'string') {
 	    entries = [entries];
@@ -25704,6 +25724,13 @@
 	
 	    var path = (basename || '') + pathname + (search || '');
 	
+<<<<<<< HEAD
+	var _headerbar = __webpack_require__(/*! ./headerbar */ 243);
+	
+	var _headerbar2 = _interopRequireDefault(_headerbar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+=======
 	    var key = undefined,
 	        state = undefined;
 	    if (entry.key) {
@@ -25714,6 +25741,7 @@
 	      state = null;
 	      entry.key = key;
 	    }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	    var location = _PathUtils.parsePath(path);
 	
@@ -25746,6 +25774,41 @@
 	      case _Actions.PUSH:
 	        current += 1;
 	
+<<<<<<< HEAD
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_headerbar2.default, null),
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Login'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'loginWrapper', method: 'post' },
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Email: ',
+	            _react2.default.createElement('input', { type: 'text', name: 'email', placeholder: 'john.doe@email.com', onChange: this.handleEmailChange.bind(this) })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Password: ',
+	            _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'secret', onChange: this.handlePasswordChange.bind(this) })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'button', onClick: this.logIn.bind(this) },
+	            'submit'
+	          )
+	        )
+	      );
+=======
 	        // if we are not on the top of stack
 	        // remove rest and push new
 	        if (current < entries.length) entries.splice(current);
@@ -25757,6 +25820,7 @@
 	        entries[current] = location;
 	        saveState(location.key, location.state);
 	        break;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	    }
 	  }
 	
@@ -26930,6 +26994,178 @@
 	        return;
 	      }
 	
+<<<<<<< HEAD
+	/**
+	 * Syntactic sugar for invoking a function and expanding an array for arguments.
+	 *
+	 * Common use case would be to use `Function.prototype.apply`.
+	 *
+	 *  ```js
+	 *  function f(x, y, z) {}
+	 *  var args = [1, 2, 3];
+	 *  f.apply(null, args);
+	 *  ```
+	 *
+	 * With `spread` this example can be re-written.
+	 *
+	 *  ```js
+	 *  spread(function(x, y, z) {})([1, 2, 3]);
+	 *  ```
+	 *
+	 * @param {Function} callback
+	 * @returns {Function}
+	 */
+	module.exports = function spread(callback) {
+	  return function wrap(arr) {
+	    return callback.apply(null, arr);
+	  };
+	};
+
+
+/***/ },
+/* 243 */
+/*!*************************************!*\
+  !*** ./src/client/app/headerbar.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var HeaderBar = function (_React$Component) {
+	  _inherits(HeaderBar, _React$Component);
+	
+	  function HeaderBar(props) {
+	    _classCallCheck(this, HeaderBar);
+	
+	    var _this = _possibleConstructorReturn(this, (HeaderBar.__proto__ || Object.getPrototypeOf(HeaderBar)).call(this, props));
+	
+	    _this.state = {
+	      activeTab: null
+	    };
+	    _this.setActiveTab = _this.setActiveTab.bind(_this);
+	    _this.classCheck = _this.classCheck.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(HeaderBar, [{
+	    key: "setActiveTab",
+	    value: function setActiveTab(tabName) {
+	      var context = this;
+	      return function () {
+	        context.setState({ activeTab: tabName });
+	      };
+	    }
+	  }, {
+	    key: "classCheck",
+	    value: function classCheck(tabName) {
+	      if (this.state.activeTab === tabName) {
+	        return "active";
+	      } else {
+	        return "";
+	      }
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "nav",
+	        { className: "navbar navbar-default" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "container-fluid" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "navbar-header" },
+	            _react2.default.createElement(
+	              "a",
+	              { className: "navbar-brand", href: "#" },
+	              "@"
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "ul",
+	            { className: "nav navbar-nav" },
+	            _react2.default.createElement(
+	              "li",
+	              { onClick: this.setActiveTab('home'), className: this.classCheck('home') },
+	              _react2.default.createElement(
+	                "a",
+	                { href: "/" },
+	                "Home"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              { onClick: this.setActiveTab('room'), className: this.classCheck('room') },
+	              _react2.default.createElement(
+	                "a",
+	                { href: "/room" },
+	                "Room"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              { onClick: this.setActiveTab('signup'), className: this.classCheck('signup') },
+	              _react2.default.createElement(
+	                "a",
+	                { href: "/signup" },
+	                "Sign Up"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "li",
+	              { onClick: this.setActiveTab('login'), className: this.classCheck('login') },
+	              _react2.default.createElement(
+	                "a",
+	                { href: "/login" },
+	                "Log In"
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return HeaderBar;
+	}(_react2.default.Component);
+	
+	;
+	
+	// Where important that the when the component renders the value of the 
+	// input is set to retrieve its value from this start state term 
+	// so its inital value is an empty string and we start of totally empty.
+	
+	
+	exports.default = HeaderBar;
+
+/***/ },
+/* 244 */
+/*!**********************************!*\
+  !*** ./src/client/app/signup.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+=======
 	      // Prepare the response
 	      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
 	      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
@@ -26942,6 +27178,7 @@
 	        config: config,
 	        request: request
 	      };
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	      settle(resolve, reject, response);
 	
@@ -26959,9 +27196,17 @@
 	      request = null;
 	    };
 	
+<<<<<<< HEAD
+	var _headerbar = __webpack_require__(/*! ./headerbar */ 243);
+	
+	var _headerbar2 = _interopRequireDefault(_headerbar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+=======
 	    // Handle timeout
 	    request.ontimeout = function handleTimeout() {
 	      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED'));
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	      // Clean up request
 	      request = null;
@@ -27017,9 +27262,67 @@
 	      request.addEventListener('progress', config.onDownloadProgress);
 	    }
 	
+<<<<<<< HEAD
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_headerbar2.default, null),
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Signup'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'loginWrapper', method: 'post' },
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Name: ',
+	            _react2.default.createElement('input', { type: 'text', placeholder: 'John Doe' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Email: ',
+	            _react2.default.createElement('input', { type: 'email', placeholder: 'john.doe@email.com' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Password: ',
+	            _react2.default.createElement('input', { type: 'text', placeholder: 'secret' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Latitude: ',
+	            _react2.default.createElement('input', { type: 'text', placeholder: '' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Longitude: ',
+	            _react2.default.createElement('input', { type: 'text', placeholder: '' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'button', onClick: this.signUp },
+	            'submit'
+	          )
+	        ),
+	        _react2.default.createElement('p', null)
+	      );
+=======
 	    // Not all browsers support upload events
 	    if (typeof config.onUploadProgress === 'function' && request.upload) {
 	      request.upload.addEventListener('progress', config.onUploadProgress);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	    }
 	
 	    if (config.cancelToken) {
@@ -27048,10 +27351,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 4)))
 
 /***/ },
+<<<<<<< HEAD
+/* 245 */
+/*!********************************!*\
+  !*** ./src/client/app/Yelp.js ***!
+  \********************************/
+=======
 /* 232 */
 /*!************************************!*\
   !*** ./~/axios/lib/core/settle.js ***!
   \************************************/
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27144,6 +27454,11 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	var _yelpSearch = __webpack_require__(/*! ./yelpSearch */ 246);
+	
+	var _YelpResult = __webpack_require__(/*! ./YelpResult */ 326);
+=======
 	var utils = __webpack_require__(/*! ./../utils */ 226);
 	
 	function encode(val) {
@@ -27156,6 +27471,7 @@
 	    replace(/%5B/gi, '[').
 	    replace(/%5D/gi, ']');
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	/**
 	 * Build a URL by appending params to the end
@@ -27201,6 +27517,12 @@
 	      });
 	    });
 	
+<<<<<<< HEAD
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Yelp = function (_React$Component) {
+	  _inherits(Yelp, _React$Component);
+=======
 	    serializedParams = parts.join('&');
 	  }
 	
@@ -27220,6 +27542,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var utils = __webpack_require__(/*! ./../utils */ 226);
 	
@@ -27242,6 +27565,170 @@
 	  var val;
 	  var i;
 	
+<<<<<<< HEAD
+	    _this.state = {
+	      term: 'falafel',
+	      location: '944 Market St, San Francisco, CA',
+	      limit: 5,
+	      radius: 3000, //meters
+	      result: null,
+	      yelpBorderVis: false,
+	      yelpMenuVis: false,
+	      votes: {}
+	    };
+	    _this.toggleVote = _this.toggleVote.bind(_this);
+	    _this.onBlur = _this.onBlur.bind(_this);
+	    _this.toggleSearch = _this.toggleSearch.bind(_this);
+	    _this.handleLimitChange = _this.handleLimitChange.bind(_this);
+	    _this.handleRadiusChange = _this.handleRadiusChange.bind(_this);
+	    _this.handleTermChange = _this.handleTermChange.bind(_this);
+	    _this.handleLocationChange = _this.handleLocationChange.bind(_this);
+	    _this.getResult = _this.getResult.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Yelp, [{
+	    key: 'toggleVote',
+	    value: function toggleVote(name) {
+	      var votes = this.state.votes;
+	      if (votes.hasOwnProperty(name)) {
+	        votes[name] = !votes[name];
+	      } else {
+	        votes[name] = true;
+	      }
+	      this.setState({ votes: votes });
+	      // console.log('****', this.state.votes);
+	    }
+	  }, {
+	    key: 'onBlur',
+	    value: function onBlur(e) {
+	      console.log("blur");
+	      e.currentTarget.value = "";
+	    }
+	  }, {
+	    key: 'toggleSearch',
+	    value: function toggleSearch() {
+	      this.setState({ yelpMenuVis: !this.state.yelpMenuVis });
+	    }
+	  }, {
+	    key: 'handleLimitChange',
+	    value: function handleLimitChange(event) {
+	      console.log('handleLimitChange');
+	      this.setState({ limit: event.target.value });
+	    }
+	  }, {
+	    key: 'handleRadiusChange',
+	    value: function handleRadiusChange(event) {
+	      console.log('handleRadiusChange');
+	      this.setState({ radius: event.target.value });
+	    }
+	  }, {
+	    key: 'handleTermChange',
+	    value: function handleTermChange(event) {
+	      console.log('handleTermChange');
+	      this.setState({ term: event.target.value });
+	    }
+	  }, {
+	    key: 'handleLocationChange',
+	    value: function handleLocationChange(event) {
+	      console.log('handleLocationChange');
+	      this.setState({ location: event.target.value });
+	    }
+	  }, {
+	    key: 'getResult',
+	    value: function getResult() {
+	      var context = this;
+	      var term = this.state.term;
+	      var location = this.state.location;
+	      var limit = this.state.limit;
+	      _axios2.default.get('/api/yelp/' + term + '@' + location).then(function (response) {
+	        context.setState({
+	          result: response.data,
+	          yelpBorderVis: true,
+	          yelpMenuVis: false
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getResult();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var borderVis;
+	      var menuVis;
+	      if (!this.state.yelpBorderVis) {
+	        borderVis = { display: "none" };
+	      }
+	      if (!this.state.yelpMenuVis) {
+	        menuVis = { display: "none" };
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.toggleSearch },
+	          'Toggle Manual Search'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'yelpMenu', style: menuVis },
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Number of Results:',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('input', { type: 'text', onClick: this.onBlur, value: this.state.limit, onChange: this.handleLimitChange, className: 'prefilled' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Radius:',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('input', { type: 'text', onClick: this.onBlur, value: this.state.radius, onChange: this.handleRadiusChange, className: 'prefilled' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Enter term string:',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('input', { type: 'text', onClick: this.onBlur, value: this.state.term, onChange: this.handleTermChange, className: 'prefilled' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Enter location string:',
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('input', { type: 'text', onClick: this.onBlur, value: this.state.location, onChange: this.handleLocationChange, className: 'prefilled' })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.getResult },
+	            'Find Results'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'bordered', style: borderVis },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'pre-scrollable' },
+	            this.state.result ? this.state.result.map(function (item) {
+	              return _react2.default.createElement(_YelpResult2.default, { result: item, voteFunc: _this2.toggleVote });
+	            }) : null
+	          )
+	        )
+	      );
+=======
 	  if (!headers) { return parsed; }
 	
 	  utils.forEach(headers.split('\n'), function parser(line) {
@@ -27251,6 +27738,7 @@
 	
 	    if (key) {
 	      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	    }
 	  });
 	
@@ -27259,18 +27747,29 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 246 */
+/*!**************************************!*\
+  !*** ./src/client/app/yelpSearch.js ***!
+  \**************************************/
+=======
 /* 237 */
 /*!************************************************!*\
   !*** ./~/axios/lib/helpers/isURLSameOrigin.js ***!
   \************************************************/
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var utils = __webpack_require__(/*! ./../utils */ 226);
 	
+<<<<<<< HEAD
+	  var yelp = __webpack_require__(/*! yelp-fusion */ 247);
+=======
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // Standard browser envs have full support of the APIs needed to test
 	  // whether the request URL is of the same origin as current location.
@@ -27294,7 +27793,18 @@
 	        href = urlParsingNode.href;
 	      }
 	
+<<<<<<< HEAD
+	  var searchRequest = {
+	    term: term || "Restaurants",
+	    location: location || '944 Market St, san francisco, ca',
+	    // latitude: 34.25,
+	    // longitude: 119.41,
+	    limit: limit || 5,
+	    radius: radius || 3000
+	  };
+=======
 	      urlParsingNode.setAttribute('href', href);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
 	      return {
@@ -27336,6 +27846,59 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 247 */
+/*!************************************!*\
+  !*** ./~/yelp-fusion/lib/index.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	const _send = __webpack_require__(/*! @tonybadguy/call-me-maybe */ 248);
+	
+	class YelpClient {
+	  constructor(token){
+	    this.token = token;
+	  }
+	  
+	  search(parameters){
+	    return _send({
+	      url: 'https://api.yelp.com/v3/businesses/search',
+	      query: parameters,
+	      bearerToken: this.token
+	    });
+	  }
+	
+	  phoneSearch(parameters){
+	    return _send({
+	      url: 'https://api.yelp.com/v3/businesses/search/phone',
+	      query: parameters,
+	      bearerToken: this.token
+	    });
+	  }
+	
+	  transactionSearch(transactionType, parameters){
+	    return _send({
+	      url: 'https://api.yelp.com/v3/transactions/{transaction_type}/search',
+	      urlParams:{
+	        transaction_type: transactionType
+	      },
+	      query: parameters,
+	      bearerToken: this.token
+	    });
+	  }
+	
+	  business(id){
+	    return _send({
+	      url: 'https://api.yelp.com/v3/businesses/{id}',
+	      urlParams:{
+	        id: id
+	      },
+	      bearerToken: this.token
+	    });
+	  }
+=======
 /* 238 */
 /*!*************************************!*\
   !*** ./~/axios/lib/helpers/btoa.js ***!
@@ -27345,6 +27908,7 @@
 	'use strict';
 	
 	// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 	
@@ -27381,19 +27945,66 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 248 */
+/*!**************************************************!*\
+  !*** ./~/@tonybadguy/call-me-maybe/lib/index.js ***!
+  \**************************************************/
+=======
 /* 239 */
 /*!****************************************!*\
   !*** ./~/axios/lib/helpers/cookies.js ***!
   \****************************************/
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _smallRequest = __webpack_require__(/*! small-request */ 249);
+	const _defaultRequestFilters = __webpack_require__(/*! ./default-request-filters */ 312);
+	const _defaultResponseFilters = __webpack_require__(/*! ./default-response-filters */ 322);
+	const _processFilters = __webpack_require__(/*! ./process-filters */ 325);
+=======
 	var utils = __webpack_require__(/*! ./../utils */ 226);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
 	
+<<<<<<< HEAD
+	module.exports = send;
+
+
+/***/ },
+/* 249 */
+/*!**************************************!*\
+  !*** ./~/small-request/lib/index.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	const _send = __webpack_require__(/*! ./send */ 250);
+	
+	module.exports = {
+	  send: _send
+	};
+
+
+/***/ },
+/* 250 */
+/*!*************************************!*\
+  !*** ./~/small-request/lib/send.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	const _requestFunction = __webpack_require__(/*! request-function */ 251);
+	const _toRequestOptions = __webpack_require__(/*! ./to-request-options */ 310);
+	const _responseHandler = __webpack_require__(/*! ./response-handler */ 311);
+=======
 	  // Standard browser envs support document.cookie
 	  (function standardBrowserEnv() {
 	    return {
@@ -27412,6 +28023,7 @@
 	        if (utils.isString(domain)) {
 	          cookie.push('domain=' + domain);
 	        }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	        if (secure === true) {
 	          cookie.push('secure');
@@ -27443,6 +28055,19 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 251 */
+/*!*************************************!*\
+  !*** ./~/request-function/index.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	const http = __webpack_require__(/*! http */ 252);
+	const https = __webpack_require__(/*! https */ 302);
+	const url = __webpack_require__(/*! url */ 295);
+	const typedError = __webpack_require__(/*! error/typed */ 303);
+=======
 /* 240 */
 /*!************************************************!*\
   !*** ./~/axios/lib/core/InterceptorManager.js ***!
@@ -27450,6 +28075,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var utils = __webpack_require__(/*! ./../utils */ 226);
 	
@@ -27504,6 +28130,18 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 252 */
+/*!********************************!*\
+  !*** ./~/stream-http/index.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(/*! ./lib/request */ 253)
+	var extend = __webpack_require__(/*! xtend */ 293)
+	var statusCodes = __webpack_require__(/*! builtin-status-codes */ 294)
+	var url = __webpack_require__(/*! url */ 295)
+=======
 /* 241 */
 /*!*********************************************!*\
   !*** ./~/axios/lib/core/dispatchRequest.js ***!
@@ -27511,6 +28149,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var utils = __webpack_require__(/*! ./../utils */ 226);
 	var transformData = __webpack_require__(/*! ./transformData */ 242);
@@ -27592,6 +28231,22 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 253 */
+/*!**************************************!*\
+  !*** ./~/stream-http/lib/request.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(/*! ./capability */ 258)
+	var inherits = __webpack_require__(/*! inherits */ 259)
+	var response = __webpack_require__(/*! ./response */ 260)
+	var stream = __webpack_require__(/*! readable-stream */ 261)
+	var toArrayBuffer = __webpack_require__(/*! to-arraybuffer */ 292)
+	
+	var IncomingMessage = response.IncomingMessage
+	var rStates = response.readyStates
+=======
 /* 242 */
 /*!*******************************************!*\
   !*** ./~/axios/lib/core/transformData.js ***!
@@ -27599,6 +28254,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var utils = __webpack_require__(/*! ./../utils */ 226);
 	
@@ -27629,6 +28285,159 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+		self._body.push(chunk)
+		cb()
+	}
+	
+	ClientRequest.prototype.abort = ClientRequest.prototype.destroy = function () {
+		var self = this
+		self._destroyed = true
+		if (self._response)
+			self._response._destroyed = true
+		if (self._xhr)
+			self._xhr.abort()
+		// Currently, there isn't a way to truly abort a fetch.
+		// If you like bikeshedding, see https://github.com/whatwg/fetch/issues/27
+	}
+	
+	ClientRequest.prototype.end = function (data, encoding, cb) {
+		var self = this
+		if (typeof data === 'function') {
+			cb = data
+			data = undefined
+		}
+	
+		stream.Writable.prototype.end.call(self, data, encoding, cb)
+	}
+	
+	ClientRequest.prototype.flushHeaders = function () {}
+	ClientRequest.prototype.setTimeout = function () {}
+	ClientRequest.prototype.setNoDelay = function () {}
+	ClientRequest.prototype.setSocketKeepAlive = function () {}
+	
+	// Taken from http://www.w3.org/TR/XMLHttpRequest/#the-setrequestheader%28%29-method
+	var unsafeHeaders = [
+		'accept-charset',
+		'accept-encoding',
+		'access-control-request-headers',
+		'access-control-request-method',
+		'connection',
+		'content-length',
+		'cookie',
+		'cookie2',
+		'date',
+		'dnt',
+		'expect',
+		'host',
+		'keep-alive',
+		'origin',
+		'referer',
+		'te',
+		'trailer',
+		'transfer-encoding',
+		'upgrade',
+		'user-agent',
+		'via'
+	]
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../buffer/index.js */ 254).Buffer, (function() { return this; }()), __webpack_require__(/*! ./../../process/browser.js */ 4)))
+
+/***/ },
+/* 254 */
+/*!***************************!*\
+  !*** ./~/buffer/index.js ***!
+  \***************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/*!
+	 * The buffer module from node.js, for the browser.
+	 *
+	 * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+	 * @license  MIT
+	 */
+	/* eslint-disable no-proto */
+	
+	'use strict'
+	
+	var base64 = __webpack_require__(/*! base64-js */ 255)
+	var ieee754 = __webpack_require__(/*! ieee754 */ 256)
+	var isArray = __webpack_require__(/*! isarray */ 257)
+	
+	exports.Buffer = Buffer
+	exports.SlowBuffer = SlowBuffer
+	exports.INSPECT_MAX_BYTES = 50
+	
+	/**
+	 * If `Buffer.TYPED_ARRAY_SUPPORT`:
+	 *   === true    Use Uint8Array implementation (fastest)
+	 *   === false   Use Object implementation (most compatible, even IE6)
+	 *
+	 * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+	 * Opera 11.6+, iOS 4.2+.
+	 *
+	 * Due to various browser bugs, sometimes the Object implementation will be used even
+	 * when the browser supports typed arrays.
+	 *
+	 * Note:
+	 *
+	 *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+	 *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+	 *
+	 *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+	 *
+	 *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+	 *     incorrect length in some situations.
+	
+	 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+	 * get the Object implementation, which is slower but behaves correctly.
+	 */
+	Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
+	  ? global.TYPED_ARRAY_SUPPORT
+	  : typedArraySupport()
+	
+	/*
+	 * Export kMaxLength after typed array support is determined.
+	 */
+	exports.kMaxLength = kMaxLength()
+	
+	function typedArraySupport () {
+	  try {
+	    var arr = new Uint8Array(1)
+	    arr.__proto__ = {__proto__: Uint8Array.prototype, foo: function () { return 42 }}
+	    return arr.foo() === 42 && // typed array instances can be augmented
+	        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+	        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+	  } catch (e) {
+	    return false
+	  }
+	}
+	
+	function kMaxLength () {
+	  return Buffer.TYPED_ARRAY_SUPPORT
+	    ? 0x7fffffff
+	    : 0x3fffffff
+	}
+	
+	function createBuffer (that, length) {
+	  if (kMaxLength() < length) {
+	    throw new RangeError('Invalid typed array length')
+	  }
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    // Return an augmented `Uint8Array` instance, for best performance
+	    that = new Uint8Array(length)
+	    that.__proto__ = Buffer.prototype
+	  } else {
+	    // Fallback: Return an object instance of the Buffer class
+	    if (that === null) {
+	      that = new Buffer(length)
+	    }
+	    that.length = length
+	  }
+	
+	  return that
+	}
+=======
 	module.exports = function isCancel(value) {
 	  return !!(value && value.__CANCEL__);
 	};
@@ -27642,6 +28451,7 @@
 /***/ function(module, exports) {
 
 	'use strict';
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	/**
 	 * Determines whether the specified URL is absolute
@@ -28087,11 +28897,19 @@
 	exports.default = Room;
 
 /***/ },
+<<<<<<< HEAD
+/* 255 */
+/*!******************************!*\
+  !*** ./~/base64-js/index.js ***!
+  \******************************/
+/***/ function(module, exports) {
+=======
 /* 251 */
 /*!********************************!*\
   !*** ./src/client/app/Yelp.js ***!
   \********************************/
 /***/ function(module, exports, __webpack_require__) {
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 
 	'use strict';
 	
@@ -28127,6 +28945,28 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+<<<<<<< HEAD
+	  return parts.join('')
+	}
+
+
+/***/ },
+/* 256 */
+/*!****************************!*\
+  !*** ./~/ieee754/index.js ***!
+  \****************************/
+/***/ function(module, exports) {
+
+	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+	  var e, m
+	  var eLen = nBytes * 8 - mLen - 1
+	  var eMax = (1 << eLen) - 1
+	  var eBias = eMax >> 1
+	  var nBits = -7
+	  var i = isLE ? (nBytes - 1) : 0
+	  var d = isLE ? -1 : 1
+	  var s = buffer[offset + i]
+=======
 	// const exampleResult = {
 	//     "price": "$",
 	//     "distance": 336.0722601476,
@@ -28167,6 +29007,7 @@
 	//         "longitude": -122.411304
 	//     }
 	// };
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	// var myTree = buildTree('Alice');
 	
@@ -28311,15 +29152,39 @@
 	exports.default = Yelp;
 
 /***/ },
+<<<<<<< HEAD
+/* 257 */
+/*!*************************************!*\
+  !*** ./~/buffer/~/isarray/index.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+=======
 /* 252 */
 /*!**************************************!*\
   !*** ./src/client/app/yelpSearch.js ***!
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 
 	'use strict';
 	
+<<<<<<< HEAD
+	module.exports = Array.isArray || function (arr) {
+	  return toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 258 */
+/*!*****************************************!*\
+  !*** ./~/stream-http/lib/capability.js ***!
+  \*****************************************/
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
+=======
 	exports.yelpSearch = function (cb, term, location, limit, radius) {
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  var yelp = __webpack_require__(/*! yelp-fusion */ 253);
 	
@@ -28395,6 +29260,28 @@
 	    });
 	  }
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 259 */
+/*!****************************************!*\
+  !*** ./~/inherits/inherits_browser.js ***!
+  \****************************************/
+/***/ function(module, exports) {
+
+	if (typeof Object.create === 'function') {
+	  // implementation from standard node.js 'util' module
+	  module.exports = function inherits(ctor, superCtor) {
+	    ctor.super_ = superCtor
+	    ctor.prototype = Object.create(superCtor.prototype, {
+	      constructor: {
+	        value: ctor,
+	        enumerable: false,
+	        writable: true,
+	        configurable: true
+	      }
+=======
 	  business(id){
 	    return _send({
 	      url: 'https://api.yelp.com/v3/businesses/{id}',
@@ -28420,6 +29307,7 @@
 	      url: 'https://api.yelp.com/v3/autocomplete',
 	      query: parameters,
 	      bearerToken: this.token
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	    });
 	  }
 	}
@@ -28447,6 +29335,74 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 260 */
+/*!***************************************!*\
+  !*** ./~/stream-http/lib/response.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(/*! ./capability */ 258)
+	var inherits = __webpack_require__(/*! inherits */ 259)
+	var stream = __webpack_require__(/*! readable-stream */ 261)
+	
+	var rStates = exports.readyStates = {
+		UNSENT: 0,
+		OPENED: 1,
+		HEADERS_RECEIVED: 2,
+		LOADING: 3,
+		DONE: 4
+	}
+	
+	var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode) {
+		var self = this
+		stream.Readable.call(self)
+	
+		self._mode = mode
+		self.headers = {}
+		self.rawHeaders = []
+		self.trailers = {}
+		self.rawTrailers = []
+	
+		// Fake the 'close' event, but only once 'end' fires
+		self.on('end', function () {
+			// The nextTick is necessary to prevent the 'request' module from causing an infinite loop
+			process.nextTick(function () {
+				self.emit('close')
+			})
+		})
+	
+		if (mode === 'fetch') {
+			self._fetchResponse = response
+	
+			self.url = response.url
+			self.statusCode = response.status
+			self.statusMessage = response.statusText
+			
+			response.headers.forEach(function(header, key){
+				self.headers[key.toLowerCase()] = header
+				self.rawHeaders.push(key, header)
+			})
+	
+	
+			// TODO: this doesn't respect backpressure. Once WritableStream is available, this can be fixed
+			var reader = response.body.getReader()
+			function read () {
+				reader.read().then(function (result) {
+					if (self._destroyed)
+						return
+					if (result.done) {
+						self.push(null)
+						return
+					}
+					self.push(new Buffer(result.value))
+					read()
+				}).catch(function(err) {
+					self.emit('error', err)
+				})
+			}
+			read()
+=======
 /* 254 */
 /*!**************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/index.js ***!
@@ -28454,6 +29410,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const _smallRequest = __webpack_require__(/*! small-request */ 255);
 	const _defaultRequestFilters = __webpack_require__(/*! ./default-request-filters */ 308);
@@ -28530,6 +29487,29 @@
 	  });
 	};
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 4), __webpack_require__(/*! ./../../buffer/index.js */ 254).Buffer, (function() { return this; }())))
+
+/***/ },
+/* 261 */
+/*!*****************************************************!*\
+  !*** ./~/stream-http/~/readable-stream/readable.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {var Stream = (function (){
+	  try {
+	    return __webpack_require__(/*! stream */ 262); // hack to fix a circular dependency issue when used with browserify
+	  } catch(_){}
+	}());
+	exports = module.exports = __webpack_require__(/*! ./lib/_stream_readable.js */ 284);
+	exports.Stream = Stream || exports;
+	exports.Readable = exports;
+	exports.Writable = __webpack_require__(/*! ./lib/_stream_writable.js */ 289);
+	exports.Duplex = __webpack_require__(/*! ./lib/_stream_duplex.js */ 288);
+	exports.Transform = __webpack_require__(/*! ./lib/_stream_transform.js */ 290);
+	exports.PassThrough = __webpack_require__(/*! ./lib/_stream_passthrough.js */ 291);
+=======
 	module.exports = send;
 
 /***/ },
@@ -28544,6 +29524,7 @@
 	const https = __webpack_require__(/*! https */ 298);
 	const url = __webpack_require__(/*! url */ 291);
 	const typedError = __webpack_require__(/*! error/typed */ 299);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const unknownProtocolErrorType = 'request-function/unknown-protocol';
 	
@@ -28577,10 +29558,17 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 262 */
+/*!**************************************!*\
+  !*** ./~/stream-browserify/index.js ***!
+  \**************************************/
+=======
 /* 258 */
 /*!********************************!*\
   !*** ./~/stream-http/index.js ***!
   \********************************/
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(/*! ./lib/request */ 259)
@@ -28590,6 +29578,17 @@
 	
 	var http = exports
 	
+<<<<<<< HEAD
+	var EE = __webpack_require__(/*! events */ 263).EventEmitter;
+	var inherits = __webpack_require__(/*! inherits */ 259);
+	
+	inherits(Stream, EE);
+	Stream.Readable = __webpack_require__(/*! readable-stream/readable.js */ 264);
+	Stream.Writable = __webpack_require__(/*! readable-stream/writable.js */ 280);
+	Stream.Duplex = __webpack_require__(/*! readable-stream/duplex.js */ 281);
+	Stream.Transform = __webpack_require__(/*! readable-stream/transform.js */ 282);
+	Stream.PassThrough = __webpack_require__(/*! readable-stream/passthrough.js */ 283);
+=======
 	http.request = function (opts, cb) {
 		if (typeof opts === 'string')
 			opts = url.parse(opts)
@@ -28600,6 +29599,7 @@
 		// will result in a (valid) protocol-relative url. However, this won't work if
 		// the protocol is something else, like 'file:'
 		var defaultProtocol = global.location.protocol.search(/^https?:$/) === -1 ? 'http:' : ''
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 		var protocol = opts.protocol || defaultProtocol
 		var host = opts.hostname || opts.host
@@ -28763,8 +29763,43 @@
 		delete self._headers[name.toLowerCase()]
 	}
 	
+<<<<<<< HEAD
+	  // Allow for unix-like usage: A.pipe(B).pipe(C)
+	  return dest;
+	};
+
+
+/***/ },
+/* 263 */
+/*!****************************!*\
+  !*** ./~/events/events.js ***!
+  \****************************/
+/***/ function(module, exports) {
+
+	// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+=======
 	ClientRequest.prototype._onFinish = function () {
 		var self = this
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 		if (self._destroyed)
 			return
@@ -29194,6 +30229,30 @@
 	Buffer.allocUnsafeSlow = function (size) {
 	  return allocUnsafe(null, size)
 	}
+<<<<<<< HEAD
+
+
+/***/ },
+/* 264 */
+/*!***********************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/readable.js ***!
+  \***********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {var Stream = (function (){
+	  try {
+	    return __webpack_require__(/*! stream */ 262); // hack to fix a circular dependency issue when used with browserify
+	  } catch(_){}
+	}());
+	exports = module.exports = __webpack_require__(/*! ./lib/_stream_readable.js */ 265);
+	exports.Stream = Stream || exports;
+	exports.Readable = exports;
+	exports.Writable = __webpack_require__(/*! ./lib/_stream_writable.js */ 273);
+	exports.Duplex = __webpack_require__(/*! ./lib/_stream_duplex.js */ 272);
+	exports.Transform = __webpack_require__(/*! ./lib/_stream_transform.js */ 278);
+	exports.PassThrough = __webpack_require__(/*! ./lib/_stream_passthrough.js */ 279);
+=======
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function fromString (that, string, encoding) {
 	  if (typeof encoding !== 'string' || encoding === '') {
@@ -29219,6 +30278,18 @@
 	  return that
 	}
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 4)))
+
+/***/ },
+/* 265 */
+/*!***********************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/lib/_stream_readable.js ***!
+  \***********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+=======
 	function fromArrayLike (that, array) {
 	  var length = array.length < 0 ? 0 : checked(array.length) | 0
 	  that = createBuffer(that, length)
@@ -29227,10 +30298,20 @@
 	  }
 	  return that
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function fromArrayBuffer (that, array, byteOffset, length) {
 	  array.byteLength // this throws if `array` is not a valid ArrayBuffer
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var processNextTick = __webpack_require__(/*! process-nextick-args */ 266);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var isArray = __webpack_require__(/*! isarray */ 267);
+	/*</replacement>*/
+=======
 	  if (byteOffset < 0 || array.byteLength < byteOffset) {
 	    throw new RangeError('\'offset\' is out of bounds')
 	  }
@@ -29238,6 +30319,7 @@
 	  if (array.byteLength < byteOffset + (length || 0)) {
 	    throw new RangeError('\'length\' is out of bounds')
 	  }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  if (byteOffset === undefined && length === undefined) {
 	    array = new Uint8Array(array)
@@ -29258,19 +30340,58 @@
 	  return that
 	}
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var EE = __webpack_require__(/*! events */ 263).EventEmitter;
+=======
 	function fromObject (that, obj) {
 	  if (Buffer.isBuffer(obj)) {
 	    var len = checked(obj.length) | 0
 	    that = createBuffer(that, len)
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	    if (that.length === 0) {
 	      return that
 	    }
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var Stream;
+	(function () {
+	  try {
+	    Stream = __webpack_require__(/*! stream */ 262);
+	  } catch (_) {} finally {
+	    if (!Stream) Stream = __webpack_require__(/*! events */ 263).EventEmitter;
+=======
 	    obj.copy(that, 0, 0, len)
 	    return that
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	  }
 	
+<<<<<<< HEAD
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer;
+	/*<replacement>*/
+	var bufferShim = __webpack_require__(/*! buffer-shims */ 268);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var debugUtil = __webpack_require__(/*! util */ 270);
+	var debug = void 0;
+	if (debugUtil && debugUtil.debuglog) {
+	  debug = debugUtil.debuglog('stream');
+	} else {
+	  debug = function () {};
+	}
+	/*</replacement>*/
+	
+	var BufferList = __webpack_require__(/*! ./internal/streams/BufferList */ 271);
+	var StringDecoder;
+=======
 	  if (obj) {
 	    if ((typeof ArrayBuffer !== 'undefined' &&
 	        obj.buffer instanceof ArrayBuffer) || 'length' in obj) {
@@ -29287,6 +30408,7 @@
 	
 	  throw new TypeError('First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.')
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function checked (length) {
 	  // Note: cannot use `length < kMaxLength()` here because that fails when
@@ -29305,9 +30427,14 @@
 	  return Buffer.alloc(+length)
 	}
 	
+<<<<<<< HEAD
+	function ReadableState(options, stream) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 272);
+=======
 	Buffer.isBuffer = function isBuffer (b) {
 	  return !!(b != null && b._isBuffer)
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	Buffer.compare = function compare (a, b) {
 	  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
@@ -29396,6 +30523,14 @@
 	  var len = string.length
 	  if (len === 0) return 0
 	
+<<<<<<< HEAD
+	  this.decoder = null;
+	  this.encoding = null;
+	  if (options.encoding) {
+	    if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ 277).StringDecoder;
+	    this.decoder = new StringDecoder(options.encoding);
+	    this.encoding = options.encoding;
+=======
 	  // Use a for loop to avoid recursion
 	  var loweredCase = false
 	  for (;;) {
@@ -29422,12 +30557,20 @@
 	        encoding = ('' + encoding).toLowerCase()
 	        loweredCase = true
 	    }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	  }
 	}
 	Buffer.byteLength = byteLength
 	
+<<<<<<< HEAD
+	function Readable(options) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 272);
+	
+	  if (!(this instanceof Readable)) return new Readable(options);
+=======
 	function slowToString (encoding, start, end) {
 	  var loweredCase = false
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // No need to verify that "this.length <= MAX_UINT32" since it's a read-only
 	  // property of a typed array.
@@ -29506,6 +30649,15 @@
 	  b[m] = i
 	}
 	
+<<<<<<< HEAD
+	// backwards compatibility.
+	Readable.prototype.setEncoding = function (enc) {
+	  if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ 277).StringDecoder;
+	  this._readableState.decoder = new StringDecoder(enc);
+	  this._readableState.encoding = enc;
+	  return this;
+	};
+=======
 	Buffer.prototype.swap16 = function swap16 () {
 	  var len = this.length
 	  if (len % 2 !== 0) {
@@ -29516,6 +30668,7 @@
 	  }
 	  return this
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	Buffer.prototype.swap32 = function swap32 () {
 	  var len = this.length
@@ -30201,6 +31354,19 @@
 	    (this[offset + 2] << 16) |
 	    (this[offset + 3] << 24)
 	}
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../process/browser.js */ 4)))
+
+/***/ },
+/* 266 */
+/*!*****************************************!*\
+  !*** ./~/process-nextick-args/index.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+=======
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
 	  if (!noAssert) checkOffset(offset, 4, this.length)
@@ -30221,6 +31387,40 @@
 	  return ieee754.read(this, offset, false, 23, 4)
 	}
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 4)))
+
+/***/ },
+/* 267 */
+/*!************************************************!*\
+  !*** ./~/stream-browserify/~/isarray/index.js ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	var toString = {}.toString;
+	
+	module.exports = Array.isArray || function (arr) {
+	  return toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 268 */
+/*!*********************************!*\
+  !*** ./~/buffer-shims/index.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+	
+	var buffer = __webpack_require__(/*! buffer */ 254);
+	var Buffer = buffer.Buffer;
+	var SlowBuffer = buffer.SlowBuffer;
+	var MAX_LEN = buffer.kMaxLength || 2147483647;
+	exports.alloc = function alloc(size, fill, encoding) {
+	  if (typeof Buffer.alloc === 'function') {
+	    return Buffer.alloc(size, fill, encoding);
+=======
 	Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
 	  if (!noAssert) checkOffset(offset, 8, this.length)
 	  return ieee754.read(this, offset, true, 52, 8)
@@ -30244,6 +31444,7 @@
 	  if (!noAssert) {
 	    var maxBytes = Math.pow(2, 8 * byteLength) - 1
 	    checkInt(this, value, offset, byteLength, maxBytes, 0)
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	  }
 	
 	  var mul = 1
@@ -30340,6 +31541,37 @@
 	  return offset + 4
 	}
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 269 */
+/*!************************************!*\
+  !*** ./~/core-util-is/lib/util.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+=======
 	Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
 	  value = +value
 	  offset = offset | 0
@@ -30354,6 +31586,7 @@
 	  }
 	  return offset + 4
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
 	  value = +value
@@ -30485,6 +31718,102 @@
 	  return writeFloat(this, value, offset, true, noAssert)
 	}
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../buffer/index.js */ 254).Buffer))
+
+/***/ },
+/* 270 */
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
+/***/ function(module, exports) {
+
+	/* (ignored) */
+
+/***/ },
+/* 271 */
+/*!**********************************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/lib/internal/streams/BufferList.js ***!
+  \**********************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer;
+	/*<replacement>*/
+	var bufferShim = __webpack_require__(/*! buffer-shims */ 268);
+	/*</replacement>*/
+	
+	module.exports = BufferList;
+	
+	function BufferList() {
+	  this.head = null;
+	  this.tail = null;
+	  this.length = 0;
+	}
+	
+	BufferList.prototype.push = function (v) {
+	  var entry = { data: v, next: null };
+	  if (this.length > 0) this.tail.next = entry;else this.head = entry;
+	  this.tail = entry;
+	  ++this.length;
+	};
+	
+	BufferList.prototype.unshift = function (v) {
+	  var entry = { data: v, next: this.head };
+	  if (this.length === 0) this.tail = entry;
+	  this.head = entry;
+	  ++this.length;
+	};
+	
+	BufferList.prototype.shift = function () {
+	  if (this.length === 0) return;
+	  var ret = this.head.data;
+	  if (this.length === 1) this.head = this.tail = null;else this.head = this.head.next;
+	  --this.length;
+	  return ret;
+	};
+	
+	BufferList.prototype.clear = function () {
+	  this.head = this.tail = null;
+	  this.length = 0;
+	};
+	
+	BufferList.prototype.join = function (s) {
+	  if (this.length === 0) return '';
+	  var p = this.head;
+	  var ret = '' + p.data;
+	  while (p = p.next) {
+	    ret += s + p.data;
+	  }return ret;
+	};
+	
+	BufferList.prototype.concat = function (n) {
+	  if (this.length === 0) return bufferShim.alloc(0);
+	  if (this.length === 1) return this.head.data;
+	  var ret = bufferShim.allocUnsafe(n >>> 0);
+	  var p = this.head;
+	  var i = 0;
+	  while (p) {
+	    p.data.copy(ret, i);
+	    i += p.data.length;
+	    p = p.next;
+	  }
+	  return ret;
+	};
+
+/***/ },
+/* 272 */
+/*!*********************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/lib/_stream_duplex.js ***!
+  \*********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// a duplex stream is just a stream that is both readable and writable.
+	// Since JS doesn't have multiple prototypal inheritance, this class
+	// prototypally inherits from Readable, and then parasitically from
+	// Writable.
+=======
 	Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
 	  return writeFloat(this, value, offset, false, noAssert)
 	}
@@ -30496,6 +31825,7 @@
 	  ieee754.write(buf, value, offset, littleEndian, 52, 8)
 	  return offset + 8
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
 	  return writeDouble(this, value, offset, true, noAssert)
@@ -30517,6 +31847,19 @@
 	  if (end === start) return 0
 	  if (target.length === 0 || this.length === 0) return 0
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var processNextTick = __webpack_require__(/*! process-nextick-args */ 266);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+	
+	var Readable = __webpack_require__(/*! ./_stream_readable */ 265);
+	var Writable = __webpack_require__(/*! ./_stream_writable */ 273);
+=======
 	  // Fatal error conditions
 	  if (targetStart < 0) {
 	    throw new RangeError('targetStart out of bounds')
@@ -30532,6 +31875,7 @@
 	
 	  var len = end - start
 	  var i
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  if (this === target && start < targetStart && targetStart < end) {
 	    // descending copy from end
@@ -30643,6 +31987,20 @@
 	  if (n < 16) return '0' + n.toString(16)
 	  return n.toString(16)
 	}
+<<<<<<< HEAD
+
+/***/ },
+/* 273 */
+/*!***********************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/lib/_stream_writable.js ***!
+  \***********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process, setImmediate) {// A bit simpler than readable streams.
+	// Implement an async ._write(chunk, encoding, cb), and it'll handle all
+	// the drain event emission and buffering.
+=======
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function utf8ToBytes (string, units) {
 	  units = units || Infinity
@@ -30654,6 +32012,11 @@
 	  for (var i = 0; i < length; ++i) {
 	    codePoint = string.charCodeAt(i)
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var processNextTick = __webpack_require__(/*! process-nextick-args */ 266);
+	/*</replacement>*/
+=======
 	    // is surrogate component
 	    if (codePoint > 0xD7FF && codePoint < 0xE000) {
 	      // last char was a lead
@@ -30668,6 +32031,7 @@
 	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
 	          continue
 	        }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	        // valid lead
 	        leadSurrogate = codePoint
@@ -30682,6 +32046,38 @@
 	        continue
 	      }
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var internalUtil = {
+	  deprecate: __webpack_require__(/*! util-deprecate */ 276)
+	};
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var Stream;
+	(function () {
+	  try {
+	    Stream = __webpack_require__(/*! stream */ 262);
+	  } catch (_) {} finally {
+	    if (!Stream) Stream = __webpack_require__(/*! events */ 263).EventEmitter;
+	  }
+	})();
+	/*</replacement>*/
+	
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer;
+	/*<replacement>*/
+	var bufferShim = __webpack_require__(/*! buffer-shims */ 268);
+	/*</replacement>*/
+	
+	util.inherits(Writable, Stream);
+	
+	function nop() {}
+=======
 	      // valid surrogate pair
 	      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
 	    } else if (leadSurrogate) {
@@ -30720,10 +32116,15 @@
 	      throw new Error('Invalid code point')
 	    }
 	  }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  return bytes
 	}
 	
+<<<<<<< HEAD
+	function WritableState(options, stream) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 272);
+=======
 	function asciiToBytes (str) {
 	  var byteArray = []
 	  for (var i = 0; i < str.length; ++i) {
@@ -30732,6 +32133,7 @@
 	  }
 	  return byteArray
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function utf16leToBytes (str, units) {
 	  var c, hi, lo
@@ -30907,7 +32309,12 @@
 	  var d = isLE ? -1 : 1
 	  var s = buffer[offset + i]
 	
+<<<<<<< HEAD
+	function Writable(options) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 272);
+=======
 	  i += d
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  e = s & ((1 << (-nBits)) - 1)
 	  s >>= (-nBits)
@@ -31415,9 +32822,38 @@
 	  }
 	
 	
+<<<<<<< HEAD
+	  this.finish = function (err) {
+	    var entry = _this.entry;
+	    _this.entry = null;
+	    while (entry) {
+	      var cb = entry.callback;
+	      state.pendingcb--;
+	      cb(err);
+	      entry = entry.next;
+	    }
+	    if (state.corkedRequestsFree) {
+	      state.corkedRequestsFree.next = _this;
+	    } else {
+	      state.corkedRequestsFree = _this;
+	    }
+	  };
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../process/browser.js */ 4), __webpack_require__(/*! ./../../../../timers-browserify/main.js */ 274).setImmediate))
+
+/***/ },
+/* 274 */
+/*!*************************************!*\
+  !*** ./~/timers-browserify/main.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var apply = Function.prototype.apply;
+=======
 	  function onclose() {
 	    if (didOnEnd) return;
 	    didOnEnd = true;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	    if (typeof dest.destroy === 'function') dest.destroy();
 	  }
@@ -31450,6 +32886,20 @@
 	    dest.removeListener('close', cleanup);
 	  }
 	
+<<<<<<< HEAD
+	// setimmediate attaches itself to the global object
+	__webpack_require__(/*! setimmediate */ 275);
+	exports.setImmediate = setImmediate;
+	exports.clearImmediate = clearImmediate;
+
+
+/***/ },
+/* 275 */
+/*!****************************************!*\
+  !*** ./~/setimmediate/setImmediate.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+=======
 	  source.on('end', cleanup);
 	  source.on('close', cleanup);
 	
@@ -31468,6 +32918,7 @@
   !*** ./~/events/events.js ***!
   \****************************/
 /***/ function(module, exports) {
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 
 	// Copyright Joyent, Inc. and other Node contributors.
 	//
@@ -31686,8 +33137,24 @@
 	      this.emit('removeListener', type, listener);
 	  }
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 4)))
+
+/***/ },
+/* 276 */
+/*!*************************************!*\
+  !*** ./~/util-deprecate/browser.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	/**
+	 * Module exports.
+	 */
+=======
 	  return this;
 	};
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	EventEmitter.prototype.removeAllListeners = function(type) {
 	  var key, listeners;
@@ -31774,10 +33241,17 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 277 */
+/*!***********************************!*\
+  !*** ./~/string_decoder/index.js ***!
+  \***********************************/
+=======
 /* 270 */
 /*!***************************************!*\
   !*** ./~/readable-stream/writable.js ***!
   \***************************************/
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(/*! ./lib/_stream_writable.js */ 271)
@@ -31794,7 +33268,11 @@
 	// Implement an async ._write(chunk, encoding, cb), and it'll handle all
 	// the drain event emission and buffering.
 	
+<<<<<<< HEAD
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer;
+=======
 	'use strict';
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	module.exports = Writable;
 	
@@ -32006,8 +33484,65 @@
 	  if (options) {
 	    if (typeof options.write === 'function') this._write = options.write;
 	
+<<<<<<< HEAD
+	function base64DetectIncompleteChar(buffer) {
+	  this.charReceived = buffer.length % 3;
+	  this.charLength = this.charReceived ? 3 : 0;
+	}
+
+
+/***/ },
+/* 278 */
+/*!************************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/lib/_stream_transform.js ***!
+  \************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// a transform stream is a readable/writable stream where you do
+	// something with the data.  Sometimes it's called a "filter",
+	// but that's not a great name for it, since that implies a thing where
+	// some bits pass through, and others are simply ignored.  (That would
+	// be a valid example of a transform, of course.)
+	//
+	// While the output is causally related to the input, it's not a
+	// necessarily symmetric or synchronous transformation.  For example,
+	// a zlib stream might take multiple plain-text writes(), and then
+	// emit a single compressed chunk some time in the future.
+	//
+	// Here's how this works:
+	//
+	// The Transform stream has all the aspects of the readable and writable
+	// stream classes.  When you write(chunk), that calls _write(chunk,cb)
+	// internally, and returns false if there's a lot of pending writes
+	// buffered up.  When you call read(), that calls _read(n) until
+	// there's enough pending readable data buffered up.
+	//
+	// In a transform stream, the written data is placed in a buffer.  When
+	// _read(n) is called, it transforms the queued up data, calling the
+	// buffered _write cb's as it consumes chunks.  If consuming a single
+	// written chunk would result in multiple output chunks, then the first
+	// outputted bit calls the readcb, and subsequent chunks just go into
+	// the read buffer, and will cause it to emit 'readable' if necessary.
+	//
+	// This way, back-pressure is actually determined by the reading side,
+	// since _read has to be called to start processing a new chunk.  However,
+	// a pathological inflate type of transform can cause excessive buffering
+	// here.  For example, imagine a stream where every byte of input is
+	// interpreted as an integer from 0-255, and then results in that many
+	// bytes of output.  Writing the 4 bytes {ff,ff,ff,ff} would result in
+	// 1kb of data being output.  In this case, you could write a very small
+	// amount of input, and end up with a very large amount of output.  In
+	// such a pathological inflating mechanism, there'd be no way to tell
+	// the system to stop doing the transform.  A single 4MB write could
+	// cause the system to run out of memory.
+	//
+	// However, even in such a pathological case, only a single written chunk
+	// would be consumed, and then the rest would wait (un-transformed) until
+	// the results of the previous transformed chunk were consumed.
+=======
 	    if (typeof options.writev === 'function') this._writev = options.writev;
 	  }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  Stream.call(this);
 	}
@@ -32017,6 +33552,14 @@
 	  this.emit('error', new Error('Cannot pipe, not readable'));
 	};
 	
+<<<<<<< HEAD
+	var Duplex = __webpack_require__(/*! ./_stream_duplex */ 272);
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+=======
 	function writeAfterEnd(stream, cb) {
 	  var er = new Error('write after end');
 	  // TODO: defer error events consistently everywhere, not just the cb
@@ -32047,6 +33590,7 @@
 	  }
 	  return valid;
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	Writable.prototype.write = function (chunk, encoding, cb) {
 	  var state = this._writableState;
@@ -32196,6 +33740,20 @@
 	    stream.emit('drain');
 	  }
 	}
+<<<<<<< HEAD
+
+/***/ },
+/* 279 */
+/*!**************************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/lib/_stream_passthrough.js ***!
+  \**************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// a passthrough stream.
+	// basically just the most minimal sort of Transform stream.
+	// Every written chunk gets output as-is.
+=======
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	// if there's something in the buffer waiting, then process it
 	function clearBuffer(stream, state) {
@@ -32209,6 +33767,14 @@
 	    var holder = state.corkedRequestsFree;
 	    holder.entry = entry;
 	
+<<<<<<< HEAD
+	var Transform = __webpack_require__(/*! ./_stream_transform */ 278);
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+=======
 	    var count = 0;
 	    while (entry) {
 	      buffer[count] = entry;
@@ -32217,6 +33783,7 @@
 	    }
 	
 	    doWrite(stream, state, true, state.length, buffer, '', holder.finish);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	    // doWrite is almost always async, defer these to save a bit of time
 	    // as the hot path ends with doWrite
@@ -32258,11 +33825,73 @@
 	Writable.prototype._write = function (chunk, encoding, cb) {
 	  cb(new Error('_write() is not implemented'));
 	};
+<<<<<<< HEAD
+
+/***/ },
+/* 280 */
+/*!***********************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/writable.js ***!
+  \***********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./lib/_stream_writable.js */ 273)
+
+
+/***/ },
+/* 281 */
+/*!*********************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/duplex.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./lib/_stream_duplex.js */ 272)
+
+
+/***/ },
+/* 282 */
+/*!************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/transform.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./lib/_stream_transform.js */ 278)
+
+
+/***/ },
+/* 283 */
+/*!**************************************************************!*\
+  !*** ./~/stream-browserify/~/readable-stream/passthrough.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./lib/_stream_passthrough.js */ 279)
+
+
+/***/ },
+/* 284 */
+/*!*****************************************************************!*\
+  !*** ./~/stream-http/~/readable-stream/lib/_stream_readable.js ***!
+  \*****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	module.exports = Readable;
+	
+	/*<replacement>*/
+	var processNextTick = __webpack_require__(/*! process-nextick-args */ 266);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var isArray = __webpack_require__(/*! isarray */ 285);
+	/*</replacement>*/
+=======
 	
 	Writable.prototype._writev = null;
 	
 	Writable.prototype.end = function (chunk, encoding, cb) {
 	  var state = this._writableState;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  if (typeof chunk === 'function') {
 	    cb = chunk;
@@ -32275,16 +33904,51 @@
 	
 	  if (chunk !== null && chunk !== undefined) this.write(chunk, encoding);
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var EE = __webpack_require__(/*! events */ 263).EventEmitter;
+=======
 	  // .end() fully uncorks
 	  if (state.corked) {
 	    state.corked = 1;
 	    this.uncork();
 	  }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // ignore unnecessary end() calls.
 	  if (!state.ending && !state.finished) endWritable(this, state, cb);
 	};
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var Stream;
+	(function () {
+	  try {
+	    Stream = __webpack_require__(/*! stream */ 262);
+	  } catch (_) {} finally {
+	    if (!Stream) Stream = __webpack_require__(/*! events */ 263).EventEmitter;
+	  }
+	})();
+	/*</replacement>*/
+	
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer;
+	/*<replacement>*/
+	var bufferShim = __webpack_require__(/*! buffer-shims */ 268);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var debugUtil = __webpack_require__(/*! util */ 286);
+	var debug = void 0;
+	if (debugUtil && debugUtil.debuglog) {
+	  debug = debugUtil.debuglog('stream');
+	} else {
+	  debug = function () {};
+=======
 	function needFinish(state) {
 	  return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
 	}
@@ -32318,12 +33982,18 @@
 	  }
 	  state.ended = true;
 	  stream.writable = false;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	}
 	
+<<<<<<< HEAD
+	var BufferList = __webpack_require__(/*! ./internal/streams/BufferList */ 287);
+	var StringDecoder;
+=======
 	// It seems a linked list but it is not
 	// there will be only 2 of these for each stream
 	function CorkedRequest(state) {
 	  var _this = this;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  this.next = null;
 	  this.entry = null;
@@ -32355,7 +34025,12 @@
 
 	var apply = Function.prototype.apply;
 	
+<<<<<<< HEAD
+	function ReadableState(options, stream) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 288);
+=======
 	// DOM APIs, for completeness
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	exports.setTimeout = function() {
 	  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
@@ -32498,6 +34173,19 @@
 	        };
 	    }
 	
+<<<<<<< HEAD
+	  this.decoder = null;
+	  this.encoding = null;
+	  if (options.encoding) {
+	    if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ 277).StringDecoder;
+	    this.decoder = new StringDecoder(options.encoding);
+	    this.encoding = options.encoding;
+	  }
+	}
+	
+	function Readable(options) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 288);
+=======
 	    function canUsePostMessage() {
 	        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
 	        // where `global.postMessage` means something completely different and can't be used for this purpose.
@@ -32517,6 +34205,7 @@
 	        // Installs an event handler on `global` for the `message` event: see
 	        // * https://developer.mozilla.org/en/DOM/window.postMessage
 	        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	        var messagePrefix = "setImmediate$" + Math.random() + "$";
 	        var onGlobalMessage = function(event) {
@@ -32685,8 +34374,18 @@
 	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 	// USE OR OTHER DEALINGS IN THE SOFTWARE.
 	
+<<<<<<< HEAD
+	// backwards compatibility.
+	Readable.prototype.setEncoding = function (enc) {
+	  if (!StringDecoder) StringDecoder = __webpack_require__(/*! string_decoder/ */ 277).StringDecoder;
+	  this._readableState.decoder = new StringDecoder(enc);
+	  this._readableState.encoding = enc;
+	  return this;
+	};
+=======
 	// NOTE: These type checking functions intentionally don't use `instanceof`
 	// because it is fragile and can be easily faked with `Object.create()`.
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function isArray(arg) {
 	  if (Array.isArray) {
@@ -33378,6 +35077,48 @@
 	    if (state.length === 0) endReadable(this);
 	    return null;
 	  }
+<<<<<<< HEAD
+	  return -1;
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../process/browser.js */ 4)))
+
+/***/ },
+/* 285 */
+/*!******************************************!*\
+  !*** ./~/stream-http/~/isarray/index.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	var toString = {}.toString;
+	
+	module.exports = Array.isArray || function (arr) {
+	  return toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 286 */
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
+/***/ function(module, exports) {
+
+	/* (ignored) */
+
+/***/ },
+/* 287 */
+/*!****************************************************************************!*\
+  !*** ./~/stream-http/~/readable-stream/lib/internal/streams/BufferList.js ***!
+  \****************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer;
+	/*<replacement>*/
+	var bufferShim = __webpack_require__(/*! buffer-shims */ 268);
+	/*</replacement>*/
+=======
 	
 	  // All the actual chunk generation logic needs to be
 	  // *below* the call to _read.  The reason is that in certain
@@ -33404,6 +35145,7 @@
 	  // if we need a readable event, then we need to do some reading.
 	  var doRead = state.needReadable;
 	  debug('need readable', doRead);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // if we currently have less than the highWaterMark, then also read some
 	  if (state.length === 0 || state.length - n < state.highWaterMark) {
@@ -33453,6 +35195,21 @@
 	
 	  return ret;
 	};
+<<<<<<< HEAD
+
+/***/ },
+/* 288 */
+/*!***************************************************************!*\
+  !*** ./~/stream-http/~/readable-stream/lib/_stream_duplex.js ***!
+  \***************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// a duplex stream is just a stream that is both readable and writable.
+	// Since JS doesn't have multiple prototypal inheritance, this class
+	// prototypally inherits from Readable, and then parasitically from
+	// Writable.
+=======
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function chunkInvalid(state, chunk) {
 	  var er = null;
@@ -33490,6 +35247,19 @@
 	  }
 	}
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var processNextTick = __webpack_require__(/*! process-nextick-args */ 266);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+	
+	var Readable = __webpack_require__(/*! ./_stream_readable */ 284);
+	var Writable = __webpack_require__(/*! ./_stream_writable */ 289);
+=======
 	function emitReadable_(stream) {
 	  debug('emit readable');
 	  stream.emit('readable');
@@ -33520,6 +35290,7 @@
 	  }
 	  state.readingMore = false;
 	}
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	// abstract method.  to be overridden in specific implementation classes.
 	// call cb(er, data) where data is <= n in length.
@@ -33618,6 +35389,23 @@
 	      src.pause();
 	    }
 	  }
+<<<<<<< HEAD
+	}
+
+/***/ },
+/* 289 */
+/*!*****************************************************************!*\
+  !*** ./~/stream-http/~/readable-stream/lib/_stream_writable.js ***!
+  \*****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process, setImmediate) {// A bit simpler than readable streams.
+	// Implement an async ._write(chunk, encoding, cb), and it'll handle all
+	// the drain event emission and buffering.
+	
+	'use strict';
+=======
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // if the dest has an error, then stop piping into it.
 	  // however, don't suppress the throwing behavior for this.
@@ -33628,8 +35416,14 @@
 	    if (EElistenerCount(dest, 'error') === 0) dest.emit('error', er);
 	  }
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var processNextTick = __webpack_require__(/*! process-nextick-args */ 266);
+	/*</replacement>*/
+=======
 	  // Make sure our error handler is attached before userland ones.
 	  prependListener(dest, 'error', onerror);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // Both close and finish should trigger unpipe, but only once.
 	  function onclose() {
@@ -33652,6 +35446,16 @@
 	  // tell the dest that it's being piped to
 	  dest.emit('pipe', src);
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+	/*</replacement>*/
+	
+	/*<replacement>*/
+	var internalUtil = {
+	  deprecate: __webpack_require__(/*! util-deprecate */ 276)
+=======
 	  // start the flow if it hasn't been started already.
 	  if (!state.flowing) {
 	    debug('pipe resume');
@@ -33659,8 +35463,26 @@
 	  }
 	
 	  return dest;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	};
 	
+<<<<<<< HEAD
+	/*<replacement>*/
+	var Stream;
+	(function () {
+	  try {
+	    Stream = __webpack_require__(/*! stream */ 262);
+	  } catch (_) {} finally {
+	    if (!Stream) Stream = __webpack_require__(/*! events */ 263).EventEmitter;
+	  }
+	})();
+	/*</replacement>*/
+	
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer;
+	/*<replacement>*/
+	var bufferShim = __webpack_require__(/*! buffer-shims */ 268);
+	/*</replacement>*/
+=======
 	function pipeOnDrain(src) {
 	  return function () {
 	    var state = src._readableState;
@@ -33675,6 +35497,7 @@
 	
 	Readable.prototype.unpipe = function (dest) {
 	  var state = this._readableState;
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // if we're not piping anywhere, then do nothing.
 	  if (state.pipesCount === 0) return this;
@@ -33686,6 +35509,10 @@
 	
 	    if (!dest) dest = state.pipes;
 	
+<<<<<<< HEAD
+	function WritableState(options, stream) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 288);
+=======
 	    // got a match.
 	    state.pipes = null;
 	    state.pipesCount = 0;
@@ -33693,6 +35520,7 @@
 	    if (dest) dest.emit('unpipe', this);
 	    return this;
 	  }
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	  // slow case. multiple pipe destinations.
 	
@@ -33860,8 +35688,13 @@
 	    }
 	  };
 	
+<<<<<<< HEAD
+	function Writable(options) {
+	  Duplex = Duplex || __webpack_require__(/*! ./_stream_duplex */ 288);
+=======
 	  return self;
 	};
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	// exposed for testing purposes only.
 	Readable._fromList = fromList;
@@ -34311,6 +36144,15 @@
 	  this.charReceived = buffer.length % 3;
 	  this.charLength = this.charReceived ? 3 : 0;
 	}
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../process/browser.js */ 4), __webpack_require__(/*! ./../../../../timers-browserify/main.js */ 274).setImmediate))
+
+/***/ },
+/* 290 */
+/*!******************************************************************!*\
+  !*** ./~/stream-http/~/readable-stream/lib/_stream_transform.js ***!
+  \******************************************************************/
+=======
 
 
 /***/ },
@@ -34338,6 +36180,7 @@
 /*!****************************************************!*\
   !*** ./~/readable-stream/lib/_stream_transform.js ***!
   \****************************************************/
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /***/ function(module, exports, __webpack_require__) {
 
 	// a transform stream is a readable/writable stream where you do
@@ -34386,11 +36229,19 @@
 	
 	module.exports = Transform;
 	
+<<<<<<< HEAD
+	var Duplex = __webpack_require__(/*! ./_stream_duplex */ 288);
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+=======
 	var Duplex = __webpack_require__(/*! ./_stream_duplex */ 278);
 	
 	/*<replacement>*/
 	var util = __webpack_require__(/*! core-util-is */ 275);
 	util.inherits = __webpack_require__(/*! inherits */ 265);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	/*</replacement>*/
 	
 	util.inherits(Transform, Duplex);
@@ -34524,6 +36375,12 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
+/* 291 */
+/*!********************************************************************!*\
+  !*** ./~/stream-http/~/readable-stream/lib/_stream_passthrough.js ***!
+  \********************************************************************/
+=======
 /* 286 */
 /*!******************************************!*\
   !*** ./~/readable-stream/passthrough.js ***!
@@ -34538,6 +36395,7 @@
 /*!******************************************************!*\
   !*** ./~/readable-stream/lib/_stream_passthrough.js ***!
   \******************************************************/
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /***/ function(module, exports, __webpack_require__) {
 
 	// a passthrough stream.
@@ -34548,11 +36406,19 @@
 	
 	module.exports = PassThrough;
 	
+<<<<<<< HEAD
+	var Transform = __webpack_require__(/*! ./_stream_transform */ 290);
+	
+	/*<replacement>*/
+	var util = __webpack_require__(/*! core-util-is */ 269);
+	util.inherits = __webpack_require__(/*! inherits */ 259);
+=======
 	var Transform = __webpack_require__(/*! ./_stream_transform */ 285);
 	
 	/*<replacement>*/
 	var util = __webpack_require__(/*! core-util-is */ 275);
 	util.inherits = __webpack_require__(/*! inherits */ 265);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	/*</replacement>*/
 	
 	util.inherits(PassThrough, Transform);
@@ -34568,13 +36434,21 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 292 */
+=======
 /* 288 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***********************************!*\
   !*** ./~/to-arraybuffer/index.js ***!
   \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+	var Buffer = __webpack_require__(/*! buffer */ 254).Buffer
+=======
 	var Buffer = __webpack_require__(/*! buffer */ 260).Buffer
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	module.exports = function (buf) {
 		// If the buffer is backed by a Uint8Array, a faster version will work
@@ -34604,7 +36478,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 293 */
+=======
 /* 289 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!******************************!*\
   !*** ./~/xtend/immutable.js ***!
   \******************************/
@@ -34632,7 +36510,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 294 */
+=======
 /* 290 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*******************************************!*\
   !*** ./~/builtin-status-codes/browser.js ***!
   \*******************************************/
@@ -34705,7 +36587,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 295 */
+=======
 /* 291 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!**********************!*\
   !*** ./~/url/url.js ***!
   \**********************/
@@ -34734,8 +36620,13 @@
 	
 	'use strict';
 	
+<<<<<<< HEAD
+	var punycode = __webpack_require__(/*! punycode */ 296);
+	var util = __webpack_require__(/*! ./util */ 298);
+=======
 	var punycode = __webpack_require__(/*! punycode */ 292);
 	var util = __webpack_require__(/*! ./util */ 294);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	exports.parse = urlParse;
 	exports.resolve = urlResolve;
@@ -34810,7 +36701,11 @@
 	      'gopher:': true,
 	      'file:': true
 	    },
+<<<<<<< HEAD
+	    querystring = __webpack_require__(/*! querystring */ 299);
+=======
 	    querystring = __webpack_require__(/*! querystring */ 295);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function urlParse(url, parseQueryString, slashesDenoteHost) {
 	  if (url && util.isObject(url) && url instanceof Url) return url;
@@ -35446,7 +37341,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 296 */
+=======
 /* 292 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!**************************************!*\
   !*** ./~/url/~/punycode/punycode.js ***!
   \**************************************/
@@ -35981,10 +37880,17 @@
 	
 	}(this));
 	
+<<<<<<< HEAD
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/module.js */ 297)(module), (function() { return this; }())))
+
+/***/ },
+/* 297 */
+=======
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/module.js */ 293)(module), (function() { return this; }())))
 
 /***/ },
 /* 293 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
@@ -36003,7 +37909,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 298 */
+=======
 /* 294 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***********************!*\
   !*** ./~/url/util.js ***!
   \***********************/
@@ -36028,7 +37938,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 299 */
+=======
 /* 295 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!********************************!*\
   !*** ./~/querystring/index.js ***!
   \********************************/
@@ -36036,12 +37950,21 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 300);
+	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 301);
+
+
+/***/ },
+/* 300 */
+=======
 	exports.decode = exports.parse = __webpack_require__(/*! ./decode */ 296);
 	exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ 297);
 
 
 /***/ },
 /* 296 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*********************************!*\
   !*** ./~/querystring/decode.js ***!
   \*********************************/
@@ -36130,7 +38053,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 301 */
+=======
 /* 297 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*********************************!*\
   !*** ./~/querystring/encode.js ***!
   \*********************************/
@@ -36203,13 +38130,21 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 302 */
+=======
 /* 298 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*************************************!*\
   !*** ./~/https-browserify/index.js ***!
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+	var http = __webpack_require__(/*! http */ 252);
+=======
 	var http = __webpack_require__(/*! http */ 258);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var https = module.exports;
 	
@@ -36226,7 +38161,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 303 */
+=======
 /* 299 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!**************************!*\
   !*** ./~/error/typed.js ***!
   \**************************/
@@ -36234,9 +38173,15 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	var template = __webpack_require__(/*! string-template */ 304);
+	var extend = __webpack_require__(/*! xtend/mutable */ 305);
+	var assert = __webpack_require__(/*! assert */ 306);
+=======
 	var template = __webpack_require__(/*! string-template */ 300);
 	var extend = __webpack_require__(/*! xtend/mutable */ 301);
 	var assert = __webpack_require__(/*! assert */ 302);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var isWordBoundary = /[_.-](\w|$)/g;
 	
@@ -36301,7 +38246,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 304 */
+=======
 /* 300 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!********************************************!*\
   !*** ./~/error/~/string-template/index.js ***!
   \********************************************/
@@ -36344,7 +38293,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 305 */
+=======
 /* 301 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!****************************!*\
   !*** ./~/xtend/mutable.js ***!
   \****************************/
@@ -36370,7 +38323,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 306 */
+=======
 /* 302 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!****************************!*\
   !*** ./~/assert/assert.js ***!
   \****************************/
@@ -36444,7 +38401,11 @@
 	// ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 	// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	
+<<<<<<< HEAD
+	var util = __webpack_require__(/*! util/ */ 307);
+=======
 	var util = __webpack_require__(/*! util/ */ 303);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	var hasOwn = Object.prototype.hasOwnProperty;
 	var pSlice = Array.prototype.slice;
 	var functionsHaveNames = (function () {
@@ -36870,7 +38831,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
+<<<<<<< HEAD
+/* 307 */
+=======
 /* 303 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!************************!*\
   !*** ./~/util/util.js ***!
   \************************/
@@ -37401,7 +39366,11 @@
 	}
 	exports.isPrimitive = isPrimitive;
 	
+<<<<<<< HEAD
+	exports.isBuffer = __webpack_require__(/*! ./support/isBuffer */ 308);
+=======
 	exports.isBuffer = __webpack_require__(/*! ./support/isBuffer */ 304);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	function objectToString(o) {
 	  return Object.prototype.toString.call(o);
@@ -37445,7 +39414,11 @@
 	 *     prototype.
 	 * @param {function} superCtor Constructor function to inherit prototype from.
 	 */
+<<<<<<< HEAD
+	exports.inherits = __webpack_require__(/*! inherits */ 309);
+=======
 	exports.inherits = __webpack_require__(/*! inherits */ 305);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	exports._extend = function(origin, add) {
 	  // Don't do anything if add isn't an object
@@ -37466,7 +39439,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../process/browser.js */ 4)))
 
 /***/ },
+<<<<<<< HEAD
+/* 308 */
+=======
 /* 304 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*******************************************!*\
   !*** ./~/util/support/isBufferBrowser.js ***!
   \*******************************************/
@@ -37480,7 +39457,11 @@
 	}
 
 /***/ },
+<<<<<<< HEAD
+/* 309 */
+=======
 /* 305 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***********************************************!*\
   !*** ./~/util/~/inherits/inherits_browser.js ***!
   \***********************************************/
@@ -37512,7 +39493,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 310 */
+=======
 /* 306 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***************************************************!*\
   !*** ./~/small-request/lib/to-request-options.js ***!
   \***************************************************/
@@ -37520,7 +39505,11 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _url = __webpack_require__(/*! url */ 295);
+=======
 	const _url = __webpack_require__(/*! url */ 291);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const toRequestOptions = (requestModel) =>{
 	  const options = _url.parse(requestModel.url);
@@ -37533,7 +39522,11 @@
 	module.exports = toRequestOptions;
 
 /***/ },
+<<<<<<< HEAD
+/* 311 */
+=======
 /* 307 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*************************************************!*\
   !*** ./~/small-request/lib/response-handler.js ***!
   \*************************************************/
@@ -37564,7 +39557,11 @@
 	module.exports = responseHandler;
 
 /***/ },
+<<<<<<< HEAD
+/* 312 */
+=======
 /* 308 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!********************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/default-request-filters.js ***!
   \********************************************************************/
@@ -37572,12 +39569,21 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _defaultOptions = __webpack_require__(/*! ./request-filters/default-options */ 313);
+	const _bearerToken = __webpack_require__(/*! ./request-filters/bearer-token */ 314);
+	const _urlParams = __webpack_require__(/*! ./request-filters/url-params */ 317);
+	const _query = __webpack_require__(/*! ./request-filters/query */ 319);
+	const _urlencodedBody = __webpack_require__(/*! ./request-filters/urlencoded-body */ 320);
+	const _jsonBody = __webpack_require__(/*! ./request-filters/json-body */ 321);
+=======
 	const _defaultOptions = __webpack_require__(/*! ./request-filters/default-options */ 309);
 	const _bearerToken = __webpack_require__(/*! ./request-filters/bearer-token */ 310);
 	const _urlParams = __webpack_require__(/*! ./request-filters/url-params */ 313);
 	const _query = __webpack_require__(/*! ./request-filters/query */ 315);
 	const _urlencodedBody = __webpack_require__(/*! ./request-filters/urlencoded-body */ 316);
 	const _jsonBody = __webpack_require__(/*! ./request-filters/json-body */ 317);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const defaultFilters = () => [
 	  _defaultOptions,
@@ -37591,7 +39597,11 @@
 	module.exports = defaultFilters;
 
 /***/ },
+<<<<<<< HEAD
+/* 313 */
+=======
 /* 309 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!****************************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/request-filters/default-options.js ***!
   \****************************************************************************/
@@ -37614,7 +39624,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 314 */
+=======
 /* 310 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*************************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/request-filters/bearer-token.js ***!
   \*************************************************************************/
@@ -37622,7 +39636,11 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _headers = __webpack_require__(/*! ../headers */ 315);
+=======
 	const _headers = __webpack_require__(/*! ../headers */ 311);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const filter = (request) => {
 	  
@@ -37638,7 +39656,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 315 */
+=======
 /* 311 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!****************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/headers.js ***!
   \****************************************************/
@@ -37646,7 +39668,11 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _caseless = __webpack_require__(/*! caseless */ 316);
+=======
 	const _caseless = __webpack_require__(/*! caseless */ 312);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const setHeader = (request, headerName, headerValue) => {
 	  if(!request.headers){
@@ -37677,7 +39703,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 316 */
+=======
 /* 312 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*****************************!*\
   !*** ./~/caseless/index.js ***!
   \*****************************/
@@ -37752,7 +39782,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 317 */
+=======
 /* 313 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***********************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/request-filters/url-params.js ***!
   \***********************************************************************/
@@ -37760,8 +39794,13 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _stringTemplate = __webpack_require__(/*! string-template */ 318);
+	const _url = __webpack_require__(/*! url */ 295);
+=======
 	const _stringTemplate = __webpack_require__(/*! string-template */ 314);
 	const _url = __webpack_require__(/*! url */ 291);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const filter = (request) => {
 	  if(request.urlParams){
@@ -37784,7 +39823,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 318 */
+=======
 /* 314 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!************************************!*\
   !*** ./~/string-template/index.js ***!
   \************************************/
@@ -37829,7 +39872,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
+/* 319 */
+=======
 /* 315 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!******************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/request-filters/query.js ***!
   \******************************************************************/
@@ -37837,7 +39884,11 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _url = __webpack_require__(/*! url */ 295);
+=======
 	const _url = __webpack_require__(/*! url */ 291);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const filter = (request) => {
 	  const url = _url.parse(request.url);
@@ -37856,7 +39907,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 320 */
+=======
 /* 316 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!****************************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/request-filters/urlencoded-body.js ***!
   \****************************************************************************/
@@ -37864,9 +39919,15 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _caseless = __webpack_require__(/*! caseless */ 316);
+	const _querystring = __webpack_require__(/*! querystring */ 299);
+	const _headers = __webpack_require__(/*! ../headers */ 315);
+=======
 	const _caseless = __webpack_require__(/*! caseless */ 312);
 	const _querystring = __webpack_require__(/*! querystring */ 295);
 	const _headers = __webpack_require__(/*! ../headers */ 311);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const contentType = 'application/x-www-form-urlencoded';
 	
@@ -37886,7 +39947,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 321 */
+=======
 /* 317 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!**********************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/request-filters/json-body.js ***!
   \**********************************************************************/
@@ -37894,8 +39959,13 @@
 
 	'use strict';
 	
+<<<<<<< HEAD
+	const _caseless = __webpack_require__(/*! caseless */ 316);
+	const _headers = __webpack_require__(/*! ../headers */ 315);
+=======
 	const _caseless = __webpack_require__(/*! caseless */ 312);
 	const _headers = __webpack_require__(/*! ../headers */ 311);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const contentType = 'application/json';
 	
@@ -37914,15 +39984,24 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 322 */
+=======
 /* 318 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*********************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/default-response-filters.js ***!
   \*********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+<<<<<<< HEAD
+	const _unhandledStatusFilter = __webpack_require__(/*! ./response-filters/unhandled-status */ 323);
+	const _jsonBodyFilter = __webpack_require__(/*! ./response-filters/json-body */ 324);
+=======
 	const _unhandledStatusFilter = __webpack_require__(/*! ./response-filters/unhandled-status */ 319);
 	const _jsonBodyFilter = __webpack_require__(/*! ./response-filters/json-body */ 320);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const defaultFilters = () => [
 	  _unhandledStatusFilter,
@@ -37932,14 +40011,22 @@
 	module.exports = defaultFilters;
 
 /***/ },
+<<<<<<< HEAD
+/* 323 */
+=======
 /* 319 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!******************************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/response-filters/unhandled-status.js ***!
   \******************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+<<<<<<< HEAD
+	const _TypedError = __webpack_require__(/*! error/typed */ 303);
+=======
 	const _TypedError = __webpack_require__(/*! error/typed */ 299);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	const error = _TypedError({
 	  type: 'rest-call.response-filters.unhandled-status',
@@ -37964,7 +40051,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 324 */
+=======
 /* 320 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***********************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/response-filters/json-body.js ***!
   \***********************************************************************/
@@ -37986,7 +40077,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
+/* 325 */
+=======
 /* 321 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!************************************************************!*\
   !*** ./~/@tonybadguy/call-me-maybe/lib/process-filters.js ***!
   \************************************************************/
@@ -38005,13 +40100,17 @@
 	module.exports = processFilters;
 
 /***/ },
+<<<<<<< HEAD
+/* 326 */
+=======
 /* 322 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!**************************************!*\
   !*** ./src/client/app/YelpResult.js ***!
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -38041,22 +40140,361 @@
 	
 	    _this.state = {
 	      visible: true,
+<<<<<<< HEAD
+	      result: null,
+	      vote: false
+	    };
+	    _this.goToUrl = _this.goToUrl.bind(_this);
+	    _this.voteForResult = _this.voteForResult.bind(_this);
+=======
 	      result: null
 	    };
 	    _this.goToUrl = _this.goToUrl.bind(_this);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	    return _this;
 	  }
 	
 	  _createClass(YelpResult, [{
+<<<<<<< HEAD
+	    key: 'goToUrl',
+=======
 	    key: "goToUrl",
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	    value: function goToUrl(e) {
 	      console.log(e.currentTarget);
 	      console.log(this.props.result.url);
 	    }
 	  }, {
-	    key: "render",
+<<<<<<< HEAD
+	    key: 'voteForResult',
+	    value: function voteForResult(e) {
+	      this.props.voteFunc(this.props.result.name);
+	      if (!this.state.vote) {
+	        console.log('vote on');
+	        e.currentTarget.className = 'vote-on';
+	        this.setState({ vote: true });
+	      }
+	      if (this.state.vote === true) {
+	        console.log('vote off');
+	        e.currentTarget.className = 'vote-off';
+	        this.setState({ vote: false });
+	      }
+	      // this.setState({voteOn: !this.state.voteOn})
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
+	        'div',
+	        { className: 'yelpResult' },
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'a',
+	          { className: 'yelpLink', target: '_blank', href: this.props.result.url },
+	          this.props.result.name
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.voteForResult },
+	          _react2.default.createElement('img', { src: this.props.result.image_url, className: 'yelpImage' }),
+	          _react2.default.createElement(
+	            'h6',
+	            null,
+	            this.props.result.location.display_address.join(', ')
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'yelpProp' },
+	            'Rating: ',
+	            this.props.result.rating
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'yelpProp' },
+	            'Reviews: ',
+	            this.props.result.review_count
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'yelpProp' },
+	            'Price: ',
+	            this.props.result.price
+	          )
+	        ),
+	        _react2.default.createElement('br', null)
+	      );
+	    }
+	  }]);
+	
+	  return YelpResult;
+	}(_react2.default.Component);
+	
+	exports.default = YelpResult;
+
+/***/ },
+/* 327 */
+/*!********************************!*\
+  !*** ./src/client/app/Room.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 158);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _Yelp = __webpack_require__(/*! ./Yelp */ 245);
+	
+	var _Yelp2 = _interopRequireDefault(_Yelp);
+	
+	var _RoomUsers = __webpack_require__(/*! ./RoomUsers */ 328);
+	
+	var _RoomUsers2 = _interopRequireDefault(_RoomUsers);
+	
+	var _Chat = __webpack_require__(/*! ./Chat */ 330);
+	
+	var _Chat2 = _interopRequireDefault(_Chat);
+	
+	var _axios = __webpack_require__(/*! axios */ 218);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 160);
+	
+	var _headerbar = __webpack_require__(/*! ./headerbar */ 243);
+	
+	var _headerbar2 = _interopRequireDefault(_headerbar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Room = function (_React$Component) {
+	  _inherits(Room, _React$Component);
+	
+	  function Room(props) {
+	    _classCallCheck(this, Room);
+	
+	    var _this = _possibleConstructorReturn(this, (Room.__proto__ || Object.getPrototypeOf(Room)).call(this, props));
+	
+	    _this.state = {
+	      chatVisible: true,
+	      usersVisible: true,
+	      yelpVisible: true,
+	      roomUsers: null
+	    };
+	    _this.toggleChat = _this.toggleChat.bind(_this);
+	    _this.toggleYelp = _this.toggleYelp.bind(_this);
+	    _this.toggleUsers = _this.toggleUsers.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Room, [{
+	    key: 'toggleChat',
+	    value: function toggleChat(event) {
+	      this.setState({ chatVisible: !this.state.chatVisible });
+	    }
+	  }, {
+	    key: 'toggleYelp',
+	    value: function toggleYelp(event) {
+	      this.setState({ yelpVisible: !this.state.yelpVisible });
+	    }
+	  }, {
+	    key: 'toggleUsers',
+	    value: function toggleUsers(event) {
+	      this.setState({ usersVisible: !this.state.usersVisible });
+	    }
+	  }, {
+	    key: 'render',
+=======
+	    key: "render",
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
+	    value: function render() {
+	      return _react2.default.createElement(
+<<<<<<< HEAD
+	        'div',
+	        { className: 'room' },
+	        _react2.default.createElement(_headerbar2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-4' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'yelpEmbed' },
+	                _react2.default.createElement(
+	                  'h2',
+	                  { onClick: this.toggleYelp },
+	                  'Yelp'
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: yelpVisible },
+	                  _react2.default.createElement(_Yelp2.default, null)
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-md-8' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'col-md-8' },
+	                _react2.default.createElement(
+	                  'h2',
+	                  { onClick: this.toggleChat },
+	                  'Chat'
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: chatVisible },
+	                  _react2.default.createElement(_Chat2.default, null)
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'col-md-4' },
+	                _react2.default.createElement(
+	                  'h2',
+	                  { onClick: this.toggleUsers },
+	                  'List'
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { style: usersVisible },
+	                  _react2.default.createElement(_RoomUsers2.default, { users: this.state.roomUsers })
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Room;
+	}(_react2.default.Component);
+	
+	exports.default = Room;
+
+/***/ },
+/* 328 */
+/*!*************************************!*\
+  !*** ./src/client/app/RoomUsers.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 158);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _RoomUser = __webpack_require__(/*! ./RoomUser */ 329);
+	
+	var _RoomUser2 = _interopRequireDefault(_RoomUser);
+	
+	var _axios = __webpack_require__(/*! axios */ 218);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var RoomUsers = function (_React$Component) {
+	  _inherits(RoomUsers, _React$Component);
+	
+	  function RoomUsers(props) {
+	    _classCallCheck(this, RoomUsers);
+	
+	    var _this = _possibleConstructorReturn(this, (RoomUsers.__proto__ || Object.getPrototypeOf(RoomUsers)).call(this, props));
+	
+	    _this.state = {
+	      roomUsers: null,
+	      usersVisible: false
+	    };
+	    _this.getUsers = _this.getUsers.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(RoomUsers, [{
+	    key: 'getUsers',
+	    value: function getUsers(event) {
+	      var context = this;
+	      _axios2.default.get('/api/room/mock/users').then(function (response) {
+	        console.log(response.data);
+	        context.setState({ roomUsers: response.data });
+	      }).then(function () {
+	        context.setState({ usersVisible: true });
+	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getUsers();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var usersVisible;
+	      if (!this.state.usersVisible) {
+	        usersVisible = { display: "none" };
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.getUsers },
+	          'Load Room Members'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'bordered', style: usersVisible },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'pre-scrollable' },
+	            this.state.roomUsers ? this.state.roomUsers.map(function (roomUser) {
+	              return _react2.default.createElement(_RoomUser2.default, { user: roomUser });
+	            }) : null
+	          )
+	        )
+=======
 	        "div",
 	        { className: "yelpResult" },
 	        _react2.default.createElement("br", null),
@@ -38094,10 +40532,20 @@
 	          )
 	        ),
 	        _react2.default.createElement("br", null)
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	      );
 	    }
 	  }]);
 	
+<<<<<<< HEAD
+	  return RoomUsers;
+	}(_react2.default.Component);
+	
+	exports.default = RoomUsers;
+
+/***/ },
+/* 329 */
+=======
 	  return YelpResult;
 	}(_react2.default.Component);
 	
@@ -38105,6 +40553,7 @@
 
 /***/ },
 /* 323 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!************************************!*\
   !*** ./src/client/app/RoomUser.js ***!
   \************************************/
@@ -38147,31 +40596,48 @@
 	    var _this = _possibleConstructorReturn(this, (RoomUser.__proto__ || Object.getPrototypeOf(RoomUser)).call(this, props));
 	
 	    _this.state = {
-	      user: null
+	      user: null,
+	      showDetails: false
 	    };
+	    _this.toggleDetails = _this.toggleDetails.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(RoomUser, [{
+	    key: 'toggleDetails',
+	    value: function toggleDetails() {
+	      this.setState({ showDetails: !this.state.showDetails });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var detailsVisible;
+	      if (!this.state.showDetails) {
+	        detailsVisible = { display: "none" };
+	      }
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'roomUser' },
 	        _react2.default.createElement(
-	          'h4',
-	          null,
+	          'h6',
+	          { onClick: this.toggleDetails },
 	          this.props.user.user_name
 	        ),
 	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.props.user.user_email
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.props.user.user_streetaddress
+	          'div',
+	          { style: detailsVisible },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'userDetails' },
+	            this.props.user.user_email
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'userDetails' },
+	            this.props.user.user_streetaddress
+	          )
 	        )
 	      );
 	    }
@@ -38183,7 +40649,11 @@
 	exports.default = RoomUser;
 
 /***/ },
+<<<<<<< HEAD
+/* 330 */
+=======
 /* 324 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!********************************!*\
   !*** ./src/client/app/Chat.js ***!
   \********************************/
@@ -38209,6 +40679,10 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _ChatMessage = __webpack_require__(/*! ./ChatMessage */ 331);
+	
+	var _ChatMessage2 = _interopRequireDefault(_ChatMessage);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38225,17 +40699,86 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 	
-	    _this.state = {};
+	    _this.state = {
+	      chatMessage: "Enter Message",
+	      messages: null,
+	      chatVisible: false
+	    };
+	    _this.onBlur = _this.onBlur.bind(_this);
+	    _this.getMessages = _this.getMessages.bind(_this);
+	    _this.handleChatMessageChange = _this.handleChatMessageChange.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Chat, [{
+	    key: 'getMessages',
+	    value: function getMessages(event) {
+	      var context = this;
+	      _axios2.default.get('/api/room/mock/messages').then(function (response) {
+	        console.log(response.data);
+	        context.setState({ messages: response.data });
+	      }).then(function () {
+	        if (!context.state.chatVisible) {
+	          context.setState({ chatVisible: true });
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'handleChatMessageChange',
+	    value: function handleChatMessageChange(event) {
+	      console.log('handleChatMessageChange');
+	      this.setState({ chatMessage: event.target.value });
+	    }
+	  }, {
+	    key: 'onBlur',
+	    value: function onBlur() {
+	      console.log("blur");
+	      if (this.state.chatMessage === "Enter Message") {
+	        this.setState({ chatMessage: "" });
+	      }
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getMessages();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var chatBorderVis;
+	      if (!this.state.chatVisible) {
+	        chatBorderVis = { display: "none" };
+	      }
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'CHATS GO HERE'
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.getMessages },
+	          'Get Messages'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'bordered', style: chatBorderVis },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'pre-scrollable' },
+	            this.state.messages ? this.state.messages.map(function (message) {
+	              return _react2.default.createElement(_ChatMessage2.default, { message: message });
+	            }) : null
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          null,
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            value: this.state.chatMessage,
+	            onChange: this.handleChatMessageChange,
+	            onClick: this.onBlur
+	          }),
+	          _react2.default.createElement('input', { id: 'sendMessage', className: 'submit', type: 'button', value: 'Send' })
+	        )
 	      );
 	    }
 	  }]);
@@ -38246,7 +40789,93 @@
 	exports.default = Chat;
 
 /***/ },
+<<<<<<< HEAD
+/* 331 */
+/*!***************************************!*\
+  !*** ./src/client/app/ChatMessage.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 158);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 218);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ChatMessage = function (_React$Component) {
+	  _inherits(ChatMessage, _React$Component);
+	
+	  function ChatMessage(props) {
+	    _classCallCheck(this, ChatMessage);
+	
+	    return _possibleConstructorReturn(this, (ChatMessage.__proto__ || Object.getPrototypeOf(ChatMessage)).call(this, props));
+	  }
+	
+	  _createClass(ChatMessage, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'User: ',
+	          this.props.message.UserId
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'Message: ',
+	          this.props.message.message_text
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'Event: ',
+	          this.props.message.EventId
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null)
+	      );
+	    }
+	  }]);
+	
+	  return ChatMessage;
+	}(_react2.default.Component);
+	
+	exports.default = ChatMessage;
+
+/***/ },
+/* 332 */
+=======
 /* 325 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*******************************!*\
   !*** ./src/client/app/App.js ***!
   \*******************************/
@@ -38270,6 +40899,21 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 160);
 	
+<<<<<<< HEAD
+	var _headerbar = __webpack_require__(/*! ./headerbar */ 243);
+	
+	var _headerbar2 = _interopRequireDefault(_headerbar);
+	
+	var _friend_list = __webpack_require__(/*! ./friend_list */ 333);
+	
+	var _friend_list2 = _interopRequireDefault(_friend_list);
+	
+	var _User_detail = __webpack_require__(/*! ./User_detail */ 335);
+	
+	var _User_detail2 = _interopRequireDefault(_User_detail);
+	
+	var _Search_Friend_Bar = __webpack_require__(/*! ./Search_Friend_Bar */ 336);
+=======
 	var _headerbar = __webpack_require__(/*! ./headerbar */ 326);
 	
 	var _headerbar2 = _interopRequireDefault(_headerbar);
@@ -38283,6 +40927,7 @@
 	var _User_detail2 = _interopRequireDefault(_User_detail);
 	
 	var _Search_Friend_Bar = __webpack_require__(/*! ./Search_Friend_Bar */ 330);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var _Search_Friend_Bar2 = _interopRequireDefault(_Search_Friend_Bar);
 	
@@ -38391,16 +41036,8 @@
 				}, 1000);
 				return _react2.default.createElement(
 					'div',
-					{ className: 'container' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'row' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'col-xs-10 col-xs-offset-1 coloring' },
-							_react2.default.createElement(_headerbar2.default, null)
-						)
-					),
+					null,
+					_react2.default.createElement(_headerbar2.default, null),
 					_react2.default.createElement(
 						'div',
 						{ className: 'container' },
@@ -38426,6 +41063,9 @@
 								{ className: 'col-sm-3' },
 								_react2.default.createElement(_friend_list2.default, { friends: this.state.currentUserFriendList })
 							)
+<<<<<<< HEAD
+						),
+=======
 						)
 					),
 					_react2.default.createElement(
@@ -38491,39 +41131,14 @@
 					_react2.default.createElement(
 						'div',
 						{ className: 'container' },
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 						_react2.default.createElement(
-							'div',
-							{ className: 'navbar-header' },
+							'button',
+							{ onClick: this.makeAPage.bind(this), className: 'btn btn-primary' },
 							_react2.default.createElement(
-								'ul',
-								{ className: 'nav navbar-nav' },
-								_react2.default.createElement(
-									'li',
-									null,
-									_react2.default.createElement(
-										'a',
-										{ href: '#' },
-										'Home'
-									)
-								),
-								_react2.default.createElement(
-									'li',
-									null,
-									_react2.default.createElement(
-										'a',
-										{ href: '#' },
-										'sign in'
-									)
-								),
-								_react2.default.createElement(
-									'li',
-									null,
-									_react2.default.createElement(
-										'a',
-										{ href: '#' },
-										'login'
-									)
-								)
+								_reactRouter.Link,
+								{ to: 'room' },
+								'Create new page'
 							)
 						)
 					)
@@ -38531,20 +41146,17 @@
 			}
 		}]);
 	
-		return HeaderBar;
+		return App;
 	}(_react2.default.Component);
 	
-	;
-	
-	// Where important that the when the component renders the value of the 
-	// input is set to retrieve its value from this start state term 
-	// so its inital value is an empty string and we start of totally empty.
-	
-	
-	exports.default = HeaderBar;
+	exports.default = App;
 
 /***/ },
+<<<<<<< HEAD
+/* 333 */
+=======
 /* 327 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***************************************!*\
   !*** ./src/client/app/friend_list.js ***!
   \***************************************/
@@ -38564,7 +41176,11 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+<<<<<<< HEAD
+	var _friend_list_item = __webpack_require__(/*! ./friend_list_item */ 334);
+=======
 	var _friend_list_item = __webpack_require__(/*! ./friend_list_item */ 328);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var _friend_list_item2 = _interopRequireDefault(_friend_list_item);
 	
@@ -38585,7 +41201,11 @@
 	exports.default = FriendList;
 
 /***/ },
+<<<<<<< HEAD
+/* 334 */
+=======
 /* 328 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!********************************************!*\
   !*** ./src/client/app/friend_list_item.js ***!
   \********************************************/
@@ -38621,7 +41241,11 @@
 	exports.default = FriendListItem;
 
 /***/ },
+<<<<<<< HEAD
+/* 335 */
+=======
 /* 329 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!***************************************!*\
   !*** ./src/client/app/User_detail.js ***!
   \***************************************/
@@ -38671,7 +41295,11 @@
 	exports.default = UserDetail;
 
 /***/ },
+<<<<<<< HEAD
+/* 336 */
+=======
 /* 330 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!*********************************************!*\
   !*** ./src/client/app/Search_Friend_Bar.js ***!
   \*********************************************/
@@ -38693,7 +41321,11 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+<<<<<<< HEAD
+	var _Search_friend_bar_item = __webpack_require__(/*! ./Search_friend_bar_item */ 337);
+=======
 	var _Search_friend_bar_item = __webpack_require__(/*! ./Search_friend_bar_item */ 331);
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 	
 	var _Search_friend_bar_item2 = _interopRequireDefault(_Search_friend_bar_item);
 	
@@ -38808,7 +41440,11 @@
 	exports.default = SearchFriendBar;
 
 /***/ },
+<<<<<<< HEAD
+/* 337 */
+=======
 /* 331 */
+>>>>>>> 11ad6ec4c93d14977568509779a25aaab7241e81
 /*!**************************************************!*\
   !*** ./src/client/app/Search_friend_bar_item.js ***!
   \**************************************************/

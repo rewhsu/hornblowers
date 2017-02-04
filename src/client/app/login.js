@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
+import HeaderBar from './headerbar'
+
 
 
 
@@ -39,6 +41,7 @@ class Login extends React.Component {
    
     return (
       <div>
+        <HeaderBar />
         <h1>Login</h1>
         <form className='loginWrapper' method='post'>
           <label>Email: <input type='text' name='email' placeholder='john.doe@email.com' onChange={this.handleEmailChange.bind(this)}/></label><br/>
