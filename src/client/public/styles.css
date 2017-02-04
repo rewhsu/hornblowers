@@ -35,3 +35,17 @@
   text-align: center;
   margin: auto;
 }
+
+.scrollable {
+  height: 500px;
+  overflow: scroll;
+}
+
+.bordered {
+  border: 2px groove;
+  border-radius: 3px;
+}
+
+.userDetails {
+  font-size: 75%;
+}

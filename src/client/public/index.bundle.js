@@ -25624,7 +25624,7 @@
 	
 	var _Chat2 = _interopRequireDefault(_Chat);
 	
-	var _App = __webpack_require__(/*! ./App */ 329);
+	var _App = __webpack_require__(/*! ./App */ 330);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -39447,9 +39447,9 @@
 	
 	var _Yelp2 = _interopRequireDefault(_Yelp);
 	
-	var _RoomUser = __webpack_require__(/*! ./RoomUser */ 327);
+	var _RoomUsers = __webpack_require__(/*! ./RoomUsers */ 337);
 	
-	var _RoomUser2 = _interopRequireDefault(_RoomUser);
+	var _RoomUsers2 = _interopRequireDefault(_RoomUsers);
 	
 	var _Chat = __webpack_require__(/*! ./Chat */ 328);
 	
@@ -39478,12 +39478,11 @@
 	    var _this = _possibleConstructorReturn(this, (Room.__proto__ || Object.getPrototypeOf(Room)).call(this, props));
 	
 	    _this.state = {
-	      chatVisible: false,
-	      usersVisible: false,
-	      yelpVisible: false,
+	      chatVisible: true,
+	      usersVisible: true,
+	      yelpVisible: true,
 	      roomUsers: null
 	    };
-	    _this.getUsers = _this.getUsers.bind(_this);
 	    _this.toggleChat = _this.toggleChat.bind(_this);
 	    _this.toggleYelp = _this.toggleYelp.bind(_this);
 	    _this.toggleUsers = _this.toggleUsers.bind(_this);
@@ -39504,15 +39503,6 @@
 	    key: 'toggleUsers',
 	    value: function toggleUsers(event) {
 	      this.setState({ usersVisible: !this.state.usersVisible });
-	    }
-	  }, {
-	    key: 'getUsers',
-	    value: function getUsers(event) {
-	      var context = this;
-	      _axios2.default.get('/api/room/mockUsers').then(function (response) {
-	        console.log(response.data);
-	        context.setState({ roomUsers: response.data });
-	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -39542,41 +39532,50 @@
 	          )
 	        ),
 	        _react2.default.createElement(
-	          'h2',
-	          { onClick: this.toggleChat },
-	          'Chat'
-	        ),
-	        _react2.default.createElement(
 	          'div',
-	          { style: chatVisible },
-	          _react2.default.createElement(_Chat2.default, null)
-	        ),
-	        _react2.default.createElement(
-	          'h2',
-	          { onClick: this.toggleYelp },
-	          'Yelp'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: yelpVisible },
-	          _react2.default.createElement(_Yelp2.default, null)
-	        ),
-	        _react2.default.createElement(
-	          'h2',
-	          { onClick: this.toggleUsers },
-	          'List'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: usersVisible },
+	          { className: 'row' },
 	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.getUsers },
-	            'Reload Room Members'
+	            'div',
+	            { className: 'col-sm-3' },
+	            _react2.default.createElement(
+	              'h2',
+	              { onClick: this.toggleYelp },
+	              'Yelp'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: yelpVisible },
+	              _react2.default.createElement(_Yelp2.default, null)
+	            )
 	          ),
-	          this.state.roomUsers ? this.state.roomUsers.map(function (roomUser) {
-	            return _react2.default.createElement(_RoomUser2.default, { user: roomUser });
-	          }) : null
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-sm-6' },
+	            _react2.default.createElement(
+	              'h2',
+	              { onClick: this.toggleChat },
+	              'Chat'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: chatVisible },
+	              _react2.default.createElement(_Chat2.default, null)
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-sm-3' },
+	            _react2.default.createElement(
+	              'h2',
+	              { onClick: this.toggleUsers },
+	              'List'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { style: usersVisible },
+	              _react2.default.createElement(_RoomUsers2.default, { users: this.state.roomUsers })
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -39631,31 +39630,48 @@
 	    var _this = _possibleConstructorReturn(this, (RoomUser.__proto__ || Object.getPrototypeOf(RoomUser)).call(this, props));
 	
 	    _this.state = {
-	      user: null
+	      user: null,
+	      showDetails: false
 	    };
+	    _this.toggleDetails = _this.toggleDetails.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(RoomUser, [{
+	    key: 'toggleDetails',
+	    value: function toggleDetails() {
+	      this.setState({ showDetails: !this.state.showDetails });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var detailsVisible;
+	      if (!this.state.showDetails) {
+	        detailsVisible = { display: "none" };
+	      }
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'roomUser' },
 	        _react2.default.createElement(
-	          'h4',
-	          null,
+	          'h6',
+	          { onClick: this.toggleDetails },
 	          this.props.user.user_name
 	        ),
 	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.props.user.user_email
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          this.props.user.user_streetaddress
+	          'div',
+	          { style: detailsVisible },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'userDetails' },
+	            this.props.user.user_email
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'userDetails' },
+	            this.props.user.user_streetaddress
+	          )
 	        )
 	      );
 	    }
@@ -39693,6 +39709,10 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _ChatMessage = __webpack_require__(/*! ./ChatMessage */ 329);
+	
+	var _ChatMessage2 = _interopRequireDefault(_ChatMessage);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39709,17 +39729,81 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 	
-	    _this.state = {};
+	    _this.state = {
+	      chatMessage: "Enter Message",
+	      messages: null,
+	      chatVisible: false
+	    };
+	    _this.onBlur = _this.onBlur.bind(_this);
+	    _this.getMessages = _this.getMessages.bind(_this);
+	    _this.handleChatMessageChange = _this.handleChatMessageChange.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Chat, [{
+	    key: 'getMessages',
+	    value: function getMessages(event) {
+	      var context = this;
+	      _axios2.default.get('/api/room/mock/messages').then(function (response) {
+	        console.log(response.data);
+	        context.setState({ messages: response.data });
+	      }).then(function () {
+	        if (!context.state.chatVisible) {
+	          context.setState({ chatVisible: true });
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'handleChatMessageChange',
+	    value: function handleChatMessageChange(event) {
+	      console.log('handleChatMessageChange');
+	      this.setState({ chatMessage: event.target.value });
+	    }
+	  }, {
+	    key: 'onBlur',
+	    value: function onBlur() {
+	      console.log("blur");
+	      if (this.state.chatMessage === "Enter Message") {
+	        this.setState({ chatMessage: "" });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var chatBorderVis;
+	      if (!this.state.chatVisible) {
+	        chatBorderVis = { display: "none" };
+	      }
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        'CHATS GO HERE'
+	        { className: 'container' },
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.getMessages },
+	          'Get Messages'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'bordered', style: chatBorderVis },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'pre-scrollable' },
+	            this.state.messages ? this.state.messages.map(function (message) {
+	              return _react2.default.createElement(_ChatMessage2.default, { message: message });
+	            }) : null
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          null,
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            value: this.state.chatMessage,
+	            onChange: this.handleChatMessageChange,
+	            onClick: this.onBlur
+	          }),
+	          _react2.default.createElement('input', { id: 'sendMessage', className: 'submit', type: 'button', value: 'Send' })
+	        )
 	      );
 	    }
 	  }]);
@@ -39731,6 +39815,88 @@
 
 /***/ },
 /* 329 */
+/*!***************************************!*\
+  !*** ./src/client/app/ChatMessage.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 158);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _axios = __webpack_require__(/*! axios */ 218);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ChatMessage = function (_React$Component) {
+	  _inherits(ChatMessage, _React$Component);
+	
+	  function ChatMessage(props) {
+	    _classCallCheck(this, ChatMessage);
+	
+	    return _possibleConstructorReturn(this, (ChatMessage.__proto__ || Object.getPrototypeOf(ChatMessage)).call(this, props));
+	  }
+	
+	  _createClass(ChatMessage, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'User: ',
+	          this.props.message.UserId
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'Message: ',
+	          this.props.message.message_text
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'Event: ',
+	          this.props.message.EventId
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null)
+	      );
+	    }
+	  }]);
+	
+	  return ChatMessage;
+	}(_react2.default.Component);
+	
+	exports.default = ChatMessage;
+
+/***/ },
+/* 330 */
 /*!*******************************!*\
   !*** ./src/client/app/App.js ***!
   \*******************************/
@@ -39754,19 +39920,19 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 160);
 	
-	var _headerbar = __webpack_require__(/*! ./headerbar */ 330);
+	var _headerbar = __webpack_require__(/*! ./headerbar */ 331);
 	
 	var _headerbar2 = _interopRequireDefault(_headerbar);
 	
-	var _friend_list = __webpack_require__(/*! ./friend_list */ 331);
+	var _friend_list = __webpack_require__(/*! ./friend_list */ 332);
 	
 	var _friend_list2 = _interopRequireDefault(_friend_list);
 	
-	var _User_detail = __webpack_require__(/*! ./User_detail */ 333);
+	var _User_detail = __webpack_require__(/*! ./User_detail */ 334);
 	
 	var _User_detail2 = _interopRequireDefault(_User_detail);
 	
-	var _Search_Friend_Bar = __webpack_require__(/*! ./Search_Friend_Bar */ 334);
+	var _Search_Friend_Bar = __webpack_require__(/*! ./Search_Friend_Bar */ 335);
 	
 	var _Search_Friend_Bar2 = _interopRequireDefault(_Search_Friend_Bar);
 	
@@ -39931,7 +40097,7 @@
 	exports.default = App;
 
 /***/ },
-/* 330 */
+/* 331 */
 /*!*************************************!*\
   !*** ./src/client/app/headerbar.js ***!
   \*************************************/
@@ -40028,7 +40194,7 @@
 	exports.default = HeaderBar;
 
 /***/ },
-/* 331 */
+/* 332 */
 /*!***************************************!*\
   !*** ./src/client/app/friend_list.js ***!
   \***************************************/
@@ -40048,7 +40214,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _friend_list_item = __webpack_require__(/*! ./friend_list_item */ 332);
+	var _friend_list_item = __webpack_require__(/*! ./friend_list_item */ 333);
 	
 	var _friend_list_item2 = _interopRequireDefault(_friend_list_item);
 	
@@ -40069,7 +40235,7 @@
 	exports.default = FriendList;
 
 /***/ },
-/* 332 */
+/* 333 */
 /*!********************************************!*\
   !*** ./src/client/app/friend_list_item.js ***!
   \********************************************/
@@ -40105,7 +40271,7 @@
 	exports.default = FriendListItem;
 
 /***/ },
-/* 333 */
+/* 334 */
 /*!***************************************!*\
   !*** ./src/client/app/User_detail.js ***!
   \***************************************/
@@ -40155,7 +40321,7 @@
 	exports.default = UserDetail;
 
 /***/ },
-/* 334 */
+/* 335 */
 /*!*********************************************!*\
   !*** ./src/client/app/Search_Friend_Bar.js ***!
   \*********************************************/
@@ -40177,7 +40343,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _Search_friend_bar_item = __webpack_require__(/*! ./Search_friend_bar_item */ 335);
+	var _Search_friend_bar_item = __webpack_require__(/*! ./Search_friend_bar_item */ 336);
 	
 	var _Search_friend_bar_item2 = _interopRequireDefault(_Search_friend_bar_item);
 	
@@ -40292,7 +40458,7 @@
 	exports.default = SearchFriendBar;
 
 /***/ },
-/* 335 */
+/* 336 */
 /*!**************************************************!*\
   !*** ./src/client/app/Search_friend_bar_item.js ***!
   \**************************************************/
@@ -40368,6 +40534,107 @@
 	SearchFriendBarListItem.propTypes = {};
 	
 	exports.default = SearchFriendBarListItem;
+
+/***/ },
+/* 337 */
+/*!*************************************!*\
+  !*** ./src/client/app/RoomUsers.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 158);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _RoomUser = __webpack_require__(/*! ./RoomUser */ 327);
+	
+	var _RoomUser2 = _interopRequireDefault(_RoomUser);
+	
+	var _axios = __webpack_require__(/*! axios */ 218);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var RoomUsers = function (_React$Component) {
+	  _inherits(RoomUsers, _React$Component);
+	
+	  function RoomUsers(props) {
+	    _classCallCheck(this, RoomUsers);
+	
+	    var _this = _possibleConstructorReturn(this, (RoomUsers.__proto__ || Object.getPrototypeOf(RoomUsers)).call(this, props));
+	
+	    _this.state = {
+	      roomUsers: null,
+	      usersVisible: false
+	    };
+	    _this.getUsers = _this.getUsers.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(RoomUsers, [{
+	    key: 'getUsers',
+	    value: function getUsers(event) {
+	      var context = this;
+	      _axios2.default.get('/api/room/mock/users').then(function (response) {
+	        console.log(response.data);
+	        context.setState({ roomUsers: response.data });
+	      }).then(function () {
+	        context.setState({ usersVisible: true });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var usersVisible;
+	      if (!this.state.usersVisible) {
+	        usersVisible = { display: "none" };
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container' },
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.getUsers },
+	          'Load Room Members'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'bordered', style: usersVisible },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'pre-scrollable' },
+	            this.state.roomUsers ? this.state.roomUsers.map(function (roomUser) {
+	              return _react2.default.createElement(_RoomUser2.default, { user: roomUser });
+	            }) : null
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return RoomUsers;
+	}(_react2.default.Component);
+	
+	exports.default = RoomUsers;
 
 /***/ }
 /******/ ]);
