@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderBar from './headerbar'
 
 
 class Signup extends React.Component {
@@ -19,6 +20,7 @@ class Signup extends React.Component {
 
     return (
       <div>
+        <HeaderBar />
         <h1>Signup</h1>
         <form className='loginWrapper' method='post'>
           <label>Name: <input type='text' placeholder='John Doe'/></label><br/>

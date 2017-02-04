@@ -1,21 +1,56 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { browserHistory } from 'react-router';
+import axios from 'axios';
+import HeaderBar from './headerbar'
+
+
 
 
 
 class Login extends React.Component {
   constructor(props) {
-    console.log('tingmopeet')
+
     super(props);
 
 
-    // this.state = {
-    //   hovering: false
-    // }
+    this.state = {
+      email: 'hi',
+      password: 'dfsdf'
+    }
   }
 
   logIn() {
-    console.log('login');
+    
+    console.log("Email: " + this.state.email);
+    console.log("Password: " + this.state.password);
+
+    // window.user = this.state.email;
+    //request email and see if passwords match
+    var self = this;
+    axios.post('/api/login/', {
+      email: self.state.email
+    })
+      .then(function(response) {
+        console.log('response.data["user_password"]: ', response.data["user_password"].length);
+        console.log('this.state.password: ', self.state.password.length);
+        if (response.data["user_password"] === self.state.password) {
+          //if login email and password match what's in database then change route to main page
+          window.user = self.state.email;
+          browserHistory.push('/');    
+        }
+      })
+      .catch(function (error) {
+        console.log('email and password do not match');
+      });
+  }
+
+  handleEmailChange (e) {
+     this.setState({email: e.target.value});
+  }
+
+  handlePasswordChange (e) {
+     this.setState({password: e.target.value});
   }
 
   render() {
@@ -23,12 +58,13 @@ class Login extends React.Component {
    
     return (
       <div>
+        <HeaderBar />
         <h1>Login</h1>
         <form className='loginWrapper' method='post'>
-          <label>Email: <input type='email' placeholder='john.doe@email.com'/></label><br/>
-          <label>Password: <input type='text' placeholder='secret'/></label><br/>
+          <label>Email: <input type='text' name='email' placeholder='john.doe@email.com' onChange={this.handleEmailChange.bind(this)}/></label><br/>
+          <label>Password: <input type='password' name='password' placeholder='secret'onChange={this.handlePasswordChange.bind(this)}/></label><br/>
 
-          <button type='button' onClick={this.logIn}>submit</button>
+          <button type='button' onClick={this.logIn.bind(this)}>submit</button>
         </form>
       </div>
     )

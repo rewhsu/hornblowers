@@ -9,18 +9,21 @@ class FriendList extends React.Component{
 	
 	this.state = {
 		checkedFriends: [],
-		currentFriendsList: this.props.friends
+		currentFriendsList: this.props.friends,
+		theGroupForRoom: []
 	}
 
 	};
-
-
+	addToRoom(friend) {
+		console.log('A Click from child(Friend_List_Item)')
+		this.state.theGroupForRoom.push(friend)
+		console.log(this.state.theGroupForRoom)
+	}
 	// Generate new Page 
 	 // to newRoute
 	makeAPage() {
 	 	console.log('make page')
-	 	console.log(this.props.friends)
-	 	console.log(this.state.testing)
+	 	console.log(this.state.theGroupForRoom)
 	}
 
 
@@ -28,7 +31,9 @@ class FriendList extends React.Component{
 	const FriendItems = this.props.friends.map((friend) => {
 		return <FriendListItem 
 						key={friend.etag} 
-						frienddata={friend} 
+						frienddata={friend}
+						theRoom={this.state.theGroupForRoom}
+						AddFriendToRoomFunc={this.addToRoom.bind(this)}
 				/>
 	});
 	return (

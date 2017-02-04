@@ -3,21 +3,43 @@ import React from 'react';
 class HeaderBar extends React.Component {
 	constructor(props) {
 		super(props);
-
+    this.state = {
+      activeTab: null
+    }
+    this.setActiveTab = this.setActiveTab.bind(this);
+    this.classCheck = this.classCheck.bind(this);
 	}
+
+  setActiveTab(tabName) {
+    var context = this;
+    return function() {
+      context.setState({activeTab: tabName});
+    }
+  }
+
+  classCheck(tabName) {
+    if(this.state.activeTab === tabName) {
+      return "active";
+    } else {
+      return "";
+    }
+  }
+
 	render() {
 		return (
-			<nav className='navbar navbar-default'>
-				<div className='container'>
-					<div className="navbar-header">
-						<ul className="nav navbar-nav">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">sign in</a></li>
-							<li><a href="#">login</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <a className="navbar-brand" href="#">@</a>
+          </div>
+          <ul className="nav navbar-nav">
+            <li onClick={this.setActiveTab('home')} className={this.classCheck('home')}><a href="/">Home</a></li>
+            <li onClick={this.setActiveTab('room')} className={this.classCheck('room')}><a href="/room">Room</a></li>
+            <li onClick={this.setActiveTab('signup')} className={this.classCheck('signup')}><a href="/signup">Sign Up</a></li>
+            <li onClick={this.setActiveTab('login')} className={this.classCheck('login')}><a href="/login">Log In</a></li>
+          </ul>
+        </div>
+      </nav>
 		)
 	}
 };	

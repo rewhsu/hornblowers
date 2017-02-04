@@ -1,19 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { browserHistory, Link } from 'react-router';
 import HeaderBar from './headerbar';
 import FriendList from './friend_list';
 import UserDetail from './User_detail';
 import SearchFriendBar from './Search_Friend_Bar';
-import Login from './login';
-import Signup from './signup';
-console.log('before')
-import Yelp from './Yelp';
-console.log('after')
-import { Router, Route, Link, browserHistory } from 'react-router';
 
 
 // These data will be ajax from (sql)db 
 // we will have storage of friends
+
 
 var UserData = [
 					{
@@ -75,7 +71,13 @@ class App extends React.Component {
 	 // We will need a Ajax Call here to fetch Users FriendList
 	 // Once we fetch the data we will be able setState for CurrentUserFriendList  
 	 }
-	 
+
+	 // Generate new Page 
+	 // to newRoute
+	makeAPage() {
+		console.log(window.user);
+	 	console.log('make page')
+	}
 	
 	// I pass down currentFriendList to child & also I passdown the changeFriendList 
 	// To SearchFriendBar 
@@ -88,7 +90,10 @@ class App extends React.Component {
 		});
 	}
 
-	
+	// var arrayvar = this.state.arrayvar.slice()
+	// arrayvar.push(newelement)
+	// this.setState({ arrayvar: arrayvar })
+
 	render() {
 		// So my problem here is how does User work in here
 		// when it comes in what kind of call is giving ? 
@@ -97,67 +102,29 @@ class App extends React.Component {
 			this.setState({currentUserFriendList: FakeFriendData})
 		}, 1000);
 		return (
-			<div className='container'>
-				<div className='row'>
-					<div className='col-xs-10 col-xs-offset-1 coloring'>
-						<HeaderBar />
-					</div>
-				</div>
-				<div className='container'>
-					<div className='row'>
-						<div className='col-sm-4'>
-							<SearchFriendBar 
-								AllUserData={this.state.allUserDataFromDateBase} 
-								CurrentFriendList={this.state.currentUserFriendList}
-								changeFriendListFunc={this.changeFriendList.bind(this)}
-							/>
-						</div>
-						<div className='col-sm-4'>
-							<UserDetail User={this.state.currentUserLocation}/>
-						</div>
-						<div className='col-sm-4'>					
-							<FriendList 
-								friends={this.state.currentUserFriendList}
-								/>
-						</div>
-					</div>
-				</div>
-			</div> 
+      <div>
+  			<HeaderBar />
+        <div className='container'>
+  					<div className='row'>
+  						<div className='col-sm-3'>
+  							<SearchFriendBar 
+  								AllUserData={this.state.allUserDataFromDateBase} 
+  								CurrentFriendList={this.state.currentUserFriendList}
+  								changeFriendListFunc={this.changeFriendList.bind(this)}
+  							/>
+  						</div>
+  						<div className='col-sm-3'>
+  							<UserDetail User={this.state.currentUserLocation}/>
+  						</div>
+  						<div className='col-sm-3'>					
+  							<FriendList friends={this.state.currentUserFriendList}/>
+  						</div>
+  					</div>
+          <button onClick={this.makeAPage.bind(this)} className='btn btn-primary'><Link to={'room'}>Create new page</Link></button>
+  			</div>
+      </div>
 		);
   	}
 }
 
-function loggedIn() {
-	//temporary function, change to return false and it will redirect to login
-  return true;
-}
-
-function requireAuth(nextState, replace) {
-  if (!loggedIn()) {
-    replace({
-      pathname: '/login'
-    })
-  }
-}
-
-ReactDOM.render((<Router history={browserHistory}>
-    <Route path="/" component={App} onEnter={requireAuth}/>
-    <Route path="signup" component={Signup}/>
-    <Route path="login" component={Login}/>
-    <Route path="yelp" component={Yelp} />
- </Router>), document.getElementById('app'));
-
-
-// Task I still need to do is making a button for this app (using react router)
-// the other page ! 
-// making http/ajax call to router (haven't research how to communicate with server yet)
-// Style it
-
-import AppRoutes from './AppRoutes';
-
-
-
-ReactDOM.render(<AppRoutes />, document.getElementById('app'));
-
-
-
+export default App

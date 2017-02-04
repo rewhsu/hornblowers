@@ -5,12 +5,16 @@ class FriendListItem extends React.Component {
 		super(props);
 	}
 
+	addFriendToRoom() {
+		this.props.AddFriendToRoomFunc(this.props.frienddata)
+	}
+
 	render() {
 		return (
 			<li>
 				<div>{this.props.frienddata.name}</div>
 	      		<img src={this.props.frienddata.img}/>
-	      		<input className='checkbox' type="checkbox"/> 
+	      		<button onClick={this.addFriendToRoom.bind(this)}>Add To Room</button>
 			</li>
 		);
 	}

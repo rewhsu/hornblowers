@@ -15,7 +15,6 @@ class SearchFriendBarListItem extends React.Component {
 		return (
 			<li>
 				<div className="list-group-item">{this.props.Userdata.name}</div>
-				<button onClick={this.addFriendToList.bind(this)}>testing</button>
 				<button onClick={this.changeListFromChild.bind(this)}>AddFriend</button>
 			</li>
 		)

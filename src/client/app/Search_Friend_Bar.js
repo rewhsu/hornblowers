@@ -68,7 +68,7 @@ class SearchFriendBar extends React.Component {
 				<div className='list-group'>
 					<input type='text' 
 						   onChange={this.OnHandleChange.bind(this)} 
-						   placeholder='search friend'
+						   placeholder='add friend'
 					/>
 					<button onClick={this.FindFriend.bind(this)} className='btn btn-primary'>Search</button>
 					{this.state.IneedThisFriend}
