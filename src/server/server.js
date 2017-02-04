@@ -3,7 +3,6 @@ var path = require('path');
 var yelpRouter = require('./routers/yelpRouter');
 var roomRouter = require('./routers/roomRouter');
 var dbRouter = require('./routers/dbRouter');
-var db = require('./db/index.js');
 var bodyParser = require('body-parser');
 
 var port = 8080;
