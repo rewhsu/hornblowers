@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import HeaderBar from './headerbar';
 import FriendList from './friend_list';
 import UserDetail from './User_detail';
@@ -124,7 +124,7 @@ class App extends React.Component {
 						</div>
 					</div>
 				</div>
-				<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
+        <button onClick={this.makeAPage.bind(this)} className='btn btn-primary'><Link to={'room'}>Create new page</Link></button>
 			</div> 
 		);
   	}

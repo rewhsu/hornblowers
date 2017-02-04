@@ -4,6 +4,7 @@ import Yelp from './Yelp';
 import RoomUser from './RoomUser';
 import Chat from './Chat';
 import axios from 'axios';
+import {Link} from 'react-router';
 
 class Room extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class Room extends React.Component {
     }
     return (
       <div className="room">
+        <button><Link to="/">Home</Link></button>
         <h2 onClick={this.toggleChat}>Chat</h2>
         <div style={chatVisible}>
           <Chat />
