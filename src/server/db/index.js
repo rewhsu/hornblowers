@@ -44,7 +44,6 @@ var User = db.define('User', {
     defaultValue: Sequelize.literal('NOW()')
   }
 });
-// User.sync({force:true});
 
 
 var Event = db.define('Event', {
@@ -90,7 +89,7 @@ var Friendship = db.define('Friendship', {
 });
 
 Friendship.removeAttribute('id'); // No primary keys in friendship table
-// Friendship.sync({force:true});
+
 
 var EventMember = db.define('EventMember', {
 	eventId: Sequelize.INTEGER,
@@ -108,11 +107,11 @@ var EventMember = db.define('EventMember', {
 EventMember.removeAttribute('id'); // No primary keys in eventmember table
 
 
-User.belongsToMany(Event, {as: 'Members', through: 'EventMember', foreignKey: 'userId'});
-Event.belongsToMany(User, {as: 'Events', through: 'EventMember', foreignKey: 'eventId'});
 Event.belongsTo(User, {foreignKey: 'event_creatorId'});
 Message.belongsTo(User, {foreignKey: 'userId'});
 Message.belongsTo(Event, {foreignKey: 'eventId'});
+EventMember.belongsTo(User, {as: 'Members', foreignKey: 'userId'});
+EventMember.belongsTo(Event, {as: 'Events', foreignKey: 'eventId'});
 Friendship.belongsTo(User, {as: 'Friends', foreignKey: 'user_a', otherKey: 'user_b'});
 
 

@@ -123,7 +123,9 @@ dbRouter.get('/events', function(req, res) {
 dbRouter.post('/events', function(req, res) {
 // if req.body.members is an array of userIds + creatorId
   if (req.session.userId) {
-    var membersArray = req.body.members.push(req.session.userId);
+    var membersArray = req.body.members;
+    membersArray.push(req.session.userId);
+
     var createMembers = function (array, eventId) {
       return array.map(function(memberId) {
         return {eventId: eventId, userId: memberId};
