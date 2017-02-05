@@ -14,10 +14,10 @@ import axios from 'axios';
 
 
 function requireAuth(nextState, replace) {
-  console.log('nextState', nextState);
+  // console.log('nextState', nextState);
   console.log('replace', replace);
 
-
+  // var intendedPath = nextState;
     
   axios.post('/api/db/check')
     .then(function(response) {
@@ -26,7 +26,10 @@ function requireAuth(nextState, replace) {
        // console.log('browserHistory', browserHistory)
        // console.log('response.data', response.data)
        if (response.data) {
-        // browserHistory.push('/login');
+        // console.log('intendedPath', intendedPath)
+        console.log('nextState.location.pathname', nextState.location.pathname)
+        browserHistory.push(nextState.location.pathname);
+
         return true;
       }  else {
         browserHistory.push('/login');

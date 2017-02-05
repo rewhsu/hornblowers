@@ -34,6 +34,10 @@ class Room extends React.Component {
   }
 
   render() {
+    axios.post('/api/db/check')
+      .then(function(response) {console.log(response) })
+
+
     var chatVisible;
     var yelpVisible;
     var usersVisible;
