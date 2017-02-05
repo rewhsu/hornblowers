@@ -28,19 +28,70 @@ dbRouter.get('/friends', function(req, res) {
   }
 })
 
+
+// ADD FRIENDS
+dbRouter.post('/friends', function(req, res) {
+// if req.body.members is an array of userIds + creatorId
+var createFriends = function (userId, friendId) {
+  var result = [];
+    result.push(
+      {user_a: userId, user_b: friendId},
+      {user_a: friendId, user_b: userId}
+    );
+  return result;
+};
+
+var friendshipArr = createFriends(req.session.userId, req.body.friendId);
+
+  if (req.session.userId) {
+    db.Friendship.bulkCreate(friendshipArr)
+      .then(function() {
+        return db.Friendship.findAll({
+          where: {
+            user_a: req.session.userId
+          }
+        });
+      }).then(function(friendship) {
+        if (friendship) {
+          res.send('Added new friend!')
+        } else {
+          res.send('no friends');
+        };
+      });
+  } else {
+    res.send('no friends');
+  }
+});
+
+
 // FIND USER BY SEARCHED NAME
 dbRouter.get('/users', function(req, res) {
-  db.User.findOne({
-    where: {
-      user_name: req.query.searchName
-    }
-  }).then(function(user) {
-    if (user) {
-      res.json(user)
-    } else {
-      res.send('Sorry, user not found. Please tell them to signup!')
-    }
-  })
+  if (req.query.userId) {
+    db.User.findOne({
+      where: {
+        id: req.query.userId
+      }
+    }).then(function(user) {
+      if (user) {
+        res.json(user)
+      } else {
+        res.send('Sorry, user not found.')
+      }
+    });
+  } else if (req.query.searchName){
+    db.User.findOne({
+      where: {
+        user_name: req.query.searchName
+      }
+    }).then(function(user) {
+      if (user) {
+        res.json(user)
+      } else {
+        res.send('Sorry, user not found. Please tell them to signup!')
+      }
+    })
+    
+  }
 });
 
 // FIND ALL EVENTS FOR EACH USER
@@ -68,20 +119,17 @@ dbRouter.post('/events', function(req, res) {
   if (req.session.userId) {
     var membersArray = req.body.members.push(req.session.userId);
     var createMembers = function (array, eventId) {
-      var jsonArray = [];
-      array.forEach(function(memberId) {
-        jsonArray.push({eventId: eventId, userId: memberId});
+      return array.map(function(memberId) {
+        return {eventId: eventId, userId: memberId};
       })
-      return jsonArray;
-    }
+    };
 
       db.Event.create({
         event_name: req.body.eventName,
         event_creatorId: req.session.userId
       }).then(function(event) {
         if (event) {
-          req.session.eventId = event.id;
-
+          req.session.eventId = event.dataValues.id;
           db.EventMember.bulkCreate(createMembers(membersArray, event.id))
           .then(function() {
             return db.EventMember.findAll({
@@ -169,7 +217,7 @@ dbRouter.post('/login', function(req, res) {
     }
   }).then(function(user) {
     if (user) {
-      req.session.id = user.id; 
+      req.session.userId = user.dataValues.id; 
       res.json(user);
     } else {
       res.send('Please try again'); //send message or do nothing?
