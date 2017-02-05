@@ -17,25 +17,22 @@ function requireAuth(nextState, replace) {
   console.log('nextState', nextState);
   console.log('replace', replace);
 
-  return axios.post('/api/db/login')
-    .then(function(response) {
-       console.log('response.data', response.data);
-       if (typeof response.data === 'string') {
-        return false;  
-      } else {
-        return true;
-      }
-    })
-    // .then (function(response) {
-    //   console.log(response)
-    //   if (!response) {
-    //    replace({
-    //       pathname: 'login'
-    //    })
-    //   }
-    // })
 
-  
+    
+  axios.post('/api/db/check')
+    .then(function(response) {
+       // console.log('response', response);
+       // console.log('response.data', response.data)
+       // console.log('browserHistory', browserHistory)
+       // console.log('response.data', response.data)
+       if (response.data) {
+        // browserHistory.push('/login');
+        return true;
+      }  else {
+        browserHistory.push('/login');
+        return false;
+      }
+    });
 }
 
 // function destroy(nextState, replace) {
