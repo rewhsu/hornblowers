@@ -9,7 +9,7 @@ class FriendListItem extends React.Component {
 		console.log('added FriendToRoom');
 		this.props.AddFriendToRoomFunc(this.props.frienddata)
 	}
-
+	
 	deleteFriendFromUser() {
 		console.log('delete friend');
 	}

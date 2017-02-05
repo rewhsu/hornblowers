@@ -226,7 +226,6 @@ dbRouter.post('/login', function(req, res) {
       res.send('Please try again'); //send message or do nothing?
     }
   })
-
 })
 
 // dbRouter.post('/logout', function(req, res) {

@@ -19,12 +19,12 @@ function requireAuth(nextState, replace) {
 
   return axios.post('/api/db/login')
     .then(function(response) {
-       console.log('response.data', response.data);
-       if (typeof response.data === 'string') {
-        return false;  
-      } else {
-        return true;
-      }
+      //  console.log('response.data', response.data);
+      //  if (typeof response.data === 'string') {
+      //   return false;  
+      // } else {
+      //   return true;
+      // }
     })
     // .then (function(response) {
     //   console.log(response)

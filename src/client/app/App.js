@@ -23,22 +23,23 @@ class App extends React.Component {
 	 	currentUserLocation: null
 	 }
 	}
+	 	// axios.get('/api/db/friends', {
+	 	// 	params: {
+	 	// 		userid: 1
+	 	// 	}
 
 	componentDidMount() {
 	 	var self = this;
-	 	axios.get('/api/db/friends', {
-	 		params: {
-	 			userid: 1
-	 		}
-	 	}).then(function(friends){
-	 	self.setState ({
-	 		currentUserFriendList: friends.data
+	 	axios.post('api/db/login').then(function(friends){
+	 		console.log('the user', friends)
+	 	// self.setState ({
+	 	// 	currentUserFriendList: friends.data
+	 	// });
+		}).catch(function (error){
+	 		console.log('nope')
+	 		console.log(error)
 	 	});
-	 }).catch(function (error){
-	 	console.log('nope')
-	 	console.log(error)
-	 });
-	}
+		}
 
 	 // We will need a Ajax Call here to fetch Users FriendList
 	 // Once we fetch the data we will be able setState for CurrentUserFriendList  

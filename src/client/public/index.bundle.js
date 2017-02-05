@@ -25628,11 +25628,11 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _Logout = __webpack_require__(/*! ./Logout */ 339);
+	var _Logout = __webpack_require__(/*! ./Logout */ 338);
 	
 	var _Logout2 = _interopRequireDefault(_Logout);
 	
-	var _NotFoundPage = __webpack_require__(/*! ./NotFoundPage */ 338);
+	var _NotFoundPage = __webpack_require__(/*! ./NotFoundPage */ 339);
 	
 	var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 	
@@ -25649,12 +25649,12 @@
 	  console.log('replace', replace);
 	
 	  return _axios2.default.post('/api/db/login').then(function (response) {
-	    console.log('response.data', response.data);
-	    if (typeof response.data === 'string') {
-	      return false;
-	    } else {
-	      return true;
-	    }
+	    //  console.log('response.data', response.data);
+	    //  if (typeof response.data === 'string') {
+	    //   return false;  
+	    // } else {
+	    //   return true;
+	    // }
 	  });
 	  // .then (function(response) {
 	  //   console.log(response)
@@ -25743,6 +25743,15 @@
 	  }
 	
 	  _createClass(Login, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      document.body.style.backgroundImage = "url('https://wallpaperscraft.com/image/san_francisco_night_bridge_city_lights_river_79264_1920x1080.jpg')";
+	      document.body.style.backgroundAttachment = 'fixed';
+	      document.body.style.backgroundSize = 'cover';
+	      document.body.style.padding = 0;
+	      document.body.style.margin = 0;
+	    }
+	  }, {
 	    key: 'logIn',
 	    value: function logIn() {
 	
@@ -25785,46 +25794,65 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        _react2.default.createElement(_headerbar2.default, null),
+	        { className: 'container' },
 	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Login'
-	        ),
-	        _react2.default.createElement(
-	          'form',
-	          { className: 'loginWrapper', method: 'post' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Email: ',
-	            _react2.default.createElement('input', { type: 'text', name: 'email', placeholder: 'john.doe@email.com', onChange: this.handleEmailChange.bind(this) })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Password: ',
-	            _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'secret', onChange: this.handlePasswordChange.bind(this) })
-	          ),
-	          _react2.default.createElement('br', null),
+	          'div',
+	          { className: 'row' },
 	          _react2.default.createElement(
 	            'div',
-	            null,
-	            ' ',
-	            this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : ''
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: 'signup' },
-	            'No account? No problem, create an account today!'
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'button',
-	            { type: 'button', onClick: this.logIn.bind(this) },
-	            'submit'
+	            { className: 'col-md-12' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'wrap' },
+	              _react2.default.createElement(
+	                'p',
+	                { className: 'form-title' },
+	                'Sign In'
+	              ),
+	              _react2.default.createElement(
+	                'form',
+	                { className: 'login', method: 'post' },
+	                _react2.default.createElement('input', { type: 'text', name: 'email', placeholder: 'Email', onChange: this.handleEmailChange.bind(this) }),
+	                _react2.default.createElement('input', { type: 'password', name: 'password', placeholder: 'secret', onChange: this.handlePasswordChange.bind(this) }),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'wrongColor' },
+	                  this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : ''
+	                ),
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: 'signup' },
+	                  'No account? No problem, create an account today!'
+	                ),
+	                _react2.default.createElement(
+	                  'button',
+	                  { type: 'button', className: 'btn btn-success btn-sm', onClick: this.logIn.bind(this) },
+	                  'Sign In'
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'remember-forgot' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'col-md-6' },
+	                      _react2.default.createElement(
+	                        'div',
+	                        { className: 'checkbox' },
+	                        _react2.default.createElement(
+	                          'label',
+	                          null,
+	                          _react2.default.createElement('input', { type: 'checkbox' }),
+	                          'Remember Me'
+	                        )
+	                      )
+	                    )
+	                  )
+	                )
+	              )
+	            )
 	          )
 	        )
 	      );
@@ -25835,6 +25863,15 @@
 	}(_react2.default.Component);
 	
 	exports.default = Login;
+	
+	// <form className='loginWrapper' method='post'>
+	//         <label>Email: <input type='text' name='email' placeholder='john.doe@email.com' onChange={this.handleEmailChange.bind(this)}/></label><br/>
+	//         <label>Password: <input type='password' name='password' placeholder='secret'onChange={this.handlePasswordChange.bind(this)}/></label><br/>
+	//         <div> {this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : '' }</div>
+	//         <Link to={'signup'}>No account? No problem, create an account today!</Link>
+	//         <br/>
+	//         <button type='button' onClick={this.logIn.bind(this)}>submit</button>
+	// </form>
 
 /***/ },
 /* 218 */
@@ -27604,6 +27641,15 @@
 	  }
 	
 	  _createClass(Signup, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      document.body.style.backgroundImage = "url('https://cdn0.vox-cdn.com/thumbor/0X4g71SY14h1REyoq7YL2KwJ-lc=/0x150:2000x1275/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/46294322/Belga_PChang-8474.0.0.jpg')";
+	      document.body.style.backgroundAttachment = 'fixed';
+	      document.body.style.backgroundSize = 'cover';
+	      document.body.style.padding = 0;
+	      document.body.style.margin = 0;
+	    }
+	  }, {
 	    key: 'signUp',
 	    value: function signUp() {
 	      console.log('signup');
@@ -27652,54 +27698,374 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        _react2.default.createElement(_headerbar2.default, null),
+	        { className: 'container' },
 	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Signup'
-	        ),
-	        _react2.default.createElement(
-	          'form',
-	          { className: 'loginWrapper', method: 'post' },
+	          'div',
+	          { className: 'row' },
 	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Name: ',
-	            _react2.default.createElement('input', { type: 'text', placeholder: 'John Doe', onChange: this.handleNameChange.bind(this) })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Email: ',
-	            _react2.default.createElement('input', { type: 'email', placeholder: 'john.doe@email.com', onChange: this.handleEmailChange.bind(this) })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Password: ',
-	            _react2.default.createElement('input', { type: 'text', placeholder: 'secret', onChange: this.handlePasswordChange.bind(this) })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Street Address: ',
-	            _react2.default.createElement('input', { type: 'text', placeholder: '944 Market St, San Francisco, CA 94102', onChange: this.handleStreetAddressChange.bind(this) })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'button',
-	            { type: 'button', onClick: this.signUp.bind(this) },
-	            'submit'
+	            'div',
+	            { className: 'col-md-6' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'col-md-6 signuphead' },
+	              'signUp'
+	            ),
+	            _react2.default.createElement(
+	              'form',
+	              { method: 'post', acceptCharset: 'utf-8', className: 'form' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'col-md-12' },
+	                  _react2.default.createElement('input', { type: 'text', name: 'firstname', className: 'form-control input-lg', placeholder: 'First Name', onChange: this.handleNameChange.bind(this) })
+	                )
+	              ),
+	              _react2.default.createElement('input', { type: 'text', name: 'email', className: 'form-control input-lg', placeholder: 'Your Email', onChange: this.handleEmailChange.bind(this) }),
+	              _react2.default.createElement('input', { type: 'text', name: 'address', className: 'form-control input-lg', placeholder: 'Address', onChange: this.handleStreetAddressChange.bind(this) }),
+	              _react2.default.createElement('input', { type: 'password', name: 'password', className: 'form-control input-lg', placeholder: 'Password', onChange: this.handlePasswordChange.bind(this) }),
+	              _react2.default.createElement(
+	                'label',
+	                { className: 'wordingInSignUp' },
+	                'Birth Date'
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'col-xs-4 col-md-4' },
+	                  _react2.default.createElement(
+	                    'select',
+	                    { name: 'month', className: 'form-control input-lg' },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '01' },
+	                      'Jan'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '02' },
+	                      'Feb'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '03' },
+	                      'Mar'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '04' },
+	                      'Apr'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '05' },
+	                      'May'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '06' },
+	                      'Jun'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '07' },
+	                      'Jul'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '08' },
+	                      'Aug'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '09' },
+	                      'Sep'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '10' },
+	                      'Oct'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '11' },
+	                      'Nov'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '12' },
+	                      'Dec'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'col-xs-4 col-md-4' },
+	                  _react2.default.createElement(
+	                    'select',
+	                    { name: 'day', className: 'form-control input-lg' },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '1' },
+	                      '1'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2' },
+	                      '2'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '3' },
+	                      '3'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '4' },
+	                      '4'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '5' },
+	                      '5'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '6' },
+	                      '6'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '7' },
+	                      '7'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '8' },
+	                      '8'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '9' },
+	                      '9'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '10' },
+	                      '10'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '11' },
+	                      '11'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '12' },
+	                      '12'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '13' },
+	                      '13'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '14' },
+	                      '14'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '15' },
+	                      '15'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '16' },
+	                      '16'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '17' },
+	                      '17'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '18' },
+	                      '18'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '19' },
+	                      '19'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '21' },
+	                      '21'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '22' },
+	                      '22'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '23' },
+	                      '23'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '24' },
+	                      '24'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '25' },
+	                      '25'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '26' },
+	                      '26'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '27' },
+	                      '27'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '28' },
+	                      '28'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '29' },
+	                      '29'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '30' },
+	                      '30'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '31' },
+	                      '31'
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'col-xs-4 col-md-4' },
+	                  _react2.default.createElement(
+	                    'select',
+	                    { name: 'year', className: 'form-control input-lg' },
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2001' },
+	                      '2001'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2002' },
+	                      '2002'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2003' },
+	                      '2003'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2004' },
+	                      '2004'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2005' },
+	                      '2005'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2006' },
+	                      '2006'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2007' },
+	                      '2007'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2008' },
+	                      '2008'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2009' },
+	                      '2009'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2010' },
+	                      '2010'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2011' },
+	                      '2011'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2012' },
+	                      '2012'
+	                    ),
+	                    _react2.default.createElement(
+	                      'option',
+	                      { value: '2013' },
+	                      '2013'
+	                    )
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'label',
+	                { className: 'wordingInSignUp' },
+	                'Gender   '
+	              ),
+	              _react2.default.createElement(
+	                'label',
+	                { className: 'radio-inline wordingInSignUp' },
+	                _react2.default.createElement('input', { type: 'radio', name: 'gender', value: 'M' }),
+	                'Male'
+	              ),
+	              _react2.default.createElement(
+	                'label',
+	                { className: 'radio-inline wordingInSignUp' },
+	                _react2.default.createElement('input', { type: 'radio', name: 'gender', value: 'F' }),
+	                'Female'
+	              ),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'span',
+	                { className: 'help-block wordingInSignUpTwo' },
+	                'By clicking Create my account, you agree to our Terms and that you have read our Data Use Policy, including our Cookie Use.'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { className: 'btn btn-lg btn-primary btn-block signup-btn', type: 'button', onClick: this.signUp.bind(this) },
+	                'Create my account'
+	              )
+	            )
 	          )
-	        ),
-	        _react2.default.createElement('p', null)
+	        )
 	      );
 	    }
 	  }]);
@@ -27708,6 +28074,18 @@
 	}(_react2.default.Component);
 	
 	exports.default = Signup;
+	
+	// <div>
+	//   <h1>Signup</h1>
+	//   <form className='loginWrapper' method='post'>
+	//     <label>Name: <input type='text' placeholder='name' onChange={this.handleNameChange.bind(this)}/></label><br/>
+	//     <label>Email: <input type='email' placeholder='example@email.com' onChange={this.handleEmailChange.bind(this)}/></label><br/>
+	//     <label>Password: <input type='text' placeholder='secret' onChange={this.handlePasswordChange.bind(this)}/></label><br/>
+	//     <label>Street Address: <input type='text' placeholder='944 Market St, San Francisco, CA 94102' onChange={this.handleStreetAddressChange.bind(this)}/></label><br/>
+	//     <button type='button' onClick={this.signUp.bind(this)}>submit</button>
+	//   </form>
+	//   <p></p>
+	// </div>
 
 /***/ },
 /* 245 */
@@ -40363,19 +40741,20 @@
 			};
 			return _this;
 		}
+		// axios.get('/api/db/friends', {
+		// 	params: {
+		// 		userid: 1
+		// 	}
 	
 		_createClass(App, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				var self = this;
-				_axios2.default.get('/api/db/friends', {
-					params: {
-						userid: 1
-					}
-				}).then(function (friends) {
-					self.setState({
-						currentUserFriendList: friends.data
-					});
+				_axios2.default.post('api/db/login').then(function (friends) {
+					console.log('the user', friends);
+					// self.setState ({
+					// 	currentUserFriendList: friends.data
+					// });
 				}).catch(function (error) {
 					console.log('nope');
 					console.log(error);
@@ -40942,6 +41321,90 @@
 
 /***/ },
 /* 338 */
+/*!**********************************!*\
+  !*** ./src/client/app/Logout.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _headerbar = __webpack_require__(/*! ./headerbar */ 243);
+	
+	var _headerbar2 = _interopRequireDefault(_headerbar);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 160);
+	
+	var _axios = __webpack_require__(/*! axios */ 218);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Logout = function (_React$Component) {
+	  _inherits(Logout, _React$Component);
+	
+	  function Logout(props) {
+	    _classCallCheck(this, Logout);
+	
+	    return _possibleConstructorReturn(this, (Logout.__proto__ || Object.getPrototypeOf(Logout)).call(this, props));
+	  }
+	
+	  _createClass(Logout, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/18/17/JxM3Q8.jpeg')";
+	      document.body.style.backgroundAttachment = 'fixed';
+	      document.body.style.backgroundSize = 'cover';
+	      document.body.style.padding = 0;
+	      document.body.style.margin = 0;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'logout' },
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'logoutFontsize' },
+	            'See You Soon!!'
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { id: 'logoutFontsizeTwo', className: 'btn btn-success', to: '/login' },
+	            'Log In'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Logout;
+	}(_react2.default.Component);
+	
+	exports.default = Logout;
+
+/***/ },
+/* 339 */
 /*!****************************************!*\
   !*** ./src/client/app/NotFoundPage.js ***!
   \****************************************/
@@ -41011,74 +41474,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = NotFoundPage;
-
-/***/ },
-/* 339 */
-/*!**********************************!*\
-  !*** ./src/client/app/Logout.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _headerbar = __webpack_require__(/*! ./headerbar */ 243);
-	
-	var _headerbar2 = _interopRequireDefault(_headerbar);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 160);
-	
-	var _axios = __webpack_require__(/*! axios */ 218);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Logout = function (_React$Component) {
-	  _inherits(Logout, _React$Component);
-	
-	  function Logout(props) {
-	    _classCallCheck(this, Logout);
-	
-	    return _possibleConstructorReturn(this, (Logout.__proto__ || Object.getPrototypeOf(Logout)).call(this, props));
-	  }
-	
-	  _createClass(Logout, [{
-	    key: 'render',
-	    value: function render() {
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_headerbar2.default, null),
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'You are now logged out.'
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Logout;
-	}(_react2.default.Component);
-	
-	exports.default = Logout;
 
 /***/ }
 /******/ ]);
