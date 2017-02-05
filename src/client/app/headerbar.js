@@ -5,7 +5,8 @@ class HeaderBar extends React.Component {
 	constructor(props) {
 		super(props);
     this.state = {
-      activeTab: null
+      activeTab: null,
+      loggedIn: false
     }
     this.setActiveTab = this.setActiveTab.bind(this);
     this.classCheck = this.classCheck.bind(this);
@@ -26,6 +27,7 @@ class HeaderBar extends React.Component {
     }
   }
 
+
   
 	render() {
 		return (
@@ -38,6 +40,7 @@ class HeaderBar extends React.Component {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/room">Room</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
+
             <li><Link to="/login">Log In</Link></li>
             <li><Link to="/logout">Log Out</Link></li>
           </ul>
