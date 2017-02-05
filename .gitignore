@@ -34,7 +34,8 @@ bower_components/
 node_modules
 
 /node_modules
-bundle.js
+index.bundle.js
+index.bundle.js.map
 npm-debug.log
 
 # IntelliJ
