@@ -45,6 +45,8 @@ var Event = db.define('Event', {
 
 var Message = db.define('Message', {
 	message_text: Sequelize.STRING,
+	userId: Sequelize.INTEGER,
+	eventId: Sequelize.INTEGER,
 	createdAt: {
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.literal('NOW()')
