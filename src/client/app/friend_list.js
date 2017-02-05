@@ -19,6 +19,7 @@ class FriendList extends React.Component{
 		this.state.theGroupForRoom.push(friend)
 		console.log(this.state.theGroupForRoom)
 	}
+
 	// Generate new Page 
 	 // to newRoute
 	makeAPage() {
@@ -30,10 +31,10 @@ class FriendList extends React.Component{
 	render() {
 	const FriendItems = this.props.friends.map((friend) => {
 		return <FriendListItem 
-						key={friend.etag} 
 						frienddata={friend}
 						theRoom={this.state.theGroupForRoom}
 						AddFriendToRoomFunc={this.addToRoom.bind(this)}
+
 				/>
 	});
 	return (

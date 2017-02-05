@@ -1,3 +1,7 @@
+.color {
+  background-color: #333; border-color: #333;
+}
+
 .yelpEmbed {
   text-align: center;
   margin: auto;

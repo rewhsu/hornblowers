@@ -23,7 +23,7 @@ class Login extends React.Component {
   logIn() {
     
     console.log("Email: " + this.state.email);
-    console.log("Password: " + this.state.password);
+    console.log("Password: " + ' ieXJPjN');
 
     // window.user = this.state.email;
     //request email and see if passwords match
@@ -54,7 +54,7 @@ class Login extends React.Component {
   handlePasswordChange (e) {
      this.setState({password: e.target.value});
   }
-
+  
   render() {
 
    

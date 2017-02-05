@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import SearchFriendBarListItem from './Search_friend_bar_item'
 
 // The Props will be All USERS from DB  
@@ -24,37 +25,35 @@ class SearchFriendBar extends React.Component {
 	this.state = {
 		UserSearchInput: '',
 		IneedThisFriend: null,
-		homeUser: props.CurrentFriendList
+		homeUser: props.CurrentFriendList,
+		User: null
 	 	};
 	}
 
-	AddFriendList() {
-		this.props.changeFriendListFunc(this.state.IneedThisFriend.props.Userdata);
-	}
-
-
 	FindFriend() {
 		// The input from User
+		var self = this
 		var searchFriend = this.state.UserSearchInput;
 
-		// DataComing in from DB
-		var allUserData = this.props.AllUserData;	
-		
+		// DataComing in from DB		
+		axios.get('/api/db/users', {
+				params: {
+					searchName: this.state.UserSearchInput
+				}
+			}).then(function(UserInDB){
+				console.log(UserInDB)
+				self.setState({
+					IneedThisFriend: <SearchFriendBarListItem 
+											Userdata={UserInDB}
+									/>
+				});	
+			}).catch(function(error){
+				console.log(error)
+			});
 		// OnClick this function will run and loopthrough allUserData 
 		// if match SearchFriend(event.target.value) it will generate the SearchFriendBarListItem Component 
-		allUserData.map((allUser) => {
-			if(searchFriend === allUser.name) {
-
-				this.setState({
-					IneedThisFriend: <SearchFriendBarListItem 
-											key={allUser.etag} 
-											Userdata={allUser}
-											changeFunc={this.AddFriendList.bind(this)}
-									/>
-				});
-			}
-		});
 	}
+
 	OnHandleChange(event) {
 		this.setState({
 			UserSearchInput: event.target.value
@@ -64,7 +63,7 @@ class SearchFriendBar extends React.Component {
 	render() {
 		return (
 			<div>
-				<p className='lead'>Global Friend</p>
+				<p className='lead' >Global Friend</p>
 				<div className='list-group'>
 					<input type='text' 
 						   onChange={this.OnHandleChange.bind(this)} 
@@ -77,6 +76,9 @@ class SearchFriendBar extends React.Component {
 		);
 	}
 }
+
+
+
 
 
 export default SearchFriendBar;
