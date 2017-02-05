@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import axios from 'axios';
 import HeaderBar from './headerbar'
 
@@ -16,7 +16,8 @@ class Login extends React.Component {
 
     this.state = {
       email: 'hi',
-      password: 'dfsdf'
+      password: 'dfsdf',
+      loginfailed: '',
     }
   }
 
@@ -38,11 +39,13 @@ class Login extends React.Component {
         console.log('this.state.password: ', self.state.password.length);
         if (response.data["user_password"] === self.state.password) {
           //if login email and password match what's in database then change route to main page
-          window.userid = response.data.id;
+          // window.userid = response.data.id;
+          
           browserHistory.push('/');    
         }
       })
       .catch(function (error) {
+        self.setState({loginfailed: true});
         console.log('email and password do not match');
       });
   }
@@ -55,9 +58,7 @@ class Login extends React.Component {
      this.setState({password: e.target.value});
   }
   
-  render() {
-
-   
+  render() { 
     return (
       <div>
         <HeaderBar />
@@ -65,7 +66,9 @@ class Login extends React.Component {
         <form className='loginWrapper' method='post'>
           <label>Email: <input type='text' name='email' placeholder='john.doe@email.com' onChange={this.handleEmailChange.bind(this)}/></label><br/>
           <label>Password: <input type='password' name='password' placeholder='secret'onChange={this.handlePasswordChange.bind(this)}/></label><br/>
-
+          <div> {this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : '' }</div>
+          <Link to={'signup'}>No account? No problem, create an account today!</Link>
+          <br/>
           <button type='button' onClick={this.logIn.bind(this)}>submit</button>
         </form>
       </div>

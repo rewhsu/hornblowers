@@ -16,14 +16,19 @@ class FriendListItem extends React.Component {
 
 	render() {
 		return (
-			<li>
-				<div>Friend: {this.props.frienddata.user_name}</div>
-	      		<button className="btn btn-info" onClick={this.addFriendToRoom.bind(this)}>Add To Room</button>
-	      		<button className="btn btn-danger" onClick={this.deleteFriendFromUser.bind(this)}>DeleteFriend</button>
-			</li>
+			<div className='card width text-center'>
+				<div className='card-block'>
+					<h4 className='card-title'>Friend: {this.props.frienddata.user_name}</h4>
+	      			<button className="btn btn-info mar" onClick={this.addFriendToRoom.bind(this)}>Add To Room</button>
+	      			<button className="btn btn-danger mar" onClick={this.deleteFriendFromUser.bind(this)}>DeleteFriend</button>
+				</div>
+			</div>
 		);
 	}
 }
+
+
+
 
 export default FriendListItem; 
  

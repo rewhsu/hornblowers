@@ -1,4 +1,5 @@
 import React from 'react';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 class HeaderBar extends React.Component {
 	constructor(props) {
@@ -25,6 +26,7 @@ class HeaderBar extends React.Component {
     }
   }
 
+  
 	render() {
 		return (
       <nav className="navbar navbar-default">
@@ -33,10 +35,11 @@ class HeaderBar extends React.Component {
             <a className="navbar-brand" href="#">@</a>
           </div>
           <ul className="nav navbar-nav">
-            <li onClick={this.setActiveTab('home')} className={this.classCheck('home')}><a href="/">Home</a></li>
-            <li onClick={this.setActiveTab('room')} className={this.classCheck('room')}><a href="/room">Room</a></li>
-            <li onClick={this.setActiveTab('signup')} className={this.classCheck('signup')}><a href="/signup">Sign Up</a></li>
-            <li onClick={this.setActiveTab('login')} className={this.classCheck('login')}><a href="/login">Log In</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/room">Room</Link></li>
+            <li><Link to="/signup">Sign Up</Link></li>
+            <li><Link to="/login">Log In</Link></li>
+            <li><Link to="/logout">Log Out</Link></li>
           </ul>
         </div>
       </nav>

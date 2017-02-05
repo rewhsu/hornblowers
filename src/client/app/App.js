@@ -80,10 +80,10 @@ class App extends React.Component {
   					<div className='col-sm-4'>
   						<SearchFriendBar CurrentFriendList={this.state.currentUserFriendList}/>
   					</div>
-  					<div className='col-sm-4'>
+  					<div className='col-sm-3'>
   						<UserDetail User={this.state.currentUserLocation}/>
   					</div>
-  					<div className='col-sm-3'>					
+  					<div className='col-sm-4'>					
   						<FriendList friends={this.state.currentUserFriendList}/>
   					</div>
   				</div>

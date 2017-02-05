@@ -27,22 +27,18 @@ class FriendList extends React.Component{
 	 	console.log(this.state.theGroupForRoom)
 	}
 
-
 	render() {
 	const FriendItems = this.props.friends.map((friend) => {
 		return <FriendListItem 
 						frienddata={friend}
 						theRoom={this.state.theGroupForRoom}
 						AddFriendToRoomFunc={this.addToRoom.bind(this)}
-
 				/>
 	});
 	return (
 		<div> 			
 			<p className='lead'>FriendList</p>
-			<ul>
-				{FriendItems}
-			</ul>
+			{FriendItems}
 			<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
 		</div>
 		)
