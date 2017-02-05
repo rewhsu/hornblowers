@@ -39,7 +39,8 @@ class Login extends React.Component {
         console.log('this.state.password: ', self.state.password.length);
         if (response.data["user_password"] === self.state.password) {
           //if login email and password match what's in database then change route to main page
-          window.userid = response.data.id;
+          // window.userid = response.data.id;
+          
           browserHistory.push('/');    
         }
       })

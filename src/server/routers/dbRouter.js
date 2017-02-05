@@ -216,11 +216,27 @@ dbRouter.post('/login', function(req, res) {
       user_password: req.body.password
     }
   }).then(function(user) {
+    console.log('user', user);
+
     if (user) {
-      req.session.userId = user.dataValues.id; 
+      req.session.userId = user.dataValues.id;
+      user.dataValues.sessionid = req.session.id;
       res.json(user);
     } else {
       res.send('Please try again'); //send message or do nothing?
     }
   })
-});
+
+})
+
+// dbRouter.post('/logout', function(req, res) {
+//   req.session.destroy();
+// })
+
+
+
+
+
+
+
+
