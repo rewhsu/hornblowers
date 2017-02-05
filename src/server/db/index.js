@@ -119,19 +119,19 @@ Friendship.belongsTo(User, {as: 'Friends', foreignKey: 'user_a', otherKey: 'user
 //***IF YOU WANT MOCK DATA: UNCOMMENT AND SAVE AFTER CREATING TABLES W/ DB.SYNC() ^^ 
 // COMMENT OUT AFTER SAVING (POPULATING TABLES) TO PREVENT DUPLICATES
 
-// User.bulkCreate(mockUsers).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
+// User.bulkCreate(mockUsers, { ignoreDuplicates: true }).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
 //   return User.findAll();
 // }).then(function(users) {
-// 	Event.bulkCreate(mockEvents).then(function() { 
+// 	Event.bulkCreate(mockEvents, { ignoreDuplicates: true }).then(function() { 
 // 	  return Event.findAll();
 // 	}).then(function(events) {
-// 	  Message.bulkCreate(mockMessages).then(function() { // ***Issue assigning userId/EventId when bulkCreate, insert works
+// 	  Message.bulkCreate(mockMessages, { ignoreDuplicates: true }).then(function() { // ***Issue assigning userId/EventId when bulkCreate, insert works
 // 		  return Message.findAll();
 // 		}).then(function(messages) {
-// 		  Friendship.bulkCreate(mockFriendships).then(function() { 
+// 		  Friendship.bulkCreate(mockFriendships, { ignoreDuplicates: true }).then(function() { 
 // 		    return Friendship.findAll();
 // 		  }).then(function(friendships) {
-// 		    EventMember.bulkCreate(mockEventMembers).then(function() { 
+// 		    EventMember.bulkCreate(mockEventMembers, { ignoreDuplicates: true }).then(function() { 
 // 		      return EventMember.findAll();
 // 		    }).then(function(members) {
 // 		      console.log('**COMPLETE INSERTING MOCK DATA**') 

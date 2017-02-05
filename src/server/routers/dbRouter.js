@@ -32,7 +32,7 @@ dbRouter.get('/friends', function(req, res) {
       }
     })
   }
-})
+});
 
 
 // ADD FRIENDS
@@ -180,7 +180,7 @@ dbRouter.get('/eventMembers', function(req, res) {
 dbRouter.get('/messages', function(req, res) {
   db.Message.findAll({
     where: {
-      eventId: req.session.eventId
+      eventId: 3
     }
   }).then(function(messages) {
     if (messages.length > 0) {
@@ -222,7 +222,7 @@ dbRouter.post('/signup', function(req, res) {
         address: req.body.streetaddress, 
         zipcode: req.body.postalcode
       }).then(function(result) {
-          console.log(result[0].latitude)
+          console.log('FORMATTED ADDRESS: ', result[0].formattedAddress)
           var latitude = result[0].latitude;
           var longitude = result[0].longitude;
           var formattedAddress = result[0].formattedAddress
