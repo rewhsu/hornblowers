@@ -2,9 +2,15 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var db = require('../db/index.js');
 var session = require('express-session');
+var NodeGeocoder = require('node-geocoder');
+var bcrypt = require('bcrypt-nodejs');
+var Promise = require('bluebird');
+
 
 var dbRouter = express.Router();
 module.exports = dbRouter;
+
+var geocoder = NodeGeocoder({provider: 'google'});
 
 dbRouter.use(bodyParser.urlencoded({ extended: true }))
 dbRouter.use(bodyParser.json())
@@ -153,6 +159,23 @@ dbRouter.post('/events', function(req, res) {
   }
 });
 
+// FIND MEMBERS IN EVENT
+dbRouter.get('/eventMembers', function(req, res) {
+  db.EventMember
+    .findAll({
+      where: {
+        eventId: req.session.eventId
+      }
+    }).then(function(members) {
+      if (members) {
+        res.json(members)
+      } else {
+        res.send('Event does not have members.')
+      }
+  })
+});
+
+
 // FIND MESSAGES FOR EACH EVENT CHATROOM
 dbRouter.get('/messages', function(req, res) {
   db.Message.findAll({
@@ -182,7 +205,7 @@ dbRouter.post('/messages', function(req, res) {
   });
 });
 
-// SIGNUP USER
+// SIGNUP USER AND CONVERT ADDRESS TO LAT/LONG
 dbRouter.post('/signup', function(req, res) {
   // use findOne instead of findOrCreate because we're not using
   // 'where' to map to a unique index (creating duplicates)
@@ -195,32 +218,75 @@ dbRouter.post('/signup', function(req, res) {
     if (user) {
       res.send('You have already signed up. Please log in.')
     } else {
-      db.User.create({
-        user_name: req.body.name,
-        user_email: req.body.email,
-        user_password: req.body.password,
-        user_streetaddress: req.body.streetaddress,
-        user_postalcode: req.body.postalcode
-      }).then(function(user) {
-        res.json(user);
-      })
+      geocoder.geocode({
+        address: req.body.streetaddress, 
+        zipcode: req.body.postalcode
+      }).then(function(result) {
+          console.log(result[0].latitude)
+          var latitude = result[0].latitude;
+          var longitude = result[0].longitude;
+          var formattedAddress = result[0].formattedAddress
+          
+          var encrypt = Promise.promisify(bcrypt.hash);
+            encrypt(req.body.password, null, null)
+              .then(function(hash) {
+                var encrypted = hash;
+                db.User.create({
+                    user_name: req.body.name,
+                    user_email: req.body.email,
+                    user_password: encrypted,
+                    user_address: formattedAddress,
+                    user_lat: latitude,
+                    user_lon: longitude
+                }).then(function(user) {
+                  res.json(user);
+                })
+              }).catch(function(err) {
+                console.log('Error hashing pw: ', err);
+              })              
+        }).catch(function(err) {
+          console.log('Error converting gps coord: ', err);
+        });
     }
-  })
-})
+  });
+});
 
 
 dbRouter.post('/login', function(req, res) {
   db.User.findOne({
     where: {
-      user_email: req.body.email,
-      user_password: req.body.password
+      user_email: req.body.email
     }
   }).then(function(user) {
     if (user) {
-      req.session.userId = user.dataValues.id; 
-      res.json(user);
+      var password = user.dataValues.user_password;
+      var comparePW = Promise.promisify(bcrypt.compare);
+      comparePW(req.body.password, password)
+        .then(function(match) {
+          if (match) {
+            req.session.userId = user.dataValues.id; 
+            user.dataValues.sessionid = req.session.id;
+            res.json(user);
+          } else {
+            res.send('Incorrect password. Please try again.');
+          }
+        })
+        .catch(function(err) {
+          console.log('Error decrypting pw: ', err);
+        })
     } else {
-      res.send('Please try again'); //send message or do nothing?
+      res.send('Cannot find user.');
     }
-  })
+  });  
 });
+
+
+
+
+
+
+
+
+
+
+
