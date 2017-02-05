@@ -34,6 +34,35 @@
   margin: auto;
 }
 
+.chat-user-self {
+  font-weight: bold;
+  color: blue;
+}
+
+.chat-user-other {
+  font-weight: bold;
+  color: gray;
+}
+
+.chat-message-self {
+  color: blue;
+  outline: 5px solid blue;
+  padding: 5px 5px 5px 5px;
+}
+
+.chat-message-other {
+  padding: 5px 5px 5px 5px;
+}
+
+.chat-group-outer {
+  padding: 10px 5px 10px 5px;
+}
+
+.chat-group {
+  display: inline-block;
+  padding: 5px 5px 5px 5px;
+  box-shadow: 0 0 3pt 2pt gray;
+}
 
 .prefilled {
   font-weight: 200;
@@ -42,8 +71,8 @@
   margin: auto;
 }
 
-.scrollable {
-  height: 500px;
+.pre-scrollable-fixed {
+  height: 600px;
   overflow: scroll;
 }
 
@@ -63,3 +92,4 @@
 .vote-off {
   background-color: white;
 }
+
