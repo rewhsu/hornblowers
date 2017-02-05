@@ -21,9 +21,11 @@ class Signup extends React.Component {
   signUp() {
     console.log('signup');
     var self = this;
-    axios.get('/api/db/signup', {
+    axios.post('/api/db/signup', {
       name: self.state.name,
       email: self.state.email,
+      password: self.state.password,
+      streetaddress: self.state.streetaddress
     })
       .then(function(response) {
         console.log('typeof response:', typeof response);
