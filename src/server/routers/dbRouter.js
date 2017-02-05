@@ -287,7 +287,8 @@ dbRouter.post('/login', function(req, res) {
 
 
 dbRouter.post('/check', function(req, res) {
-  res.send(req.session.userId);
+  res.send(200, req.session.userId);
+
 })
 
 
