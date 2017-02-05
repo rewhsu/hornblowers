@@ -34,17 +34,9 @@ class Signup extends React.Component {
           console.log('user found, login instead');      
         } else {
           console.log('signup successful, user created');
+          browserHistory.push('/login'); 
         }
       })
-        .then(function(response) {
-          browserHistory.push('/login'); 
-       })
-
-
-              
-      // .catch(function (error) {
-      //   console.log('user not found');
-      // });
   }
 
   handleNameChange (e) {
