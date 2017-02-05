@@ -38,9 +38,9 @@ class RoomUsers extends React.Component {
     }
     return (
       <div>
-        <button onClick={this.getUsers}>Load Room Members</button>
         <div className="bordered" style={usersVisible}>
-          <div className="pre-scrollable">
+          <div className="pre-scrollable-fixed">
+            <button onClick={this.getUsers}>Load Room Members</button>
             {this.state.roomUsers ?
               this.state.roomUsers.map(roomUser =>
               <RoomUser user={roomUser} />
