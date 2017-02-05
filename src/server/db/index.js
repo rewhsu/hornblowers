@@ -107,11 +107,11 @@ User.belongsToMany(User, {as: 'Friends', through: 'Friendship', foreignKey: 'use
 
 //***IF YOU WANT MOCK DATA: UNCOMMENT EACH bulkCreate ONE-BY-ONE AND RUN AFTER CREATING TABLES W/ DB.SYNC() BELOW
 
-User.bulkCreate(mockUsers).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
-  return User.findAll();
-}).then(function(users) {
-  console.log(users) // ... in order to get the array of user objects
-});
+// User.bulkCreate(mockUsers).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
+//   return User.findAll();
+// }).then(function(users) {
+//   console.log(users) // ... in order to get the array of user objects
+// });
 
 // Event.bulkCreate(mockEvents).then(function() { 
 //   return Event.findAll();
