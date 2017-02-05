@@ -261,7 +261,6 @@ dbRouter.post('/login', function(req, res) {
     console.log('user', user);
 
     if (user) {
-<<<<<<< HEAD
       var password = user.dataValues.user_password;
       var comparePW = Promise.promisify(bcrypt.compare);
       comparePW(req.body.password, password)
@@ -276,30 +275,19 @@ dbRouter.post('/login', function(req, res) {
         })
         .catch(function(err) {
           console.log('Error decrypting pw: ', err);
-        })
-=======
-      req.session.userId = user.dataValues.id;
-      user.dataValues.sessionid = req.session.id;
-      res.json(user);
->>>>>>> c33622433d15619bdadfaaddeb14077a4dcf5f58
+        })     
     } else {
       res.send('Cannot find user.');
     }
-<<<<<<< HEAD
   });  
 });
 
 
 
-=======
-  })
-
-})
-
 // dbRouter.post('/logout', function(req, res) {
 //   req.session.destroy();
 // })
->>>>>>> c33622433d15619bdadfaaddeb14077a4dcf5f58
+
 
 
 
