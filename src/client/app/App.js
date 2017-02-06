@@ -71,12 +71,11 @@ class App extends React.Component {
 
 	render() {
 		return (
-      	<div>
+      	<div className='headerbar'>
   			<HeaderBar />
-  		<div className='container'>
-  			<div className="jumbotron">
-  				<h1>#TheBlowers</h1>
-  				<p>Welcome: </p>
+  		<div >
+  			<div className="headerimg" >
+  				<img src="/assets/Header.png" align="middle" height="200"></img>
 			</div>
 		</div>
         <div className='container'>
