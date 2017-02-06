@@ -25763,8 +25763,8 @@
 	  }
 	
 	  _createClass(Login, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
 	      document.body.style.backgroundImage = "url('https://wallpaperscraft.com/image/san_francisco_night_bridge_city_lights_river_79264_1920x1080.jpg')";
 	      document.body.style.backgroundAttachment = 'fixed';
 	      document.body.style.backgroundSize = 'cover';
@@ -48440,6 +48440,7 @@
 	  _createClass(Room, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      document.body.style.backgroundImage = "url('http://www.shunvmall.com/data/out/255/47210155-white-background-images.jpg')";
 	      document.body.style.backgroundAttachment = 'fixed';
 	      document.body.style.backgroundSize = 'cover';
 	      document.body.style.padding = 0;
@@ -48599,7 +48600,7 @@
 	
 	    _this.state = {
 	      roomUsers: null,
-	      usersVisible: false
+	      usersVisible: true
 	    };
 	    _this.getUsers = _this.getUsers.bind(_this);
 	    return _this;
@@ -48609,10 +48610,11 @@
 	    key: 'getUsers',
 	    value: function getUsers(event) {
 	      var context = this;
-	      _axios2.default.get('/api/room/mock/users').then(function (response) {
-	        console.log(response.data);
+	      _axios2.default.get('/api/db/eventMembers').then(function (response) {
+	        console.log('AWEGIHWEGIEW', response);
 	        context.setState({ roomUsers: response.data });
 	      }).then(function () {
+	        console.log('AWHEFAIWHEFIEWAHFIAEHWIFAEWHF', context.state.roomUsers);
 	        context.setState({ usersVisible: true });
 	      });
 	    }
@@ -48624,24 +48626,15 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var usersVisible;
-	      if (!this.state.usersVisible) {
-	        usersVisible = { display: "none" };
-	      }
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'bordered', style: usersVisible },
+	          { className: 'bordered' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'pre-scrollable-fixed' },
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.getUsers },
-	              'Load Room Members'
-	            ),
 	            this.state.roomUsers ? this.state.roomUsers.map(function (roomUser) {
 	              return _react2.default.createElement(_RoomUser2.default, { user: roomUser });
 	            }) : null
@@ -48700,8 +48693,10 @@
 	    var _this = _possibleConstructorReturn(this, (RoomUser.__proto__ || Object.getPrototypeOf(RoomUser)).call(this, props));
 	
 	    _this.state = {
-	      user: null,
-	      showDetails: false
+	      showDetails: false,
+	      userId: _this.props.user.userId,
+	      userData: null,
+	      username: 'default'
 	    };
 	    _this.toggleDetails = _this.toggleDetails.bind(_this);
 	    return _this;
@@ -48711,6 +48706,27 @@
 	    key: 'toggleDetails',
 	    value: function toggleDetails() {
 	      this.setState({ showDetails: !this.state.showDetails });
+	    }
+	  }, {
+	    key: 'getUsername',
+	    value: function getUsername(e) {
+	      var context = this;
+	      _axios2.default.get('/api/db/users', {
+	        userId: this.state.userId
+	      }).then(function (response) {
+	        console.log('awehjfihaewifjaweif', response);
+	        context.setState({
+	          userData: response.data,
+	          username: response.data.user_name
+	        });
+	      }).catch(function (err) {
+	        console.error(err);
+	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getUsername();
 	    }
 	  }, {
 	    key: 'render',
@@ -48726,22 +48742,8 @@
 	        _react2.default.createElement(
 	          'h6',
 	          { onClick: this.toggleDetails },
-	          this.props.user.user_name
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: detailsVisible },
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'userDetails' },
-	            this.props.user.user_email
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            { className: 'userDetails' },
-	            this.props.user.user_streetaddress
-	          )
+	          'Username: ',
+	          this.state.username
 	        )
 	      );
 	    }
@@ -48819,7 +48821,6 @@
 	    value: function getUser() {
 	      var context = this;
 	      _axios2.default.post('/api/db/check').then(function (response) {
-	        console.log('*****wheee***', response);
 	        context.setState({
 	          userId: response.data
 	        });
@@ -48829,9 +48830,8 @@
 	    key: 'getMessages',
 	    value: function getMessages(event) {
 	      var context = this;
-	      _axios2.default.get('/api/room/mock/messages').then(function (response) {
-	        console.log(response.data);
-	        context.setState({ messages: response.data });
+	      _axios2.default.get('/api/db/messages').then(function (response) {
+	        context.setState({ messages: response.data.reverse() });
 	      }).then(function () {
 	        if (!context.state.chatVisible) {
 	          context.setState({ chatVisible: true });
@@ -48847,7 +48847,7 @@
 	        userid: this.state.userId,
 	        eventid: this.state.eventId
 	      }).then(function (response) {
-	        console.log(response);
+	        context.getMessages();
 	      }).catch(function (err) {
 	        console.error(err);
 	      });
@@ -48892,11 +48892,6 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'pre-scrollable-fixed' },
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.getMessages },
-	              'Get Messages'
-	            ),
 	            this.state.messages ? this.state.messages.map(function (message) {
 	              return _react2.default.createElement(_ChatMessage2.default, { message: message });
 	            }) : null
@@ -48970,12 +48965,13 @@
 	    var _this = _possibleConstructorReturn(this, (ChatMessage.__proto__ || Object.getPrototypeOf(ChatMessage)).call(this, props));
 	
 	    _this.state = {
-	      userId: _this.props.message.UserId,
+	      userId: _this.props.message.userId,
 	      username: null,
-	      userVis: false,
-	      className: null
+	      userVis: true,
+	      userData: {}
 	    };
 	    _this.toggleUsername = _this.toggleUsername.bind(_this);
+	    _this.getUsername = _this.getUsername.bind(_this);
 	    return _this;
 	  }
 	
@@ -48987,15 +48983,24 @@
 	    }
 	  }, {
 	    key: 'getUsername',
-	    value: function getUsername() {
+	    value: function getUsername(e) {
+	      console.log('msg', this.props.message);
 	      var context = this;
-	      _axios2.default.get('/api/db/eventMembers', {
+	      _axios2.default.get('/api/db/users', {
 	        params: {
-	          userId: context.state.userId
+	          userId: this.props.message.userId
 	        }
 	      }).then(function (response) {
-	        context.setState({ username: response.data });
+	        context.setState({
+	          userData: response.data,
+	          username: response.data.user_name
+	        });
 	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getUsername();
 	    }
 	  }, {
 	    key: 'render',
@@ -49018,8 +49023,7 @@
 	          _react2.default.createElement(
 	            'span',
 	            { className: 'chat-user-self', style: showUser },
-	            'User',
-	            this.props.message.UserId,
+	            this.state.username,
 	            _react2.default.createElement('br', null)
 	          ),
 	          _react2.default.createElement(
@@ -49116,7 +49120,17 @@
 		// 		userid: 1
 		// 	}
 	
+	
 		_createClass(App, [{
+			key: 'componentWillMount',
+			value: function componentWillMount() {
+				document.body.style.backgroundImage = "url('http://www.shunvmall.com/data/out/255/47210155-white-background-images.jpg')";
+				document.body.style.backgroundAttachment = 'fixed';
+				document.body.style.backgroundSize = 'cover';
+				document.body.style.padding = 0;
+				document.body.style.margin = 0;
+			}
+		}, {
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				var self = this;
@@ -49742,8 +49756,8 @@
 	  }
 	
 	  _createClass(Logout, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
 	      document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/18/17/JxM3Q8.jpeg')";
 	      document.body.style.backgroundAttachment = 'fixed';
 	      document.body.style.backgroundSize = 'cover';
