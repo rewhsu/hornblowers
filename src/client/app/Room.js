@@ -22,11 +22,12 @@ class Room extends React.Component {
   }
 
   componentWillMount(){
+      document.body.style.backgroundImage = "url('http://www.shunvmall.com/data/out/255/47210155-white-background-images.jpg')";
       document.body.style.backgroundAttachment = 'fixed';
       document.body.style.backgroundSize = 'cover';
       document.body.style.padding = 0;
       document.body.style.margin = 0;
-  }
+    } 
 
   toggleChat(event) {
     this.setState({chatVisible: !this.state.chatVisible})

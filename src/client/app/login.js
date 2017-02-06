@@ -20,7 +20,7 @@ class Login extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     document.body.style.backgroundImage = "url('https://wallpaperscraft.com/image/san_francisco_night_bridge_city_lights_river_79264_1920x1080.jpg')";
     document.body.style.backgroundAttachment = 'fixed';
     document.body.style.backgroundSize = 'cover';

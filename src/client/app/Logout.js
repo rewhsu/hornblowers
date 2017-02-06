@@ -10,7 +10,7 @@ class Logout extends React.Component {
 
   }
 
-componentDidMount(){
+componentWillMount(){
     document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/18/17/JxM3Q8.jpeg')";
     document.body.style.backgroundAttachment = 'fixed';
     document.body.style.backgroundSize = 'cover';
