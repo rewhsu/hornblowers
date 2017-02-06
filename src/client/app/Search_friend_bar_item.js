@@ -12,10 +12,9 @@ class SearchFriendBarListItem extends React.Component {
     	axios.post('api/db/friends', {
         	friendId: this.props.Userdata.data.id
       	}).then(function(response) {
-        console.log('Success adding friend!');
-        browserHistory.push('/');
+        console.log('Success adding friend!', response);
       	}).catch(function(err){
-      		console.log('error')
+      		console.log('error adding friend: ', err)
       	})
 
   	}
