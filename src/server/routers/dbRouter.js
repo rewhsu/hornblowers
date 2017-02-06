@@ -292,7 +292,9 @@ dbRouter.post('/check', function(req, res) {
 
 })
 
-
+dbRouter.post('/logout', function(req, res) {
+  req.session.destroy();
+})
 
 
 
