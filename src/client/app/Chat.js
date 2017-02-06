@@ -13,6 +13,8 @@ class Chat extends React.Component {
       messages: null,
       chatVisible: false,
       userId: null,
+      username: null,
+      userData: null,
       eventId: 3
     }
     this.onBlur = this.onBlur.bind(this);
@@ -70,16 +72,16 @@ class Chat extends React.Component {
 
   onBlur() {
     console.log("blur");
-    if (this.state.chatMessage === "Enter Message") {
+    if (this.state.chatMessage !== "") {
       this.setState({chatMessage: ""});
     }
   }
 
   componentWillMount() {
-    this.getMessages();
   }
 
   componentDidMount() {
+    this.getMessages();
     this.getUser();
   }
 
@@ -94,7 +96,7 @@ class Chat extends React.Component {
           <div className="pre-scrollable-fixed">
             {this.state.messages ?
               this.state.messages.map(message =>
-                <ChatMessage message={message} />
+                <ChatMessage message={message} username={message.UserId} />
               )
               :null}
           </div>
@@ -114,4 +116,3 @@ class Chat extends React.Component {
 }
 
 export default Chat;
-

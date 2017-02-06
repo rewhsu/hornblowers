@@ -12,6 +12,7 @@ class FriendList extends React.Component{
 		UserFriendList: this.props.UserFriend,
 		theFriendComponent: null,
 		FriendItems: [],
+		check: false,
 		theGroupForRoom: []		
 		}
 	}
@@ -23,14 +24,14 @@ class FriendList extends React.Component{
     		self.setState ({
     			FriendItems: response.data
     		});
-   //  		const FriendItems = response.data.map(friend => friend.data);
-   //  			console.log(friend)
-			// 	this.setState({FriendItems})
-			// });
-    		// self.setState ({
-    		// 	UserFriendList: response.data
-    		// })
 		});
+	}
+
+	changeState() {
+		this.setState({
+			check: !this.state.check
+		})
+		console.log(this.state.check)
 	}
 
 	addToRoom(friend) {
@@ -56,12 +57,14 @@ class FriendList extends React.Component{
 			<p className='lead'>FriendList</p>
 			{FriendItems}
 			<button onClick={this.showFriends.bind(this)} className='btn btn-info'>showFriends</button>
+			<button onClick={this.changeState.bind(this)} className='btn btn-info'>testing</button>
 		</div>
 		);
 	}
 }
 
-						// theRoom={this.state.theGroupForRoom}
 
-						// {this.state.UserFriendComponent}
+
+
+
 export default FriendList;

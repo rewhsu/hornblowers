@@ -16,7 +16,6 @@ class SearchFriendBarListItem extends React.Component {
       	}).catch(function(err){
       		console.log('error adding friend: ', err)
       	})
-
   	}
 	
 	render () {
