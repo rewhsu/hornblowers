@@ -145,7 +145,7 @@ class Yelp extends React.Component {
 
 
   componentDidMount() {
-    
+
   }
 
   render() {

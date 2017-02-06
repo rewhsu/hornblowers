@@ -19,8 +19,24 @@ function requireAuth(nextState, replace) {
 
   // var intendedPath = nextState;
     
-  axios.post('/api/db/check')
+  axios.post('/api/db/check') 
     .then(function(response) {
+      //  console.log('response.data', response.data);
+      //  if (typeof response.data === 'string') {
+      //   return false;  
+      // } else {
+      //   return true;
+      // }
+    // .then (function(response) {
+    //   console.log(response)
+    //   if (!response) {
+    //    replace({
+    //       pathname: 'login'
+    //    })
+    //   }
+    // })
+
+  
        // console.log('response', response);
        // console.log('response.data', response.data)
        // console.log('browserHistory', browserHistory)

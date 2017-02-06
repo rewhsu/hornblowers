@@ -173,10 +173,17 @@ dbRouter.get('/eventMembers', function(req, res) {
   console.log('REQ SESSION from /EVENTSMEMBERS: ', req.session.userId)
   db.EventMember
     .findAll({
+<<<<<<< HEAD
         include: [
           {model: db.User, as: 'Members'},
           {model: db.Event, as: 'Events', where: {id: req.session.eventId}}
         ]
+=======
+      where: {
+        // eventId: req.session.eventId
+        eventId: 3
+      }
+>>>>>>> 0a7889123611fdfe90078432bba4b1f822f2deb8
     }).then(function(members) {
     if (members) {
       res.json(members)
@@ -292,8 +299,6 @@ dbRouter.post('/login', function(req, res) {
     }
   });  
 });
-
-
 
 dbRouter.post('/check', function(req, res) {
   res.send(200, req.session.userId);

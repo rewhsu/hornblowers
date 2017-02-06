@@ -11,71 +11,53 @@ import axios from 'axios';
 // we will have storage of friends
 
 
-var UserData = [
-					{
-						"name": "Andrew Hsu",
-						"img": "https://avatars0.githubusercontent.com/u/12904628?v=3&s=400",
-						"etag": 1
-					},
-
-					{
-						"name": "Kevin Wong",
-						"img": "https://avatars3.githubusercontent.com/u/16652498?v=3&s=460",
-						"etag": 2
-					},
-
-					{
-						"name": "Jennifer Sha",
-						"img": "https://avatars2.githubusercontent.com/u/15174445?v=3&s=400",
-						"etag": 3
-					},
-
-					{
-						"name": "Bianca Woo",
-						"img": "https://avatars0.githubusercontent.com/u/18028868?v=3&s=400",
-						"etag": 4
-					}
-				]
-
-
-var FakeFriendData = [ 
-				{
-					"name": "Kevin Wong",
-					"img": "https://avatars3.githubusercontent.com/u/16652498?v=3&s=460",
-					"etag": 2
-				},
-
-				{
-					"name": "Jennifer Sha",
-					"img": "https://avatars2.githubusercontent.com/u/15174445?v=3&s=400",
-					"etag": 3
-				}
-			]
 
 
 class App extends React.Component {
 	constructor(props) {
 	 super(props);
-
+	 
 	 this.state = {
 	 	// user friendsdata
-
-	 	// so friendlist will load when user log in 
+	 	currentUserData: null,
 	 	currentUserFriendList: [],
-	 	currentUserLocation: null,
-	 	// FriendList - Friends={this.state.currentUserFriendList}
-	 	allUserDataFromDateBase: UserData,
-	 	testingToFriend: []
-	 };
-	 
+	 	currentUserLocation: null
+	 }
+	}
+	 	// axios.get('/api/db/friends', {
+	 	// 	params: {
+	 	// 		userid: 1
+	 	// 	}
+	componentWillMount(){
+    	document.body.style.backgroundImage = "url('http://www.shunvmall.com/data/out/255/47210155-white-background-images.jpg')";
+    	document.body.style.backgroundAttachment = 'fixed';
+    	document.body.style.backgroundSize = 'cover';
+    	document.body.style.padding = 0;
+    	document.body.style.margin = 0;
+  	} 	
+
+	componentDidMount() {
+	 	var self = this;
+	 	axios.post('api/db/check').then(function(friends){
+	 		console.log('the user', friends)
+	 	self.setState ({
+	 		currentUserFriendList: friends.data
+	 	});
+		}).catch(function (error){
+	 		console.log('nope')
+	 		console.log(error)
+	 	});
+		}
+
 	 // We will need a Ajax Call here to fetch Users FriendList
 	 // Once we fetch the data we will be able setState for CurrentUserFriendList  
-	 }
 
 	 // Generate new Page 
 	 // to newRoute
 	makeAPage() {
-
+		console.log('window.userid', window.userid);
+	 	console.log('make page')
+	 	console.log(this.state.currentFriendList)
 		axios.post('/api/db/check')
     .then(function(response) {
 
@@ -88,14 +70,7 @@ class App extends React.Component {
 	
 	// I pass down currentFriendList to child & also I passdown the changeFriendList 
 	// To SearchFriendBar 
-	changeFriendList(newList) {
-		console.log('A Click from my child(Search_Friend_Bar_item)')
-		var newFriendList = this.state.currentUserFriendList.push(newList)
-		this.setState ({
-			// newList is a searchUserObject
-			currentUserFriendList: newFriendList
-		});
-	}
+
 
 	// var arrayvar = this.state.arrayvar.slice()
 	// arrayvar.push(newelement)
@@ -105,31 +80,31 @@ class App extends React.Component {
 		// So my problem here is how does User work in here
 		// when it comes in what kind of call is giving ? 
 		// we know that when users comes in we going to a set of data (is that fetch method a GET?)
-		setTimeout(() => {
-			this.setState({currentUserFriendList: FakeFriendData})
-		}, 1000);
+		// setTimeout(() => {
+		// 	this.setState({currentUserFriendList: FakeFriendData})
+		// }, 1000);
 		return (
-      <div>
+      	<div>
   			<HeaderBar />
+  		<div className='container'>
+  			<div className="jumbotron">
+  				<h1>#TheBlowers</h1>
+  				<p>Welcome: </p>
+			</div>
+		</div>
         <div className='container'>
-  					<div className='row'>
-  						<div className='col-sm-3'>
-  							<SearchFriendBar 
-  								AllUserData={this.state.allUserDataFromDateBase} 
-  								CurrentFriendList={this.state.currentUserFriendList}
-  								changeFriendListFunc={this.changeFriendList.bind(this)}
-  							/>
-  						</div>
-  						<div className='col-sm-3'>
-  							<UserDetail User={this.state.currentUserLocation}/>
-  						</div>
-  						<div className='col-sm-3'>					
-  							<FriendList friends={this.state.currentUserFriendList}/>
-  						</div>
+  				<div className='row'>
+  					<div className='col-sm-4'>
+  						<SearchFriendBar CurrentFriendList={this.state.currentUserFriendList}/>
   					</div>
-          <button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
+  					<div className='col-sm-4'>					
+  						<FriendList friends={this.state.currentUserFriendList}/>
+  					</div>
+  				</div>
+          		<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'><Link to={'room'}>Create new page</Link></button>
+          		<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
   			</div>
-      </div>
+      	</div>
 		);
   	}
 }

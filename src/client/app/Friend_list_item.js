@@ -1,16 +1,36 @@
 import React from 'react';
 
-const FriendListItem = (props) => {
+class FriendListItem extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 
-	return (
-		<li>
-			<div>{props.frienddata.name}</div>s
-      		<img src={props.frienddata.img}/>
-		</li>
-	);
+	addFriendToRoom() {
+		console.log('added FriendToRoom');
+		this.props.AddFriendToRoomFunc(this.props.frienddata)
+	}
+	
+	deleteFriendFromUser() {
+		console.log('delete friend');
+	}
+
+	render() {
+		return (
+			<div className='card width text-center'>
+				<div className='card-block'>
+					<h4 className='card-title'>Friend: {this.props.frienddata.user_name}</h4>
+	      			<button className="btn btn-info mar" onClick={this.addFriendToRoom.bind(this)}>Add To Room</button>
+	      			<button className="btn btn-danger mar" onClick={this.deleteFriendFromUser.bind(this)}>DeleteFriend</button>
+				</div>
+			</div>
+		);
+	}
 }
+
+
+
 
 export default FriendListItem; 
  
-
+  
 
