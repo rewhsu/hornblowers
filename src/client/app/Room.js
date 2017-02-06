@@ -21,6 +21,13 @@ class Room extends React.Component {
     this.toggleUsers = this.toggleUsers.bind(this);
   }
 
+  componentWillMount(){
+      document.body.style.backgroundAttachment = 'fixed';
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.padding = 0;
+      document.body.style.margin = 0;
+  }
+
   toggleChat(event) {
     this.setState({chatVisible: !this.state.chatVisible})
   }

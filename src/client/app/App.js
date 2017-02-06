@@ -26,14 +26,6 @@ class App extends React.Component {
 	 	// 	params: {
 	 	// 		userid: 1
 	 	// 	}
-	 componentWillMount(){
-    	document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/18/17/JxM3Q8.jpeg')";
-    	document.body.style.backgroundAttachment = 'fixed';
-    	document.body.style.backgroundSize = 'cover';
-    	document.body.style.padding = 0;
-    	document.body.style.margin = 0;
-  	}
-
 
 	componentDidMount() {
 	 	var self = this;
