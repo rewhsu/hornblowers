@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 
 class SearchFriendBarListItem extends React.Component {
@@ -7,29 +8,21 @@ class SearchFriendBarListItem extends React.Component {
 	}
 
 	AddFriendToUser() {
-		// axios.post('/api/db/friends', {friendId: this.props.Userdata.data.id}
-		
-		// 	}).then(function(UserInDB){
-		// 		console.log(UserInDB)
-		// 		self.setState({
-		// 			IneedThisFriend: <SearchFriendBarListItem 
-		// 									Userdata={UserInDB}
-		// 									changeFunc={self.AddFriendList.bind(this)}
-		// 							/>
-		// 		});	
-		// 	}).catch(function(error){
-		// 		console.log(error)
-		// });
-		console.log("add Friend to DB");
-		console.log(this.props.Userdata.data.id)
-	}
-
+    	axios.post('api/db/friends', {
+        	friendId: this.props.Userdata.data.id
+      	}).then(function(response) {
+        console.log('Success adding friend!')
+      	}).catch(function(err){
+      		console.log('error')
+      	})
+  	}
+	
 	render () {
 		return (
 			<div className="card">
 				<div className='card-block'>
 					<h3 className="card-title">{this.props.Userdata.data.user_name}</h3>
-					<p className='card-text'>userpassword:{this.props.Userdata.data.user_password}</p>
+					<h3 className="card-title">{this.props.Userdata.data.id}</h3>
 					<button className="btn btn-success" onClick={this.AddFriendToUser.bind(this)}>AddFriend</button>
 				</div>
 			</div>

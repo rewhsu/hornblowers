@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import FriendListItem from './friend_list_item';
 
 
@@ -8,12 +9,38 @@ class FriendList extends React.Component{
 		super(props);
 	
 	this.state = {
-		checkedFriends: [],
-		currentFriendsList: this.props.friends,
-		theGroupForRoom: []
+		UserFriendList: null,
+		userId: this.props.CurrentUserId,
+		theGroupForRoom: []		
+		}
 	}
 
-	};
+	componentWillMount() {
+	 	var self = this;
+	 	axios.get('api/db/friends', {
+	 		userId: this.props.CurrentUserId
+	 	}).then(function (response) {
+    		console.log('The json', response);
+    		self.setState ({
+    			UserFriendList: response.data
+    		})
+  		}).catch(function (error) {
+    		console.log(error);
+  		});
+  	}
+
+	 // 	.then(function(userFriend){
+	 // 		console.log('the user', user)
+	 // 	self.setState ({
+	 // 		currentUserId: user.data
+	 // 	});
+		// }).catch(function (error){
+	 // 		console.log('nope')
+	 // 		console.log(error)
+	 // 	});
+		// }
+	
+	
 	addToRoom(friend) {
 		console.log('A Click from child(Friend_List_Item)')
 		this.state.theGroupForRoom.push(friend)
@@ -22,26 +49,31 @@ class FriendList extends React.Component{
 
 	// Generate new Page 
 	 // to newRoute
-	makeAPage() {
+	showFriends() {
 	 	console.log('make page')
-	 	console.log(this.state.theGroupForRoom)
+	 	console.log(this.state.UserFriendList)
+		const FriendItems = this.state.UserFriendList.map((friend) => {
+			return <FriendListItem 
+					frienddata={friend}
+				/>
+	 	this.setState({
+	 		UserFriendComponent: FriendItems
+			});
+	 	})
+	 	console.log(this.state.UserFriendComponent)
 	}
 
 	render() {
-	const FriendItems = this.props.friends.map((friend) => {
-		return <FriendListItem 
-						frienddata={friend}
-						theRoom={this.state.theGroupForRoom}
-						AddFriendToRoomFunc={this.addToRoom.bind(this)}
-				/>
-	});
 	return (
 		<div> 			
 			<p className='lead'>FriendList</p>
-			{FriendItems}
-			<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
+			{this.state.UserFriendComponent}
+			<button onClick={this.showFriends.bind(this)} className='btn btn-info'>showFriends</button>
 		</div>
 		)
+						//{FriendItems}
+						// theRoom={this.state.theGroupForRoom}
+						// AddFriendToRoomFunc={this.addToRoom.bind(this)}
 	}
 }
 

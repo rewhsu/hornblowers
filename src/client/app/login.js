@@ -89,7 +89,7 @@ class Login extends React.Component {
                     Sign In</p>
                 <form className="login" method='post'>
                 <input type="text" name='email' placeholder='Email' onChange={this.handleEmailChange.bind(this)}/>
-                <input type="password" name='password' placeholder='secret' onChange={this.handlePasswordChange.bind(this)}/>
+                <input type="password" name='password' placeholder='password' onChange={this.handlePasswordChange.bind(this)}/>
                 <div className='wrongColor'>{this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : '' }</div>
                 <Link to={'signup'}>No account? No problem, create an account today!</Link>
                 <button type="button" className="btn btn-success btn-sm" onClick={this.logIn.bind(this)}>Sign In</button>
