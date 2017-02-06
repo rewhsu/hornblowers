@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 
 class SearchFriendBarListItem extends React.Component {
@@ -11,10 +12,12 @@ class SearchFriendBarListItem extends React.Component {
     	axios.post('api/db/friends', {
         	friendId: this.props.Userdata.data.id
       	}).then(function(response) {
-        console.log('Success adding friend!')
+        console.log('Success adding friend!');
+        browserHistory.push('/');
       	}).catch(function(err){
       		console.log('error')
       	})
+
   	}
 	
 	render () {
@@ -30,11 +33,6 @@ class SearchFriendBarListItem extends React.Component {
 	};
 }
 
-
-
-SearchFriendBarListItem.propTypes = {
-
-}
 
 export default SearchFriendBarListItem; 
  

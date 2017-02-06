@@ -19,7 +19,9 @@ class App extends React.Component {
 	 	currentUserId: null,
 	 	currentUserData: null,
 	 	currentUserFriendList: [],
-	 	currentUserLocation: null
+	 	currentUserLocation: null,
+	 	UserFriendList: null,
+	 	clicked: true
 	 }
 	}
 
@@ -29,20 +31,21 @@ class App extends React.Component {
     	document.body.style.backgroundSize = 'cover';
     	document.body.style.padding = 0;
     	document.body.style.margin = 0;
+
   	} 	
 
-	componentDidMount() {
-	 	var self = this;
-	 	axios.post('api/db/check').then(function(user){
-	 		console.log('the user', user)
-	 	self.setState ({
-	 		currentUserId: user.data
-	 	});
-		}).catch(function (error){
-	 		console.log('nope')
-	 		console.log(error)
-	 	});
-		}
+	// componentWillMount() {
+	//  	var self = this;
+	//  	axios.post('api/db/check').then(function(user){
+	//  		console.log('the user', user)
+	//  	self.setState ({
+	//  		currentUserId: user.data
+	//  	});
+	// 	}).catch(function (error){
+	//  		console.log('nope')
+	//  		console.log(error)
+	//  	});
+	// }
  
 
 	 // We will need a Ajax Call here to fetch Users FriendList
@@ -82,7 +85,7 @@ class App extends React.Component {
   						<SearchFriendBar/>
   					</div>
   					<div className='col-sm-4'>					
-  						<FriendList CurrentUserId={this.state.CurrentUserId}/>
+  						<FriendList UserFriend={this.state.UserFriendList}/>
   					</div>
   				</div>
           		<button onClick={this.makeAPage.bind(this)} className='btn btn-info'>test</button>

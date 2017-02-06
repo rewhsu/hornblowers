@@ -86,7 +86,7 @@ class Login extends React.Component {
                 <form className="login" method='post'>
                 <input type="text" name='email' placeholder='Email' onChange={this.handleEmailChange.bind(this)}/>
                 <input type="password" name='password' placeholder='password' onChange={this.handlePasswordChange.bind(this)}/>
-                <div className="wrongcolor">{this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : '' }</div>
+                <div className="wrong-color">{this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : '' }</div>
                 <Link to={'signup'}>No account? No problem, create an account today!</Link>
                 <button type="button" className="btn btn-success btn-sm" onClick={this.logIn.bind(this)}>Sign In</button>
                 <div className="remember-forgot">
