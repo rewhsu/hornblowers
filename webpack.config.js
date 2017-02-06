@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var json = require('json-loader')
 
 var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
@@ -15,6 +16,9 @@ var config = {
   },
   module : {
     loaders : [
+      { test: /\.json$/, 
+        loader: "json-loader" 
+      },
       {
         test : /\.jsx?/,
         include : APP_DIR,
@@ -31,6 +35,12 @@ var config = {
     outputPath: BUILD_DIR,
     historyApiFallback: true,
 },
+  node: {
+     console: true,
+     fs: 'empty',
+     net: 'empty',
+     tls: 'empty'
+   }
 
 };
 

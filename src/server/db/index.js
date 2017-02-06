@@ -89,7 +89,7 @@ var Friendship = db.define('Friendship', {
 });
 
 Friendship.removeAttribute('id'); // No primary keys in friendship table
-
+// Friendship.sync();
 
 var EventMember = db.define('EventMember', {
 	eventId: Sequelize.INTEGER,
@@ -112,7 +112,8 @@ Message.belongsTo(User, {foreignKey: 'userId'});
 Message.belongsTo(Event, {foreignKey: 'eventId'});
 EventMember.belongsTo(User, {as: 'Members', foreignKey: 'userId'});
 EventMember.belongsTo(Event, {as: 'Events', foreignKey: 'eventId'});
-Friendship.belongsTo(User, {as: 'Friends', foreignKey: 'user_a', otherKey: 'user_b'});
+Friendship.belongsTo(User, {as: 'Friend_a', foreignKey: 'user_b', otherKey: 'user_a'});
+Friendship.belongsTo(User, {as: 'Friend_b', foreignKey: 'user_a', otherKey: 'user_b'});
 
 
 //***IF YOU WANT MOCK DATA: UNCOMMENT AND SAVE AFTER CREATING TABLES W/ DB.SYNC() ^^ 
