@@ -34,7 +34,9 @@ class HeaderBar extends React.Component {
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
-            <a className="navbar-brand" href="#">@</a>
+            <a className="navbar-brand" href="#"> 
+              <img className="logoimg" align="middle" src="/assets/Logo.png" width="40" height="40"></img>
+            </a>
           </div>
           <ul className="nav navbar-nav">
             <li><Link to="/">Home</Link></li>

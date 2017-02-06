@@ -175,7 +175,7 @@ dbRouter.get('/eventMembers', function(req, res) {
     .findAll({
         include: [
           {model: db.User, as: 'Members'},
-          {model: db.Event, as: 'Events', where: {id: req.session.eventId}}
+          {model: db.Event, as: 'Events', where: {id: 3}}
         ]
     }).then(function(members) {
     if (members) {
@@ -191,8 +191,11 @@ dbRouter.get('/eventMembers', function(req, res) {
 dbRouter.get('/messages', function(req, res) {
   db.Message.findAll({
     where: {
-      eventId: req.session.eventId
-    }
+      eventId: 3
+    },
+    include: [
+      {model: db.User}
+    ]
   }).then(function(messages) {
     if (messages.length > 0) {
       res.json(messages)

@@ -29,7 +29,7 @@
 
 .yelpLink {
   font-size: 150%;
-  color: blue;
+  color: #6666ff;
 }
 
 .room {
@@ -53,8 +53,8 @@
 }
 
 .chat-message-self {
-  color: blue;
-  outline: 5px solid blue;
+  color: #6666ff;
+  /*outline: 5px solid blue;*/
   padding: 5px 5px 5px 5px;
 }
 
@@ -69,13 +69,13 @@
 .chat-group {
   display: inline-block;
   padding: 5px 5px 5px 5px;
-  box-shadow: 0 0 3pt 2pt gray;
+  /*box-shadow: 0 0 3pt 2pt gray;*/
 }
 
 .prefilled {
   font-weight: 200;
   font-style: italic;
-  text-align: center;
+  text-align: left;
   margin: auto;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .vote-on {
-  background-color: green;
+  background-color: #9bffc1;
 }
 
 .vote-off {
@@ -364,5 +364,45 @@ form.login a:hover
 #logoutFontsizeTwo {
   font-size: 20px;
 }
+
+.nav .navbar-nav{
+  height: 75px;
+  margin-bottom: 30px;
+  text-align: center;
+  position: fixed;
+}
+
+.navbar-brand {
+  float: left;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.nav li {
+  vertical-align: middle;
+  margin: 10px 20px 10px 10px;
+
+}
+
+.headerbar {
+  background-color: #6666ff;
+  height: 300px;
+  width: 100%;
+  /*padding-top: 10px;*/
+  /*margin-top: px;*/
+  vertical-align: top;
+  /*position: absolute;*/
+}
+
+.headerimg {
+  margin: auto;
+  text-align: center;
+}
+
+.row {
+  margin-top: 50px;
+  position: relative;
+}
+
 
 
