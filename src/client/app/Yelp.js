@@ -86,6 +86,7 @@ class Yelp extends React.Component {
   }
 
   componentDidMount() {
+    console.log('another')
     this.getResult();
   }
 

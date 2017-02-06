@@ -284,8 +284,6 @@ dbRouter.post('/login', function(req, res) {
   });  
 });
 
-
-
 dbRouter.post('/check', function(req, res) {
   res.send(200, req.session.userId);
 
