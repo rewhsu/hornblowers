@@ -3,19 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import SearchFriendBarListItem from './Search_friend_bar_item'
 
-// The Props will be All USERS from DB  
-// it might can be functional (lets put it in class first)
-
-// class SearchFriendBar extends React.Components {
-// 	constructor(props) {
-// 		super(props);
-// 	}
-// 	render() {
-// 		return (
-// 			<div>{console.log(props)}</div>
-// 		)
-// 	}
-// }
 
 class SearchFriendBar extends React.Component {
 	constructor(props) {

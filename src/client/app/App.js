@@ -11,23 +11,18 @@ import axios from 'axios';
 // we will have storage of friends
 
 
-
-
 class App extends React.Component {
 	constructor(props) {
 	 super(props);
 	 
 	 this.state = {
-	 	// user friendsdata
+	 	currentUserId: null,
 	 	currentUserData: null,
 	 	currentUserFriendList: [],
 	 	currentUserLocation: null
 	 }
 	}
-	 	// axios.get('/api/db/friends', {
-	 	// 	params: {
-	 	// 		userid: 1
-	 	// 	}
+
 	componentWillMount(){
     	document.body.style.backgroundImage = "url('http://www.shunvmall.com/data/out/255/47210155-white-background-images.jpg')";
     	document.body.style.backgroundAttachment = 'fixed';
@@ -38,16 +33,17 @@ class App extends React.Component {
 
 	componentDidMount() {
 	 	var self = this;
-	 	axios.post('api/db/check').then(function(friends){
-	 		console.log('the user', friends)
+	 	axios.post('api/db/check').then(function(user){
+	 		console.log('the user', user)
 	 	self.setState ({
-	 		currentUserFriendList: friends.data
+	 		currentUserId: user.data
 	 	});
 		}).catch(function (error){
 	 		console.log('nope')
 	 		console.log(error)
 	 	});
 		}
+ 
 
 	 // We will need a Ajax Call here to fetch Users FriendList
 	 // Once we fetch the data we will be able setState for CurrentUserFriendList  
@@ -55,34 +51,22 @@ class App extends React.Component {
 	 // Generate new Page 
 	 // to newRoute
 	makeAPage() {
-		console.log('window.userid', window.userid);
-	 	console.log('make page')
+		console.log(this.state.currentUserId)
 	 	console.log(this.state.currentFriendList)
-		axios.post('/api/db/check')
-    .then(function(response) {
+	 	console.log('make page')
+		// axios.post('/api/db/check')
+  //   	.then(function(response) {
 
-      if (response.data) {
-        browserHistory.push('/room');
-      } 
-
-	 	})
+  //     	if (response.data) {
+  //       	browserHistory.push('/room');
+  //     	}	 
+	 // 	})
 	}
 	
 	// I pass down currentFriendList to child & also I passdown the changeFriendList 
 	// To SearchFriendBar 
 
-
-	// var arrayvar = this.state.arrayvar.slice()
-	// arrayvar.push(newelement)
-	// this.setState({ arrayvar: arrayvar })
-
 	render() {
-		// So my problem here is how does User work in here
-		// when it comes in what kind of call is giving ? 
-		// we know that when users comes in we going to a set of data (is that fetch method a GET?)
-		// setTimeout(() => {
-		// 	this.setState({currentUserFriendList: FakeFriendData})
-		// }, 1000);
 		return (
       	<div>
   			<HeaderBar />
@@ -95,14 +79,14 @@ class App extends React.Component {
         <div className='container'>
   				<div className='row'>
   					<div className='col-sm-4'>
-  						<SearchFriendBar CurrentFriendList={this.state.currentUserFriendList}/>
+  						<SearchFriendBar/>
   					</div>
   					<div className='col-sm-4'>					
-  						<FriendList friends={this.state.currentUserFriendList}/>
+  						<FriendList CurrentUserId={this.state.CurrentUserId}/>
   					</div>
   				</div>
-          		<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'><Link to={'room'}>Create new page</Link></button>
-          		<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
+          		<button onClick={this.makeAPage.bind(this)} className='btn btn-info'>test</button>
+  				<button onClick={this.makeAPage.bind(this)} className='btn btn-warning'><Link to={'room'}>Create new page</Link></button>
   			</div>
       	</div>
 		);
