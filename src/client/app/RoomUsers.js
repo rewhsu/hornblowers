@@ -9,7 +9,7 @@ class RoomUsers extends React.Component {
     super(props)
     this.state = {
       roomUsers: null,
-      usersVisible: false
+      usersVisible: true
     }
     this.getUsers = this.getUsers.bind(this);
   }
@@ -17,12 +17,13 @@ class RoomUsers extends React.Component {
   getUsers(event) {
     var context = this;
     axios
-      .get('/api/room/mock/users')
+      .get('/api/db/eventMembers')
       .then(function(response) {
-        console.log(response.data);
+        console.log('AWEGIHWEGIEW', response);
         context.setState({roomUsers: response.data});
       })
       .then(function() {
+        console.log('AWHEFAIWHEFIEWAHFIAEHWIFAEWHF', context.state.roomUsers);
         context.setState({usersVisible: true})
       })
   }
@@ -32,16 +33,11 @@ class RoomUsers extends React.Component {
   }
 
   render() {
-    var usersVisible;
-    if (!this.state.usersVisible) {
-      usersVisible = {display: "none"};
-    }
     return (
       <div>
-        <div className="bordered" style={usersVisible}>
+        <div className="bordered">
           <div className="pre-scrollable-fixed">
-            <button onClick={this.getUsers}>Load Room Members</button>
-            {this.state.roomUsers ?
+          {this.state.roomUsers ?
               this.state.roomUsers.map(roomUser =>
               <RoomUser user={roomUser} />
             ): null}

@@ -7,14 +7,38 @@ class RoomUser extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: null,
-      showDetails: false
+      showDetails: false,
+      userId: this.props.user.userId,
+      userData: null,
+      username: 'default'
     }
     this.toggleDetails = this.toggleDetails.bind(this);
   }
 
   toggleDetails() {
     this.setState({showDetails: !this.state.showDetails});
+  }
+
+  getUsername(e) {
+    var context = this;
+    axios
+      .get('/api/db/users', {
+        userId: this.state.userId
+      })
+      .then(function(response) {
+        console.log('awehjfihaewifjaweif', response);
+        context.setState({
+          userData: response.data,
+          username: response.data.user_name
+        })
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
+  }
+
+  componentDidMount() {
+    this.getUsername();
   }
 
   render() {
@@ -25,11 +49,7 @@ class RoomUser extends React.Component {
 
     return (
       <div className="roomUser">
-        <h6 onClick={this.toggleDetails}>{this.props.user.user_name}</h6>
-        <div style={detailsVisible}>
-          <span className="userDetails">{this.props.user.user_email}</span><br />
-          <span className="userDetails">{this.props.user.user_streetaddress}</span>
-        </div>
+        <h6 onClick={this.toggleDetails}>Username: {this.state.username}</h6>
       </div>
     )
   }
