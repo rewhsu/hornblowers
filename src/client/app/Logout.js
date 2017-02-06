@@ -20,6 +20,13 @@ componentDidMount(){
 
 
   render() {
+    axios.post('/api/db/logout')
+    // .then(function(user) {
+    //   axios.post('/check', function(req, res) {
+    //     console.log(res);
+    //   })
+    // });
+
     return (
         <div className='logout'>
           <div>

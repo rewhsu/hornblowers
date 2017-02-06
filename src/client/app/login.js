@@ -4,6 +4,8 @@ import { browserHistory, Link } from 'react-router';
 import axios from 'axios';
 import HeaderBar from './headerbar'
 
+var bcrypt = require('bcrypt-nodejs');
+var Promise = require('bluebird');
 
 class Login extends React.Component {
   constructor(props) {
@@ -30,22 +32,35 @@ class Login extends React.Component {
     
     console.log("Email: " + this.state.email);
     console.log("Password: " + ' ieXJPjN');
-
     // window.user = this.state.email;
     //request email and see if passwords match
     var self = this;
+
+
+    var comparePW = Promise.promisify(bcrypt.compare);
+
+    
+
+    console.log("Password: " + self.state.password);
+
     axios.post('/api/db/login', {
       email: self.state.email,
       password: self.state.password
     })
       .then(function(response) {
         console.log('response', response);
-        console.log('response.data["user_password"]: ', response.data["user_password"].length);
-        console.log('this.state.password: ', self.state.password.length);
-        if (response.data["user_password"] === self.state.password) {
+        console.log('response.data["user_password"]: ', response.data["user_password"]);
+        console.log('this.state.password: ', self.state.password);
+        
+        var passwordMatched = comparePW(self.state.password, response.data["user_password"])
+          .then(function(match) {
+            if (match) {
+              return true;
+            }
+          })
+        if (passwordMatched) {
           //if login email and password match what's in database then change route to main page
           // window.userid = response.data.id;
-          
           browserHistory.push('/');    
         }
       })

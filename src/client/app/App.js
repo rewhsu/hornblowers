@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory, Link } from 'react-router';
 import HeaderBar from './headerbar';
-import axios from 'axios';
 import FriendList from './friend_list';
 import UserDetail from './User_detail';
 import SearchFriendBar from './Search_Friend_Bar';
-
+import axios from 'axios';
 
 // These data will be ajax from (sql)db 
 // we will have storage of friends
@@ -15,7 +14,7 @@ import SearchFriendBar from './Search_Friend_Bar';
 class App extends React.Component {
 	constructor(props) {
 	 super(props);
-
+	 
 	 this.state = {
 	 	// user friendsdata
 	 	currentUserData: null,
@@ -27,14 +26,22 @@ class App extends React.Component {
 	 	// 	params: {
 	 	// 		userid: 1
 	 	// 	}
+	 componentWillMount(){
+    	document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/18/17/JxM3Q8.jpeg')";
+    	document.body.style.backgroundAttachment = 'fixed';
+    	document.body.style.backgroundSize = 'cover';
+    	document.body.style.padding = 0;
+    	document.body.style.margin = 0;
+  	}
+
 
 	componentDidMount() {
 	 	var self = this;
-	 	axios.post('api/db/login').then(function(friends){
+	 	axios.post('api/db/check').then(function(friends){
 	 		console.log('the user', friends)
-	 	// self.setState ({
-	 	// 	currentUserFriendList: friends.data
-	 	// });
+	 	self.setState ({
+	 		currentUserFriendList: friends.data
+	 	});
 		}).catch(function (error){
 	 		console.log('nope')
 	 		console.log(error)
@@ -50,6 +57,14 @@ class App extends React.Component {
 		console.log('window.userid', window.userid);
 	 	console.log('make page')
 	 	console.log(this.state.currentFriendList)
+		axios.post('/api/db/check')
+    .then(function(response) {
+
+      if (response.data) {
+        browserHistory.push('/room');
+      } 
+
+	 	})
 	}
 	
 	// I pass down currentFriendList to child & also I passdown the changeFriendList 
@@ -81,14 +96,12 @@ class App extends React.Component {
   					<div className='col-sm-4'>
   						<SearchFriendBar CurrentFriendList={this.state.currentUserFriendList}/>
   					</div>
-  					<div className='col-sm-3'>
-  						<UserDetail User={this.state.currentUserLocation}/>
-  					</div>
   					<div className='col-sm-4'>					
   						<FriendList friends={this.state.currentUserFriendList}/>
   					</div>
   				</div>
           		<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'><Link to={'room'}>Create new page</Link></button>
+          		<button onClick={this.makeAPage.bind(this)} className='btn btn-primary'>Create new page</button>
   			</div>
       	</div>
 		);

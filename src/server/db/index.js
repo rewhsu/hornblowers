@@ -5,19 +5,36 @@ var mockEvents = require('../../../data/mock-data-events.json');
 var mockFriendships = require('../../../data/mock-data-friendships.json');
 var mockEventMembers = require('../../../data/mock-data-eventmembers.json');
 
+
 var db = new Sequelize('eventplanner', 'root', '', {
 	define: {
 		timestamps: true
 	}
 });
 
+// ***MAKE SURE YOU HAVE A DATABASE CALLED EVENTPLANNER AND YOU 'USE EVENTPLANNER' IN MYSQL then...
+// ***FIRST: COMMENT IN DB.SYNC() TO SAVE W/ NODEMON WATCHING (CREATE TABLES) 
+// ***SECOND: COMMENT OUT TO PREVENT DELETING TABLE DATA AFTER POPULATING IT
+
+
+// db.sync({ force: true })
+//   .then(function(err) {
+//     console.log('It worked!');
+//   }, function (err) { 
+//     console.log('An error occurred while creating the table:', err);
+//   });
+
+
+//***IF YOU WANT MOCK DATA: SEE BELOW FOR INSTRUCTIONS
+
 
 var User = db.define('User', {
 	user_name: Sequelize.STRING,
 	user_email: Sequelize.STRING,
 	user_password: Sequelize.STRING,
-	user_streetaddress: Sequelize.STRING,
-	user_postalcode: Sequelize.STRING,
+	user_address: Sequelize.STRING,
+	user_lat: Sequelize.DECIMAL(10,7),
+	user_lon: Sequelize.DECIMAL(10,7),
 	createdAt: {
 		type: Sequelize.DATE,
 		defaultValue: Sequelize.literal('NOW()')
@@ -72,7 +89,7 @@ var Friendship = db.define('Friendship', {
 });
 
 Friendship.removeAttribute('id'); // No primary keys in friendship table
-// Friendship.sync({force:true});
+
 
 var EventMember = db.define('EventMember', {
 	eventId: Sequelize.INTEGER,
@@ -90,60 +107,42 @@ var EventMember = db.define('EventMember', {
 EventMember.removeAttribute('id'); // No primary keys in eventmember table
 
 
-User.belongsToMany(Event, {as: 'Members', through: 'EventMember', foreignKey: 'userId'});
-Event.belongsToMany(User, {as: 'Events', through: 'EventMember', foreignKey: 'eventId'});
 Event.belongsTo(User, {foreignKey: 'event_creatorId'});
 Message.belongsTo(User, {foreignKey: 'userId'});
 Message.belongsTo(Event, {foreignKey: 'eventId'});
-// User.belongsToMany(User, {as: 'Friends', through: 'Friendship', foreignKey: 'user_a', otherKey: 'user_b'});
+EventMember.belongsTo(User, {as: 'Members', foreignKey: 'userId'});
+EventMember.belongsTo(Event, {as: 'Events', foreignKey: 'eventId'});
 Friendship.belongsTo(User, {as: 'Friends', foreignKey: 'user_a', otherKey: 'user_b'});
 
-// ***FIRST: COMMENT OUT DB.SYNC() AFTER CREATING TABLES TO PREVENT TABLE DATA DELETION
 
-// db.sync({ force: true })
-//   .then(function(err) {
-//     console.log('It worked!');
-//   }, function (err) { 
-//     console.log('An error occurred while creating the table:', err);
-//   });
+//***IF YOU WANT MOCK DATA: UNCOMMENT AND SAVE AFTER CREATING TABLES W/ DB.SYNC() ^^ 
+// COMMENT OUT AFTER SAVING (POPULATING TABLES) TO PREVENT DUPLICATES
 
-
-//***IF YOU WANT MOCK DATA: UNCOMMENT EACH bulkCreate ONE-BY-ONE AND RUN AFTER CREATING TABLES W/ DB.SYNC() BELOW
-
-// User.bulkCreate(mockUsers).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
+// User.bulkCreate(mockUsers, { ignoreDuplicates: true }).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
 //   return User.findAll();
 // }).then(function(users) {
-//   console.log(users) // ... in order to get the array of user objects
+// 	Event.bulkCreate(mockEvents, { ignoreDuplicates: true }).then(function() { 
+// 	  return Event.findAll();
+// 	}).then(function(events) {
+// 	  Message.bulkCreate(mockMessages, { ignoreDuplicates: true }).then(function() { // ***Issue assigning userId/EventId when bulkCreate, insert works
+// 		  return Message.findAll();
+// 		}).then(function(messages) {
+// 		  Friendship.bulkCreate(mockFriendships, { ignoreDuplicates: true }).then(function() { 
+// 		    return Friendship.findAll();
+// 		  }).then(function(friendships) {
+// 		    EventMember.bulkCreate(mockEventMembers, { ignoreDuplicates: true }).then(function() { 
+// 		      return EventMember.findAll();
+// 		    }).then(function(members) {
+// 		      console.log('**COMPLETE INSERTING MOCK DATA**') 
+// 		    }).catch(function(err) {
+// 		    	console.log('Error inserting eventmembers into db: ', err);
+// 		    });
+// 		  }).catch(function(err) {
+// 		  	console.log('Error inserting friendships into db: ', err);
+// 		  });
+// 		})
+// 	});
 // });
-
-// Event.bulkCreate(mockEvents).then(function() { 
-//   return Event.findAll();
-// }).then(function(events) {
-//   console.log(events) 
-// });
-
-// Message.bulkCreate(mockMessages).then(function() { // ***Issue assigning userId/EventId when bulkCreate, insert works
-//   return Message.findAll();
-// }).then(function(messages) {
-//   console.log(messages) 
-// })
-
-// Friendship.bulkCreate(mockFriendships).then(function() { 
-//   return Friendship.findAll();
-// }).then(function(friendships) {
-//   console.log(friendships) 
-// }).catch(function(err) {
-// 	console.log('Error inserting friendships into db: ', err);
-// });
-
-// EventMember.bulkCreate(mockEventMembers).then(function() { 
-//   return EventMember.findAll();
-// }).then(function(members) {
-//   console.log(members) 
-// }).catch(function(err) {
-// 	console.log('Error inserting eventmembers into db: ', err);
-// });
-
 
 module.exports = {
 	User: User,
