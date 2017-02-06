@@ -52,22 +52,18 @@ class Login extends React.Component {
         console.log('response.data["user_password"]: ', response.data["user_password"]);
         console.log('this.state.password: ', self.state.password);
         
-        var passwordMatched = comparePW(self.state.password, response.data["user_password"])
+        comparePW(self.state.password, response.data["user_password"])
           .then(function(match) {
             if (match) {
-              return true;
+              browserHistory.push('/'); 
             }
           })
-        if (passwordMatched) {
-          //if login email and password match what's in database then change route to main page
-          // window.userid = response.data.id;
-          browserHistory.push('/');    
-        }
+          .catch(function (error) {
+            console.log('email and password do not match');
+            console.log('error');
+            self.setState({loginfailed: true});        
+          })
       })
-      .catch(function (error) {
-        self.setState({loginfailed: true});
-        console.log('email and password do not match');
-      });
   }
 
   handleEmailChange (e) {
@@ -90,7 +86,7 @@ class Login extends React.Component {
                 <form className="login" method='post'>
                 <input type="text" name='email' placeholder='Email' onChange={this.handleEmailChange.bind(this)}/>
                 <input type="password" name='password' placeholder='password' onChange={this.handlePasswordChange.bind(this)}/>
-                <div className='wrongColor'>{this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : '' }</div>
+                <div className="wrongcolor">{this.state.loginfailed ? 'Wrong email\/password or account does not exist.' : '' }</div>
                 <Link to={'signup'}>No account? No problem, create an account today!</Link>
                 <button type="button" className="btn btn-success btn-sm" onClick={this.logIn.bind(this)}>Sign In</button>
                 <div className="remember-forgot">
