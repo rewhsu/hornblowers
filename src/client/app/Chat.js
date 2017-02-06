@@ -27,7 +27,6 @@ class Chat extends React.Component {
     axios
       .post('/api/db/check')
       .then(function(response) {
-        console.log('*****wheee***', response);
         context.setState({
           userId: response.data,
         });
@@ -37,10 +36,9 @@ class Chat extends React.Component {
   getMessages(event) {
     var context = this;
     axios
-      .get('/api/room/mock/messages')
+      .get('/api/db/messages')
       .then(function(response) {
-        console.log(response.data);
-        context.setState({messages: response.data});
+        context.setState({messages: response.data.reverse()});
       })
       .then(function() {
         if (!context.state.chatVisible) {
@@ -58,7 +56,7 @@ class Chat extends React.Component {
         eventid: this.state.eventId
       })
       .then(function(response) {
-        console.log(response);
+        context.getMessages();
       })
       .catch(function(err) {
         console.error(err);
@@ -94,7 +92,6 @@ class Chat extends React.Component {
       <div>
         <div className="bordered" style={chatBorderVis}>
           <div className="pre-scrollable-fixed">
-            <button onClick={this.getMessages}>Get Messages</button>  
             {this.state.messages ?
               this.state.messages.map(message =>
                 <ChatMessage message={message} />

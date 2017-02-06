@@ -166,7 +166,8 @@ dbRouter.get('/eventMembers', function(req, res) {
   db.EventMember
     .findAll({
       where: {
-        eventId: req.session.eventId
+        // eventId: req.session.eventId
+        eventId: 3
       }
     }).then(function(members) {
       if (members) {

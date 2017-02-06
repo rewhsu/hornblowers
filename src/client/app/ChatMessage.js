@@ -7,12 +7,13 @@ class ChatMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: this.props.message.UserId,
+      userId: this.props.message.userId,
       username: null,
-      userVis: false,
-      className: null
+      userVis: true,
+      userData: {}
     }
     this.toggleUsername = this.toggleUsername.bind(this);
+    this.getUsername = this.getUsername.bind(this);
   }
 
   toggleUsername() {
@@ -20,16 +21,24 @@ class ChatMessage extends React.Component {
     this.setState({userVis: !this.state.userVis});
   }
 
-  getUsername() {
+  getUsername(e) {
+    console.log('msg',this.props.message)
     var context = this;
     axios
-      .get('/api/db/eventMembers', {
+      .get('/api/db/users', {
         params: {
-          userId: context.state.userId
+          userId: this.props.message.userId
         }
       }).then(function(response) {
-        context.setState({username: response.data});
+        context.setState({
+          userData: response.data,
+          username: response.data.user_name
+        })
       });
+  }
+
+  componentDidMount() {
+    this.getUsername();
   }
 
   render() {
@@ -45,7 +54,7 @@ class ChatMessage extends React.Component {
     return (
       <div className="chat-group-outer" onClick={this.toggleUsername} >
         <div className="chat-group">
-          <span className="chat-user-self" style={showUser}>User{this.props.message.UserId}<br /></span>
+          <span className="chat-user-self" style={showUser}>{this.state.username}<br /></span>
           <span className="chat-message-other">{this.props.message.message_text}<br /></span>
         </div>
       </div>
