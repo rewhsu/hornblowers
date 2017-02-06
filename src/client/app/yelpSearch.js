@@ -24,7 +24,6 @@ exports.yelpSearch = function(cb, term, location, limit, radius) {
       const firstResult = response.jsonBody.businesses[0];
       const results = response.jsonBody.businesses;
       const prettyJson = JSON.stringify(firstResult, null, 4);
-      console.log(prettyJson);
       cb(results);
     });
   }).catch(e => {

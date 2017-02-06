@@ -9,9 +9,8 @@ class FriendListItem extends React.Component {
 	addFriendToRoom() {
 		console.log('added FriendToRoom ', this.props.frienddata );
 		this.props.AddFriendToRoomFunc(this.props.frienddata)
-
 	}
-	
+
 	deleteFriendFromUser() {
 		console.log('delete friend');
 	}
