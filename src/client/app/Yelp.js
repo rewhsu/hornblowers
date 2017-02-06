@@ -6,18 +6,24 @@ import YelpResult from './YelpResult';
 
 import axios from 'axios';
 
+import nodeGeocoder from 'node-geocoder';
+import geolib from 'geolib';
+ 
+let geocoder = nodeGeocoder({provider: 'google'});
+
 class Yelp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      term: 'falafel',
+      term: 'food',
       location: '944 Market St, San Francisco, CA',
       limit: 5,
       radius: 3000, //meters
       result: null,
       yelpBorderVis: false,
       yelpMenuVis: false,
-      votes: {}
+      votes: {},
+      eventMembers: []
     }
     this.toggleVote = this.toggleVote.bind(this)
     this.onBlur = this.onBlur.bind(this);
@@ -29,6 +35,10 @@ class Yelp extends React.Component {
     this.getResult = this.getResult.bind(this)
   }
 
+  componentWillMount() {
+     this.getEventMembers();
+  }
+
   toggleVote(name) {
     var votes = this.state.votes;
     if (votes.hasOwnProperty(name)) {
@@ -37,7 +47,7 @@ class Yelp extends React.Component {
       votes[name] = true;
     }
     this.setState({votes: votes});
-    // console.log('****', this.state.votes);
+    console.log('****', this.state.votes);
   }
 
   onBlur(e) {
@@ -69,6 +79,57 @@ class Yelp extends React.Component {
     this.setState({location: event.target.value});
   }
 
+  findCenterLoc(data) {
+    var context = this;
+    var points = data.map(function(user) {
+      return {latitude: user.user_lat, longitude: user.user_lon}
+    });
+
+    var midpoint = geolib.getCenterOfBounds(points);
+
+    var centerPt = { lat: Number.parseFloat(midpoint.latitude), 
+                    lon: Number.parseFloat(midpoint.longitude) }
+
+    geocoder.reverse(centerPt)
+      .then(function(res) {
+        if (res[0].formattedAddress){
+          context.setState({location: res[0].formattedAddress}); // set Location to new midpoint
+        }
+        context.getResult(); // get results from yelp after setting location
+      })
+      .catch(function(err) {
+        context.getResult();
+        console.log(err);
+      });
+  }
+
+  getEventMembers() {
+    var context = this;
+    var eventMembers = [];
+    console.log('**getEventMembers UNDEFINED UNTIL EVENT IS CREATED')
+        // axios
+        //   .post('api/db/events', {
+        //     members: [10, 11, 22]//array of event friends i.e. [2, 4, 13] or [userObj, userObj, userObj]
+        //   })
+        //   .then(function(response) {
+        //     console.log('Success creating event!')
+    axios
+      .get('api/db/eventMembers')
+      .then(function(response) {
+        eventMembers = response.data.map(function(member) {
+          return member.Members;
+        })
+        console.log('**getEventMembers:', eventMembers)
+
+        context.setState({
+          eventMembers: eventMembers
+        })
+      })
+      .then(function() {
+        context.findCenterLoc(context.state.eventMembers);
+      }); 
+  }
+
   getResult() {
     var context = this;
     var term = this.state.term;
@@ -85,9 +146,9 @@ class Yelp extends React.Component {
       });
   }
 
+
   componentDidMount() {
-    console.log('another')
-    this.getResult();
+
   }
 
   render() {

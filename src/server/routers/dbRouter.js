@@ -16,17 +16,17 @@ dbRouter.use(bodyParser.urlencoded({ extended: true }))
 dbRouter.use(bodyParser.json())
 
 
-// FIND ALL USER'S FRIENDS BY USERID
+// FIND ALL USER'S FRIENDS BY SESSIONID
 dbRouter.get('/friends', function(req, res) {
   if (req.session.userId) {
-    db.User.findAll({
-      where: {id: req.session.userId},
+    db.Friendship.findAll({
+      where: {user_a: req.session.userId},
       include: [
-        {model: db.User, as: 'Friends', through: db.Friendship}
+        {model: db.User, as: 'Friend_a'}
       ]
     }).then(function(users) {
-      if (users[0].Friends.length > 0) {
-        res.json(users[0].Friends)
+      if (users) {
+        res.json(users)
       } else {
         res.send('User does not have friends.')
       }
@@ -37,7 +37,7 @@ dbRouter.get('/friends', function(req, res) {
 
 // ADD FRIENDS
 dbRouter.post('/friends', function(req, res) {
-// if req.body.members is an array of userIds + creatorId
+
 var createFriends = function (userId, friendId) {
   var result = [];
     result.push(
@@ -137,13 +137,19 @@ dbRouter.post('/events', function(req, res) {
         event_creatorId: req.session.userId
       }).then(function(event) {
         if (event) {
+          console.log('Event responses from /EVENTS: ', event)
+
           req.session.eventId = event.dataValues.id;
+          console.log('REQ SESSION from /EVENTS: ', req.session.eventId)
           db.EventMember.bulkCreate(createMembers(membersArray, event.id))
           .then(function() {
             return db.EventMember.findAll({
               where: {
                 eventId: event.id
-              }
+              },
+              include: [
+                {model: db.User, as: 'Members'}
+              ]
             });
           }).then(function(members) {
             if (members) {
@@ -163,18 +169,20 @@ dbRouter.post('/events', function(req, res) {
 
 // FIND MEMBERS IN EVENT
 dbRouter.get('/eventMembers', function(req, res) {
+  console.log('REQ SESSION from /EVENTSMEMBERS: ', req.session.eventId)
+  console.log('REQ SESSION from /EVENTSMEMBERS: ', req.session.userId)
   db.EventMember
     .findAll({
-      where: {
-        // eventId: req.session.eventId
-        eventId: 3
-      }
+        include: [
+          {model: db.User, as: 'Members'},
+          {model: db.Event, as: 'Events', where: {id: req.session.eventId}}
+        ]
     }).then(function(members) {
-      if (members) {
-        res.json(members)
-      } else {
-        res.send('Event does not have members.')
-      }
+    if (members) {
+      res.json(members)
+    } else {
+      res.send('Event does not have members.')
+    }
   })
 });
 
@@ -183,7 +191,7 @@ dbRouter.get('/eventMembers', function(req, res) {
 dbRouter.get('/messages', function(req, res) {
   db.Message.findAll({
     where: {
-      eventId: 3
+      eventId: req.session.eventId
     }
   }).then(function(messages) {
     if (messages.length > 0) {
