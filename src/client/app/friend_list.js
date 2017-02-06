@@ -48,6 +48,7 @@ class FriendList extends React.Component{
 		const FriendItems = this.state.FriendItems.map((friend) => {
 			return <FriendListItem 
 					frienddata={friend}
+					AddFriendToRoomFunc={this.addToRoom.bind(this)}
 			/>
 		});
 	return (
@@ -61,7 +62,6 @@ class FriendList extends React.Component{
 }
 
 						// theRoom={this.state.theGroupForRoom}
-						// AddFriendToRoomFunc={this.addToRoom.bind(this)}
 
 						// {this.state.UserFriendComponent}
 export default FriendList;

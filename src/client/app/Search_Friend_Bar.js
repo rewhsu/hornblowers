@@ -28,12 +28,15 @@ class SearchFriendBar extends React.Component {
 					searchName: this.state.UserSearchInput
 				}
 			}).then(function(UserInDB){
-				console.log(UserInDB)
-				self.setState({
-					IneedThisFriend: <SearchFriendBarListItem 
-											Userdata={UserInDB}
-									/>
-				});	
+				console.log('USER RESPONSES IN DB: ', UserInDB.data)
+				if (UserInDB.data) {
+					self.setState({
+						IneedThisFriend: <SearchFriendBarListItem 
+												Userdata={UserInDB}
+										/>
+					});	
+
+				}
 			}).catch(function(error){
 				console.log(error)
 			});

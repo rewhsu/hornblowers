@@ -89,7 +89,7 @@ var Friendship = db.define('Friendship', {
 });
 
 Friendship.removeAttribute('id'); // No primary keys in friendship table
-// Friendship.sync();
+// Friendship.sync({force: true});
 
 var EventMember = db.define('EventMember', {
 	eventId: Sequelize.INTEGER,

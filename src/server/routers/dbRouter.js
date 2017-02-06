@@ -93,7 +93,7 @@ dbRouter.get('/users', function(req, res) {
       if (user) {
         res.json(user)
       } else {
-        res.send('Sorry, user not found. Please tell them to signup!')
+        res.send(false)
       }
     })
     
