@@ -92,10 +92,13 @@ class Yelp extends React.Component {
 
     geocoder.reverse(centerPt)
       .then(function(res) {
-        context.setState({location: res[0].formattedAddress}); // set Location to new midpoint
+        if (res[0].formattedAddress){
+          context.setState({location: res[0].formattedAddress}); // set Location to new midpoint
+        }
         context.getResult(); // get results from yelp after setting location
       })
       .catch(function(err) {
+        context.getResult();
         console.log(err);
       });
   }
