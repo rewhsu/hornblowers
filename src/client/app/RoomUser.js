@@ -49,7 +49,7 @@ class RoomUser extends React.Component {
 
     return (
       <div className="roomUser">
-        <h6 onClick={this.toggleDetails}>Username: {this.state.username}</h6>
+        <h6 onClick={this.toggleDetails}>Username: {this.props.user}</h6>
       </div>
     )
   }

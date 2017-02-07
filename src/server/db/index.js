@@ -125,9 +125,12 @@ Friendship.belongsTo(User, {as: 'Friend_b', foreignKey: 'user_a', otherKey: 'use
 // 	Event.bulkCreate(mockEvents, { ignoreDuplicates: true }).then(function() { 
 // 	  return Event.findAll();
 // 	}).then(function(events) {
-// 	  Message.bulkCreate(mockMessages, { ignoreDuplicates: true }).then(function() { // ***Issue assigning userId/EventId when bulkCreate, insert works
+// 	  
+// Message.bulkCreate(mockMessages, { ignoreDuplicates: true }).then(function() { // ***Issue assigning userId/EventId when bulkCreate, insert works
 // 		  return Message.findAll();
-// 		}).then(function(messages) {
+// 		})
+// .then(function(messages) {
+
 // 		  Friendship.bulkCreate(mockFriendships, { ignoreDuplicates: true }).then(function() { 
 // 		    return Friendship.findAll();
 // 		  }).then(function(friendships) {

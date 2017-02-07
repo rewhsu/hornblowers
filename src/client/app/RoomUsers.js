@@ -8,7 +8,7 @@ class RoomUsers extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      roomUsers: null,
+      roomUsers: ["Andrew Hsu", "Kevin Wong", "Jen Sha"],
       usersVisible: true
     }
     this.getUsers = this.getUsers.bind(this);

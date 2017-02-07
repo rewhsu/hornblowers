@@ -54,7 +54,6 @@ class Chat extends React.Component {
     axios
       .post('/api/db/messages', {
         text: this.state.chatMessage,
-        userid: this.state.userId,
         eventid: this.state.eventId
       })
       .then(function(response) {

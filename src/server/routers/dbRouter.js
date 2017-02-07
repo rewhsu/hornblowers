@@ -207,7 +207,7 @@ dbRouter.get('/messages', function(req, res) {
 
 dbRouter.post('/messages', function(req, res) {
   db.Message.create({
-      userId: req.body.userid,
+      userId: req.session.userId,
       eventId: req.body.eventid,
       message_text: req.body.text
   }).then(function(message) {
