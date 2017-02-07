@@ -37,5 +37,3 @@ class ChatMessage extends React.Component {
 }
 
 export default ChatMessage;
-
-

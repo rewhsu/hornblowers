@@ -137,7 +137,6 @@ dbRouter.post('/events', function(req, res) {
         event_creatorId: req.session.userId
       }).then(function(event) {
         if (event) {
-          console.log('Event responses from /EVENTS: ', event)
 
           req.session.eventId = event.dataValues.id;
           console.log('REQ SESSION from /EVENTS: ', req.session.eventId)
